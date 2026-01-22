@@ -1,0 +1,5 @@
+.sw-cms-block-cmsbundle-five-column-banner{
+    display: grid;
+    grid-template-columns: repeat(auto-fit,minmax(150px,1fr));
+    grid-gap: 5px;
+}

@@ -1,0 +1,9 @@
+.sw-cms-block-cmsbundle-one-by-two-column-banner{
+    display: grid;
+    grid-template-columns: 1fr 195px;
+    grid-gap: 20px;
+
+    img {
+        height: 250px;
+    }
+}

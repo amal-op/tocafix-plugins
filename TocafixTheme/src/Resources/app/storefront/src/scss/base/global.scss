@@ -1,0 +1,173 @@
+:root{
+    --bs-body-font-size: 16px;
+    --bs-body-line-height: 18px;
+    --bs-letter-spacing: 2%;
+    --bs-body-text-align: left;
+    --bs-link-color: $text-color;
+    --bs-link-hover-color: $secondary-color;
+    --bs-body-font-weight: 400;
+    --bs-warning: rgba(245, 255, 0, 1);
+    --bs-warning-rgb: 245, 255, 0;
+    --bs-danger: 255, 0, 0;
+    --bs-danger-rgb: 255, 0, 0;
+}
+
+@include desktop-md() {
+    :root{
+        --bs-body-font-size: 14.5px;
+    }
+}
+
+@include mobile-lg() {
+    :root{
+        --bs-body-font-size: 16px;
+    }
+}
+
+html {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+}
+
+*,
+*::before,
+*::after {
+    -webkit-box-sizing: inherit;
+    -moz-box-sizing: inherit;
+    box-sizing: inherit;
+}
+
+html,
+body {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    font-size: var(--bs-body-font-size);
+    min-height: 100%;
+    color: $text-color;
+}
+
+.cms-page{
+
+    h1{
+        font-weight: 600;
+    }
+    
+    h2, h4{
+        font-weight: 400;
+    }
+    
+    h1,h2,h3,h4,h5,h6,
+    .h1,.h2,.h3,.h4,.h5,.h6{
+        line-height: 1;
+        font-weight: 600;
+        color: inherit;
+    }
+    
+    h2{
+        font-size: rem(64);
+    
+        @include desktop-md() {
+            font-size: rem(52);
+        }
+    
+        @include tablet-lg() {
+            font-size: rem(42);
+        }
+    
+        @include mobile-lg() {
+            font-size: rem(32);
+        }
+    }
+    
+    h4{
+        font-size: rem(20);
+    
+        @include mobile-lg() {
+            font-size: rem(16);
+        }
+    }
+}
+
+
+h1,h2,h3,h4,h5,h6,
+.h1,.h2,.h3,.h4,.h5,.h6{
+    font-weight: 600;
+}
+
+a,
+.btn{
+    transition: 0.3s all;
+}
+
+ul, ol, p{
+    font-size: rem(16);
+    line-height: rem(24);
+
+    @include desktop-md() {}
+    
+    & + ul, & + ol, & + p{
+        margin-top: rem(10);
+        line-height: 1.25;
+    }
+}
+
+
+button {
+    outline: none;
+    box-shadow: none;
+
+    &:hover,
+    &:active,
+    &:focus {
+        outline: none;
+        box-shadow: none;
+    }
+}
+
+main{
+    overflow-x: hidden;
+}
+
+.container{
+    &-main{
+        padding: rem(60) 0;
+        // margin: 0 rem(-20);
+
+        @include mobile-lg() {
+            margin: 0;
+            padding: rem(40) 0;
+        }
+    }
+    &-small{
+        max-width: 1200px;
+    }
+}
+
+.icon-shopware{
+    .icon > svg{
+        top: 0;
+    }
+}
+
+.cms-block-container{
+    padding: 0 !important;
+}
+
+strong{
+    font-weight: 600;
+}
+.scroll-up-button{
+    .btn svg{
+        color: $white-color;
+        top: rem(3);
+    }
+}
+
+.js-quantity-selector{
+    border-color: $border-color!important;
+}
+
+.form-select{
+    border-color: rgba(0, 0, 0, 0.08);
+}

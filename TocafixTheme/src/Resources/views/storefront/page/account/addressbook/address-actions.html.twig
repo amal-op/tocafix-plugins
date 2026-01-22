@@ -1,0 +1,10 @@
+{% sw_extends '@Storefront/storefront/page/account/addressbook/address-actions.html.twig' %}
+
+{% block page_account_address_actions_set_default_billing %}
+{% endblock %}
+
+{% block page_account_address_actions_update %}
+    {% if defaultBillingAddress.id != address.id %}
+        {{ parent() }}
+    {% endif %}
+{% endblock %}

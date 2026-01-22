@@ -1,0 +1,43 @@
+// general
+.cms-element-tocafix-teams {
+  display: inline-block;
+  width: 100%;
+  margin-bottom: 1rem;
+
+  .pull-right {
+    position: absolute;
+    right: 0;
+  }
+
+  h3, h4 {
+    margin-top: .25rem;
+    margin-bottom: .25rem;
+  }
+
+  .btn {
+    display: inline-block;
+    margin-top: .5rem;
+    border: 1px solid #ccc;
+    padding: 3px 5px 3px 5px;
+  }
+
+  .card {
+    display: flex;
+    flex-wrap: wrap;
+    width: 100%;
+
+    .card-post {
+      width: 19rem;
+      margin-right: 1rem;
+      margin-bottom: 1rem;
+
+      .card-body {
+        padding: .25rem;
+      }
+
+      img {
+        width: 100%;
+      }
+    }
+  }
+}

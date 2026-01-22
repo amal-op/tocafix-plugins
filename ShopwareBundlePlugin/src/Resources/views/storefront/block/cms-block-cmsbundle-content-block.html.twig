@@ -1,0 +1,49 @@
+{% block block_cmsbundle_content_block %}
+	{% set backgroundElement = block.slots.getSlot('background') %}
+	{% set desktopMedia = backgroundElement.data.mediaDesktop %}
+	{% set tabletMedia = backgroundElement.data.mediaTablet %}
+	{% set mobileMedia = backgroundElement.data.mediaMobile %}
+	{% set isBgImage = false %}
+	{% if (desktopMedia || tabletMedia || mobileMedia) %}
+		{% set isBgImage = true %}
+	{% endif %}
+	
+	<div class="cms-block-cmsbundle-content-block p-0">
+		<div class="position-relative ">
+			{# {% if isBgImage %}
+				{% block block_cmsbundle_content_block_image_background %}
+					<div class="w-100 h-100">
+						{% sw_include "@Storefront/storefront/element/cms-element-" ~ backgroundElement.type ~ ".html.twig" ignore missing %}
+					</div>
+				{% endblock %}
+			{% endif %} #}
+			{% block block_cmsbundle_content_block_inner_section %}
+				<div class="row m-0">
+					<div class="container {% if isBgImage %} py-0 {% else %} py-4 {% endif %}">
+						<div class="row ">
+							{% block block_cmsbundle_cta_left %}
+								{% set element = block.slots.getSlot('left') %}
+								<div class="col-md-6 order-sm-1 order-2">
+									{% sw_include "@Storefront/storefront/element/cms-element-" ~ element.type ~ ".html.twig" ignore missing  %}
+								</div>
+							{% endblock %}
+							{% block block_cmsbundle_cta_right %}
+								{% set element = block.slots.getSlot('right') %}
+								<div class="col-md-6 order-sm-2 order-1">
+									{% sw_include "@Storefront/storefront/element/cms-element-" ~ element.type ~ ".html.twig" ignore missing  %}
+								</div>
+							{% endblock %}
+						</div>
+					</div>
+				</div>
+			{% endblock %}
+			{% block block_cmsbundle_content_block_background_color %}
+				<div class="{% if isBgImage %} position-absolute top-0 bottom-0 start-0 w-100 {% else %}position-absolute {% endif %}  top-0 start-0 w-100 h-100" style="z-index: -2">
+					{% set element = block.slots.getSlot('background') %}
+					{% sw_include "@Storefront/storefront/element/cms-element-" ~ element.type ~ ".html.twig" ignore missing %}
+				</div>
+			{% endblock %}
+
+		</div>
+	</div>
+{% endblock %}

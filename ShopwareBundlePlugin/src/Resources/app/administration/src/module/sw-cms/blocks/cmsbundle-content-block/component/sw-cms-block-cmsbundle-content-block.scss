@@ -1,0 +1,21 @@
+.sw-cms-block-cmsbundle-content-block {
+    position: relative;
+    .content-block-slots {
+        width: 100%;
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(195px, 1fr));
+        grid-gap: 20px;
+        position: absolute;
+        top: 20%;
+        padding: 15px;
+    }
+    img {
+        border: 2px solid #fff;
+    }
+    .sw-cms-el-cmsbundle-cta__content{
+        img {
+            max-height: 323px;
+            width: 100%;
+        }
+    }
+}

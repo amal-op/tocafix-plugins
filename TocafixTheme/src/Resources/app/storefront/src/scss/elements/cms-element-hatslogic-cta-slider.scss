@@ -1,0 +1,87 @@
+.cta-slider{
+    &-wrapper{
+        position: relative;
+        width: 100%;
+    }
+    &__foreground{
+        position: relative;
+        z-index: 1;
+        
+        .cta-wrapper__inner.container{
+            padding-left: rem(20);
+            padding-right: rem(20);
+
+            @include mobile-lg() {
+                padding-left: 0;
+                padding-right: 0;
+                text-align: center;
+            }
+        }
+
+        .btn-wrap{
+            margin-bottom: 0;           
+        }
+
+        .cta-slider{
+            &.has-nav{
+                // padding-bottom: rem(40);
+            }
+        }
+
+        &.text-white{
+            .btn-link{
+                color: $white-color;
+            }
+
+            .title{
+                h2, h3, h4, h5{
+                    color: $white-color;
+                }
+            }
+
+            .base-slider-controls{
+                &-prev, &-next{
+                    color: $white-color;
+                }
+            }
+
+            .tns-nav button{
+                background-color: $white-color;
+                opacity: 0.5;
+                
+                &.tns-nav-active{
+                    opacity: 1;
+                }
+            }
+        }
+    }
+    &__background{
+        z-index: 0;
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        display: block;
+        top: 0;
+    }
+}
+
+.cta-slider-controls-dots{
+    .slider-dot{
+        &.tns-nav-active{
+            background-color: $white-color;
+        }
+    }
+}
+
+.cms-element-hatslogic-title{
+    & + .cms-element-cmsbundle-cta-slider{
+        margin-top: rem(120);
+        max-width: rem(1460);
+        margin-left: auto;
+        margin-right: auto;
+
+        @include desktop-sm(){
+            margin-top: rem(60);
+        }
+    }
+}

@@ -1,0 +1,88 @@
+{% block tocafix_team_detail %}
+    <sw-page class="tocafix-team-detail">
+        <template #smart-bar-actions>
+        
+            <sw-button 
+                :routerLink="{ name: 'tocafix.team.list' }"
+                v-tooltip="tooltipCancel">
+                {{ $tc('tocafix-team.detail.cancelButtonText') }}
+            </sw-button>
+
+            <sw-button-process
+                :isLoading="isLoading"
+                :processSuccess="processSuccess"
+                variant="primary"
+                v-tooltip="tooltipSave"
+                @process-finish="saveFinish"
+                @click="onClickSave">
+                {{ $tc('tocafix-team.detail.saveButtonText') }}
+            </sw-button-process>
+        </template>
+
+        <template #language-switch>
+            <sw-language-switch @on-change="onChangeLanguage" :disabled="isCreateMode"></sw-language-switch>
+        </template>
+
+        <template #content>
+            <sw-card-view>
+                <sw-card v-if="team" :isLoading="isLoading">
+                    <sw-text-field
+                        :label="$tc('tocafix-team.detail.nameLabel')"
+                        v-model:value="team.name"
+                        required
+                        :error="teamNameError"
+                       >
+                    </sw-text-field>
+                    
+                    <sw-entity-many-to-many-select
+                        :label="$t('tocafix-team.detail.categoryLabel')"
+                        :entity-collection="team.teamCategories"
+                        :local-mode="true"
+                        @update:entity-collection="team.teamCategories = $event"
+                        :value-limit="2">
+                    </sw-entity-many-to-many-select>
+
+                    <sw-text-field
+                        :label="$tc('tocafix-team.detail.positionLabel')"
+                        v-model:value="team.position"
+                        required
+                        :error="teamPositionError"
+                        >
+                    </sw-text-field>
+
+                    <sw-text-field
+                        :label="$tc('tocafix-team.detail.phoneNumberLabel')"
+                        v-model:value="team.phoneNumber"
+                        >
+                    </sw-text-field>
+
+                    <sw-text-field
+                        :label="$tc('tocafix-team.detail.emailLabel')"
+                        v-model:value="team.email"
+                        required
+                        :error="teamEmailError"
+                        >
+                    </sw-text-field>
+
+                    <sw-media-field
+                        :label="$tc('tocafix-team.detail.mediaLabel')"
+                        v-model:value="team.mediaId"
+                        >
+                    </sw-media-field>
+
+                    <sw-number-field
+                        :label="$tc('tocafix-team.detail.sortOrderLabel')"
+                        v-model:value="team.sortOrder"
+                        numberType="int"
+                        :step="1"
+                        :min="1"
+                        :allowEmpty="false"
+                        required
+                        :error="teamPositionError"
+                        >
+                    </sw-number-field>
+                </sw-card>
+            </sw-card-view>
+        </template>
+    </sw-page>
+{% endblock %}

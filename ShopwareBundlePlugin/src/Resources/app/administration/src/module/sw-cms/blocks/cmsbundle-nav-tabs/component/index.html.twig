@@ -1,0 +1,11 @@
+{% block sw_cms_block_cmsbundle_nav_tabs %}
+	<div class="sw-cms-block-cmsbundle-nav-tabs">
+		<div class="nav-tabs-bg">
+			<slot name="background"></slot>
+		</div>
+		<div class="nav-tabs-slots">
+			<slot name="title"></slot>
+			<slot name="tabs"></slot>
+		</div>
+	</div>
+{% endblock %}

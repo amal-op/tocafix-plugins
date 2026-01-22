@@ -1,0 +1,16 @@
+@import "../../../scss/variables.scss";
+.sw_cms_block_cmsbundle_hero-slider-background{
+    .sw-cms-el-cmsbundle-hero-slider-background {
+        display: flex;
+        max-width: 100%;
+    
+        img {
+            display: block;
+            max-width: 100%;
+            width: 100%;
+            opacity: 0.5;
+            height: 535px!important;
+        }
+    }
+    
+}

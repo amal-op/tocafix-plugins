@@ -1,0 +1,9 @@
+{
+    "cmsbundle": {
+      "cms-bundle": {
+        "hero-slider": {
+          "slide-down": "Nach unten gleiten"
+        }
+      }
+    }
+  }

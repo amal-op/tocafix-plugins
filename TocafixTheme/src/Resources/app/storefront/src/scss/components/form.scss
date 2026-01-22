@@ -1,0 +1,23 @@
+.form-control{
+    height: rem(50);
+    font-size: rem(16);
+    border: rem(1) solid $grey-color;
+
+    @include mobile-lg() {
+        // height: rem(40);
+    }
+}
+
+form + form{
+    margin-top: rem(15);
+}
+
+.checkout-aside-add-delivery_date{
+    margin-bottom: rem(5);
+}
+
+.custom-select, .form-control{
+    border-color: rgba($black-color, 0.08);
+    padding-left: rem(12);
+    padding-right: rem(12);
+}

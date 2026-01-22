@@ -1,0 +1,19 @@
+{% block sw_cms_element_product_slider %}
+
+	<div class="sw-cms-el-product-slider" :class="classes" :style="verticalAlignStyle">
+		{% block sw_cms_element_product_slider_content %}
+			<div class="sw-cms-el-product-slider__content">
+				{% block sw_cms_element_product_slider_product_holder %}
+					<div ref="productHolder" class="sw-cms-el-product-slider__product-holder">
+
+							{% block sw_cms_element_product_slider_demo_data %}
+								<sw-cms-el-product-box v-for="(index) in getDummyBoxes(sliderBoxLimit)" :key="index" :element="demoProductElement"/>
+							{% endblock %}
+
+					</div>
+				{% endblock %}
+
+			</div>
+		{% endblock %}
+	</div>
+{% endblock %}

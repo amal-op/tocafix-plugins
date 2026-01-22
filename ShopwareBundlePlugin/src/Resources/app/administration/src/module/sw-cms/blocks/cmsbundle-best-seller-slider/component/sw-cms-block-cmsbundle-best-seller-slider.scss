@@ -1,0 +1,14 @@
+.sw-cms-block-cmsbundle-best-seller-slider {
+    position: relative;
+    .best-seller-slider-bg {
+        position: relative;
+    }
+    .best-seller-slider-slots {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 100%;
+        padding: 15px;
+    }
+}

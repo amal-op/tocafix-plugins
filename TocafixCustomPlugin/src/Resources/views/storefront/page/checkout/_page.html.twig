@@ -1,0 +1,9 @@
+{% sw_extends '@Storefront/storefront/page/checkout/_page.html.twig' %}
+
+{% block page_checkout_aside_summary %}
+    {{ parent() }}
+
+    {% if activeRoute == 'frontend.checkout.confirm.page' %}
+        {% sw_include 'storefront/component/delivery_date.html.twig' %}
+    {% endif %}
+{% endblock %}

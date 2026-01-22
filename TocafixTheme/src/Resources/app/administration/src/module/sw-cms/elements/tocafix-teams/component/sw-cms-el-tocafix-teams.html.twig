@@ -1,0 +1,19 @@
+{% block sw_cms_element_tocafix_teams %}
+	<div class="cms-element-tocafix-teams">
+		{% block element_tocafix_team_inner %}
+			<div class="card">
+				<div v-for="n in numberOfPosts" :key="n">
+					<div class="card-post">
+						<img :src="assetFilter('/administration/static/img/cms/preview_mountain_small.jpg')" alt="">
+						<div class="card-body">
+							<div class="btn">Categories</div>
+							<h3>Employee Name</h3>
+							<h4>Position</h4>
+							<div class="text-small">email</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		{% endblock %}
+	</div>
+{% endblock %}

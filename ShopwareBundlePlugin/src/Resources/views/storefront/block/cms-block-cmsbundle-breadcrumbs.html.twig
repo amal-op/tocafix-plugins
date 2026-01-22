@@ -1,0 +1,14 @@
+{% block block_cmsbundle_breadcrumbs_list %}
+	<div class="cms-block-cmsbundle-breadcrumbs">
+		{% block block_cmsbundle_breadcrumbs_content %}
+			{% set element = block.slots.getSlot('breadcrumbs') %}
+			<div class="container py-2">
+				<div class="row">
+					<div class="col-md-12">
+						{% sw_include "@Storefront/storefront/element/cms-element-" ~ element.type ~ ".html.twig" ignore missing  %}
+					</div>
+				</div>
+			</div>
+		{% endblock %}
+	</div>
+{% endblock %}

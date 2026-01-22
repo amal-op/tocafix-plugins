@@ -1,0 +1,24 @@
+{% sw_extends '@Storefront/storefront/component/listing/filter-panel.html.twig' %}
+
+{% block component_filter_panel %}
+    {% block component_filter_panel_header %}
+         {{ parent() }}
+    {% endblock %}
+
+    {% block component_filter_panel_element %}
+        <div class="filter-panel{% if sidebar %} is--sidebar{% endif %}">
+            {% block component_filter_panel_items_container %}
+                {% if listing.total > 0 %}
+                    <div class="filter-panel-label">{{ 'listing.filter.filterPanelLabel'|trans|sw_sanitize }}</div>
+                {% endif %}
+                <div class="filter-panel-items-container">
+                     {{ parent() }}
+                </div>
+            {% endblock %}
+
+            {% block component_filter_panel_active_container %}
+                 {{ parent() }}
+            {% endblock %}
+        </div>
+     {% endblock %}
+{% endblock %}

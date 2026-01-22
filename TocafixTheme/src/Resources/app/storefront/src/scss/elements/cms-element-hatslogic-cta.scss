@@ -1,0 +1,140 @@
+.cms-element-cmsbundle-cta, .cta-slider-item{
+    height: 100%;
+    width: 100%;
+}
+
+
+.cta-element-wrapper{
+    position: relative;
+    height: 100%;
+    width: 100%;
+
+    .cta-element{
+        &__foreground{
+            height: 100%;
+            width: 100%;
+        }
+    }
+
+    &.bg-overlay{
+        background: linear-gradient(90.36deg, rgba(0, 0, 0, 0.4) 0.29%, rgba(0, 0, 0, 0.308) 53.84%, rgba(0, 0, 0, 0.170772) 57.25%, rgba(0, 0, 0, 0) 99.69%), rgba(0, 0, 0, 0.3);
+        color: $white-color;
+    }
+
+    .text-center{
+        .title{
+            margin-left: auto;
+            margin-right: auto;
+            p{
+                margin-left: auto;
+                margin-right: auto;
+            }
+        }
+    }
+
+    &.has-bg-image{
+        .cta-element{
+            &__background{
+                position: relative;
+                z-index: 0;
+                picture, img{
+                    display: block;
+                    width: 100%;
+                    height: auto;
+                }
+            }
+            &__foreground{
+                top: 0;
+                position: absolute;
+                z-index: 1;
+            }
+        }
+    }
+}
+
+.cta-image-wrap{
+    margin-bottom: rem(22);
+    & + .title > h3, & + h3 {
+        margin-bottom: rem(20);
+        font-size: rem(28);
+        line-height: rem(36);
+        font-weight: 400;
+        min-height: rem(72);
+
+        @include desktop-sm(){
+            font-size: rem(24);
+            line-height: rem(32);
+        }
+
+        @include mobile-lg(){
+            font-size: rem(22);
+            line-height: rem(26);
+            min-height: auto;
+        }
+
+        & + p{
+            min-height: rem(86);
+            font-size: rem(18);
+            line-height: rem(27);
+            margin-top: 0;
+
+            & + .btn-wrap{
+                .btn-link{
+                    opacity: 0.75;
+                    &:hover{
+                        opacity: 1;
+                    }
+                }
+            }
+        }
+    }
+
+    & + .title{
+        & + .btn-wrap{
+            .btn-link{
+                opacity: 0.75;
+                &:hover{
+                    opacity: 1;
+                }
+            }
+        }
+    }
+    .cta-image{
+        width: rem(75);
+        height: auto;
+    }
+}
+
+.cms-block-cmsbundle-cta{
+    .cta-element__foreground{
+        &.align-items-start{
+            padding-top: rem(180);
+            padding-bottom: rem(180);
+
+            .title{
+                max-width: 54%;
+
+                @include desktop-lg(){
+                    max-width: 58%;
+                }
+
+                @include desktop-md(){
+                    max-width: 60%;
+                }
+
+                @include desktop-md(){
+                    max-width: 80%;
+                }
+
+                @include tablet-md(){
+                    max-width: 100%;
+                }
+            }
+
+            @include desktop-sm(){
+                padding-top: rem(80);
+                padding-bottom: rem(80);
+            }
+        }
+    }
+}

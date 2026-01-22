@@ -1,0 +1,44 @@
+{% block cms_block_cmsbundle_product_list %}
+	<div class="cms-block-cmsbundle-product-list position-relative p-4">
+		{% block block_cmsbundle_product_list_foreground %}
+			<div class="product-slider__foreground text-white">
+				{% block block_cmsbundle_product_list_title %}
+					{% set element = block.slots.getSlot('title') %}
+					<div class="container py-2">
+						<div class="row">
+							<div class="col-md-12 p-0">
+								{% sw_include "@Storefront/storefront/element/cms-element-" ~ element.type ~ ".html.twig" ignore missing  %}
+							</div>
+						</div>
+					</div>
+				{% endblock %}
+				{% block block_product_list_products %}
+					{% set element = block.slots.getSlot('product') %}
+					<div class="container py-2">
+						<div class="row">
+							<div class="col-md-12 p-0">
+								{% sw_include "@Storefront/storefront/element/cms-element-" ~ element.type ~ ".html.twig"   %}
+							</div>
+						</div>
+					</div>
+				{% endblock %}
+				{% block block_cmsbundle_product_list_button %}
+					{% set element = block.slots.getSlot('button') %}
+					<div class="container py-2">
+						<div class="row">
+							<div class="col-md-12 p-0">
+								{% sw_include "@Storefront/storefront/element/cms-element-" ~ element.type ~ ".html.twig" ignore missing  %}
+							</div>
+						</div>
+					</div>
+				{% endblock %}
+			</div>
+		{% endblock %}
+		{% block block_cmsbundle_product_list_background %}
+			<div class="product-slider__background">
+				{% set element = block.slots.getSlot('background') %}
+				{% sw_include "@Storefront/storefront/element/cms-element-" ~ element.type ~ ".html.twig" ignore missing %}
+			</div>
+		{% endblock %}
+	</div>
+{% endblock %}

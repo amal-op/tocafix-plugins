@@ -1,0 +1,7 @@
+{% block sw_cms_element_cmsbundle_hero_slider %}
+	<div class="sw-cms-el-cmsbundle-hero-slider-background" :style="backgroundStyle">
+		{% block sw_cms_element_cmsbundle_hero_slider_content %}
+			<img v-if="mediaUrlDesktop" :src="mediaUrlDesktop" alt="" :style="imageStyle">
+		{% endblock %}
+	</div>
+{% endblock %}

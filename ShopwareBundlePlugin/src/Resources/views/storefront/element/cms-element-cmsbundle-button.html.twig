@@ -1,0 +1,37 @@
+{% block element_cmsbundle_button %}
+
+	{% set buttonText1 = element.config.buttonText1.value ?? '' %}
+	{% set buttonType1 = element.config.buttonType1.value ?? '' %}
+	{% set newTab1 = element.config.newTab1.value ?? '' %}
+	{% set url1 = element.config.url1.value ?? '' %}
+
+	{% set buttonText2 = element.config.buttonText2.value ?? '' %}
+	{% set buttonType2 = element.config.buttonType2.value ?? '' %}
+	{% set newTab2 = element.config.newTab2.value ?? '' %}
+	{% set url2 = element.config.url2.value ?? '' %}
+
+	{% set buttonText3 = element.config.buttonText3.value ?? '' %}
+	{% set buttonType3 = element.config.buttonType3.value ?? '' %}
+	{% set newTab3 = element.config.newTab3.value ?? '' %}
+	{% set url3 = element.config.url3.value ?? '' %}
+
+	{% if url1 != '' or url2 != '' or url3 != '' %}
+	<div class="cms-element-{{ element.type }}">
+		{% block element_cmsbundle_button_inner %}
+			<div class="btn-wrap text-center">
+
+				{% if buttonText1 %}
+					<a href="{{ url1 }}" class="btn btn-{{ buttonType1 }} text-white" {% if newTab1 %} target="_blank" {% endif %}>{{ buttonText1 }}</a>
+				{% endif %}
+				{% if buttonText2 %}
+					<a href="{{ url2 }}" class="btn btn-{{ buttonType2 }} text-white" {% if newTab2 %} target="_blank" {% endif %}>{{ buttonText2 }}</a>
+				{% endif %}
+				{% if buttonText3 %}
+					<a href="{{ url3 }}" class="btn btn-{{ buttonType3 }} text-white" {% if newTab3 %} target="_blank" {% endif %}>{{ buttonText3 }}</a>
+				{% endif %}
+			</div>
+		{% endblock %}
+	</div>
+	{% endif %}
+
+{% endblock %}

@@ -1,0 +1,6 @@
+{% block block_cmsbundle_one_column %}
+	{% set element = block.slots.getSlot('center') %}
+	<div class="cms-block-one-column">
+		{% sw_include "@Storefront/storefront/element/cms-element-" ~ element.type ~ ".html.twig" ignore missing  %}
+	</div>
+{% endblock %}

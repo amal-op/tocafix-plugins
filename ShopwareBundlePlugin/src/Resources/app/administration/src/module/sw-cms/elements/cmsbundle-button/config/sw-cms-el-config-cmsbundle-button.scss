@@ -1,0 +1,14 @@
+.sw-cms-el-config-cmsbundle-button {
+    .pr-10px {
+        padding-right: 10px;
+    }
+    .sw-field-row {
+        display: flex;
+        align-items: center;
+
+        .sw-field-item {
+            flex-grow: 1;
+            flex-basis: 0;
+        }
+    }
+}

@@ -1,0 +1,122 @@
+{% block sw_cms_element_cmsbundle_background_image_config_config %}
+    <div class="sw-cms-el-config-cmsbundle-background-image">
+        {% block sw_cms_element_cmsbundle_background_image_config_tabs %}
+            <sw-tabs default-item="image">
+                <template #default="{ active }">
+                    {% block sw_cms_element_cmsbundle_background_image_config_tab_image %}
+                        <sw-tabs-item name="image" :active-tab="active">
+                            {{ $tc('cmsbundle.element.general.tabs.background') }}
+                        </sw-tabs-item>
+                    {% endblock %}
+                    {% block sw_cms_element_cmsbundle_background_image_config_tab_setting %}
+                        <sw-tabs-item name="setting" :active-tab="active">
+                            {{ $tc('cmsbundle.element.general.config.setting') }}
+                        </sw-tabs-item>
+                    {% endblock %}
+                </template>
+                <template #content="{ active }">
+                    <div v-if="active === 'image'" class="sw-cms-el-config-cmsbundle-image">
+                        {% block sw_cms_element_cmsbundle_background_image_config_desktop_media_upload %}
+                            <sw-container class="sw-cms-el-config-cmsbundle-image-field">
+                                <sw-cms-mapping-field v-model:config="element.config.mediaDesktop" :label="$tc('cmsbundle.element.general.config.desktop')" value-types="entity" entity="media">
+                                    <sw-media-upload-v2 variant="regular" :upload-tag="uploadTagDesktop" :source="previewSourceDesktop" :allow-multi-select="false" :default-folder="cmsPageState.pageEntityName" :caption="$tc('sw-cms.elements.general.config.caption.mediaUpload')" @media-upload-sidebar-open="onOpenMediaModalDesktop" @media-upload-remove-image="onImageRemoveDesktop" />
+                                    <template #preview="{ demoValue }">
+                                        <div class="sw-cms-el-config-image__mapping-preview">
+                                            {{ demoValue }}
+                                            <img v-if="demoValue.url" :src="demoValue.url" alt="">
+                                                <sw-alert v-else class="sw-cms-el-config-image__preview-info" variant="info">
+                                                    {{ $tc('sw-cms.detail.label.mappingEmptyPreview') }}
+                                                </sw-alert>
+                                            </div>
+                                        </template>
+                                    </sw-cms-mapping-field>
+                                    <sw-upload-listener :upload-tag="uploadTagDesktop" auto-upload @media-upload-finish="onImageUploadDesktop" />
+                                </sw-container>
+                            {% endblock %}
+                            {% block sw_cms_element_cmsbundle_background_image_config_tablet_media_upload %}
+                                <sw-container class="sw-cms-el-config-cmsbundle-image-field">
+                                    <sw-cms-mapping-field v-model:config="element.config.mediaTablet" :label="$tc('cmsbundle.element.general.config.tablet')" value-types="entity" entity="media">
+                                        <sw-media-upload-v2 variant="regular" :upload-tag="uploadTagTablet" :source="previewSourceTablet" :allow-multi-select="false" :default-folder="cmsPageState.pageEntityName" :caption="$tc('sw-cms.elements.general.config.caption.mediaUpload')" @media-upload-sidebar-open="onOpenMediaModalTablet" @media-upload-remove-image="onImageRemoveTablet" />
+                                        <template #preview="{ demoValue }">
+                                            <div slot="preview" slot-scope="{ demoValue }" class="sw-cms-el-config-image__mapping-preview">
+                                                <img v-if="demoValue.url" :src="demoValue.url" alt="" />
+                                                <sw-alert v-else class="sw-cms-el-config-image__preview-info" variant="info">
+                                                    {{ $tc('sw-cms.detail.label.mappingEmptyPreview') }}
+                                                </sw-alert>
+                                            </div>
+                                        </template>
+                                    </sw-cms-mapping-field>
+                                    <sw-upload-listener :upload-tag="uploadTagTablet" auto-upload @media-upload-finish="onImageUploadTablet" />
+                                </sw-container>
+                            {% endblock %}
+                            {% block sw_cms_element_cmsbundle_background_image_config_mobile_media_upload %}
+                                <sw-container class="sw-cms-el-config-cmsbundle-image-field">
+                                    <sw-cms-mapping-field v-model:config="element.config.mediaMobile" :label="$tc('cmsbundle.element.general.config.mobile')" value-types="entity" entity="media">
+                                        <sw-media-upload-v2 variant="regular" :upload-tag="uploadTagMobile" :source="previewSourceMobile" :allow-multi-select="false" :default-folder="cmsPageState.pageEntityName" :caption="$tc('sw-cms.elements.general.config.caption.mediaUpload')" @media-upload-sidebar-open="onOpenMediaModalMobile" @media-upload-remove-image="onImageRemoveMobile" />
+                                        <template #preview="{ demoValue }">
+                                            <div class="sw-cms-el-config-image__mapping-preview">
+                                                <img v-if="demoValue.url" :src="demoValue.url" alt="" />
+                                                <sw-alert v-else class="sw-cms-el-config-image__preview-info" variant="info">
+                                                    {{ $tc('sw-cms.detail.label.mappingEmptyPreview') }}
+                                                </sw-alert>
+                                            </div>
+                                        </template>
+                                    </sw-cms-mapping-field>
+                                    <sw-upload-listener :upload-tag="uploadTagMobile" auto-upload @media-upload-finish="onImageUploadMobile" />
+                                </sw-container>
+                            {% endblock %}
+
+                            {% block sw_cms_element_cmsbundle_background_image_config_desktop_media_modal %}
+                                <sw-media-modal-v2 v-if="mediaModalIsOpenDesktop" variant="full" :caption="$tc('sw-cms.elements.general.config.caption.mediaUpload')" :entity-context="cmsPageState.entityName" :allow-multi-select="false" :initial-folder-id="cmsPageState.defaultMediaFolderId" @media-upload-remove-image="onImageRemoveDesktop" @media-modal-selection-change="onSelectionChangesDesktop" @modal-close="onCloseModalDesktop" />
+                            {% endblock %}
+                            {% block sw_cms_element_cmsbundle_background_image_config_tablet_media_modal %}
+                                <sw-media-modal-v2 v-if="mediaModalIsOpenTablet" variant="full" :caption="$tc('sw-cms.elements.general.config.caption.mediaUpload')" :entity-context="cmsPageState.entityName" :allow-multi-select="false" :initial-folder-id="cmsPageState.defaultMediaFolderId" @media-upload-remove-image="onImageRemoveTablet" @media-modal-selection-change="onSelectionChangesTablet" @modal-close="onCloseModalTablet" />
+                            {% endblock %}
+                            {% block sw_cms_element_cmsbundle_background_image_config_mobile_media_modal %}
+                                <sw-media-modal-v2 v-if="mediaModalIsOpenMobile" variant="full" :caption="$tc('sw-cms.elements.general.config.caption.mediaUpload')" :entity-context="cmsPageState.entityName" :allow-multi-select="false" :initial-folder-id="cmsPageState.defaultMediaFolderId" @media-upload-remove-image="onImageRemoveMobile" @media-modal-selection-change="onSelectionChangesMobile" @modal-close="onCloseModalMobile" />
+                            {% endblock %}
+                            {% block sw_cms_element_cmsbundle_background_image_colour %}
+                                <div class="sw-cms-el-config-cmsbundle-hero-slider-colour">
+                                    <sw-colorpicker v-model:value="element.config.colour.value" class="sw-cms-el-config-cmsbundle-hero-slider-colour" type="text" :label="$tc('cmsbundle.element.general.config.background-color')" coloroutput="auto" :alpha="true" :disabled="false" :colorlabels="true" zindex="100" />
+                                </div>
+                            {% endblock %}
+                            {% block sw_cms_element_cmsbundle_hero_slider_config_lazy_load %}
+                                <div class="sw-cms-el-config-cmsbundle-hero-slider-lazy-load">
+                                    <sw-switch-field v-model:value="element.config.lazyLoad.value" class="sw-cms-el-config-cmsbundle-hero-slider-lazy-load" type="switch" :label="$tc('cmsbundle.element.general.config.enable-lazy-load')" />
+                                </div>
+                            {% endblock %}
+                        </div>
+
+                        <div v-if="active==='setting'" class="sw-cms-el-config-cmsbundle-image">
+                            {% block sw_cms_element_cmsbundle_background_image_config_media_upload_setting %}
+
+                                <div class="sw-field-row">
+                                    {% block sw_cms_element_cmsbundle_background_image_config_options %}
+                                        <sw-select-field v-model:value="element.config.alignment.value" class="sw-cms-el-config-cmsbundle-background-image__alignment pr-10px sw-field-item" :label="$tc('sw-cms.elements.general.config.label.alignment')" :placeholder="$tc('sw-cms.elements.general.config.label.alignment')">
+
+                                            {% block sw_cms_element_cmsbundle_background_image_config_alignment_options %}
+                                                <option value="flex-start">
+                                                    {{ $tc('sw-cms.elements.general.config.label.verticalAlignTop') }}
+                                                </option>
+                                                <option value="center">
+                                                    {{ $tc('sw-cms.elements.general.config.label.verticalAlignCenter') }}
+                                                </option>
+                                                <option value="flex-end">
+                                                    {{ $tc('sw-cms.elements.general.config.label.verticalAlignBottom') }}
+                                                </option>
+                                            {% endblock %}
+
+                                        </sw-select-field>
+                                    {% endblock %}
+                                    {% block sw_cms_element_cmsbundle_background_image_config_custom_class %}
+                                        <sw-text-field v-model:value="element.config.customClass.value" class="sw-cms-el-config-cmsbundle-image-custom-class sw-field-item" type="text" :label="$tc('cmsbundle.element.general.config.custom-class')" />
+                                    {% endblock %}
+                                </div>
+                            {% endblock %}
+                        </div>
+                    </template>
+                </sw-tabs>
+            {% endblock %}
+        </div>
+    {% endblock %}
+    

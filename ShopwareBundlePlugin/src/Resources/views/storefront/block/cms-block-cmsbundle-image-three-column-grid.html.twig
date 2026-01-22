@@ -1,0 +1,30 @@
+{% block block_cmsbundle_three_column_image_grid %}
+<div class="cms-block-cmsbundle-three-column-grid cmsbundle-custom">
+    <div class="row">
+        <div class="container">
+            <div class="row">
+                {% block block_cmsbundle_three_column_image_grid_left %}
+                    {% set element = block.slots.getSlot('left') %}
+                    <div class="col-md-6 pb-4 pb-md-0">
+                        {% sw_include "@Storefront/storefront/element/cms-element-" ~ element.type ~ ".html.twig" ignore missing %}
+                    </div>
+                {% endblock %}
+                <div class="col-md-6 d-flex align-items-center justify-content-center flex-column">
+                    {% block block_cmsbundle_three_column_image_grid_right_top %}
+                        {% set element = block.slots.getSlot('right-top') %}
+                        <div class="pb-4 pb-md-0 flex-grow-1 w-100 mb-3">
+                            {% sw_include "@Storefront/storefront/element/cms-element-" ~ element.type ~ ".html.twig" ignore missing %}
+                        </div>
+                    {% endblock %}
+                    {% block block_cmsbundle_three_column_image_grid_right_bottom %}
+                        {% set element = block.slots.getSlot('right-bottom') %}
+                        <div class="flex-grow-1 w-100">
+                            {% sw_include "@Storefront/storefront/element/cms-element-" ~ element.type ~ ".html.twig" ignore missing %}
+                        </div>
+                    {% endblock %}
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

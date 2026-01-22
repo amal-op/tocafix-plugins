@@ -1,0 +1,48 @@
+.sw-cms-preview-tocafix-teams {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-gap: 20px;
+    width: 100%;
+    height: 160px;
+    position: relative;
+    border: 10px solid white;
+    font-size: 8px;
+    padding: 10px;
+
+    .teams-section-wrapper {
+        text-align: center;
+    }
+
+    .teams-title {
+        font-weight: 600;
+        font-size: 10px;
+        margin: 10px 0 2px 0;
+    }
+
+    .teams-text {
+        line-height: 1.3;
+    }
+
+    svg {
+        color: rgb(24, 158, 255);
+        width: 36px;
+        height: 36px;
+        margin: 0 auto;
+        display: block;
+    }
+
+    .team-link-icons-wrapper {
+        display: grid;
+        grid-template-columns: 12px 12px 12px;
+        margin: 10px auto;
+        width: 36px;
+
+        svg {
+            color: rgb(24, 158, 255);
+            width: 9px;
+            height: 9px;
+            margin: 0 auto;
+            display: block;
+        }
+    }
+}

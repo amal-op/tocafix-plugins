@@ -1,0 +1,59 @@
+{% block block_cmsbundle_section %}
+
+	{# CTA Block Background #}
+	{% set backgroundElement = block.slots.getSlot('background') %}
+	{% set desktopMedia = backgroundElement.data.mediaDesktop %}
+	{% set tabletMedia = backgroundElement.data.mediaTablet %}
+	{% set mobileMedia = backgroundElement.data.mediaMobile %}	
+
+	{% set hasBgImage = false %}
+	{% if (desktopMedia || tabletMedia || mobileMedia) %}
+		{% set hasBgImage = true %}
+	{% endif %}
+
+	<div class="section__block-wrapper padding-top padding-bottom{% if hasBgImage %} has-bg-image{% endif %} position-relative">
+		{% block block_cmsbundle_section_foreground %}
+			<div class="section__foreground row">
+				<div class="container">
+					{% block block_cmsbundle_section_title %}
+						{% set element = block.slots.getSlot('title') %}
+						{% sw_include "@Storefront/storefront/element/cms-element-" ~ element.type ~ ".html.twig" ignore missing  %}
+					{% endblock %}
+
+					{% block block_cmsbundle_section_content %}
+						<div class="section__content cms-element-cmsbundle-section-block row row-cols-sm-2 row-cols-lg-3">
+							{% set element = block.slots.getSlot('content1') %}
+							{% sw_include "@Storefront/storefront/element/cms-element-" ~ element.type ~ ".html.twig" ignore missing  %}
+
+							{% set element = block.slots.getSlot('content2') %}
+							{% sw_include "@Storefront/storefront/element/cms-element-" ~ element.type ~ ".html.twig" ignore missing  %}
+
+							{% set element = block.slots.getSlot('content3') %}
+							{% sw_include "@Storefront/storefront/element/cms-element-" ~ element.type ~ ".html.twig" ignore missing  %}
+
+							{% set element = block.slots.getSlot('content4') %}
+							{% sw_include "@Storefront/storefront/element/cms-element-" ~ element.type ~ ".html.twig" ignore missing  %}
+
+							{% set element = block.slots.getSlot('content5') %}
+							{% sw_include "@Storefront/storefront/element/cms-element-" ~ element.type ~ ".html.twig" ignore missing  %}
+
+							{% set element = block.slots.getSlot('content6') %}
+							{% sw_include "@Storefront/storefront/element/cms-element-" ~ element.type ~ ".html.twig" ignore missing  %}
+						</div>
+					{% endblock %}
+
+					{% block block_cmsbundle_section_button %}
+						{% set element = block.slots.getSlot('button') %}
+						{% sw_include "@Storefront/storefront/element/cms-element-" ~ element.type ~ ".html.twig" ignore missing  %}
+					{% endblock %}
+				</div>
+			</div>
+		{% endblock %}
+		{% block block_cmsbundle_section_background %}
+			<div class="section__background position-absolute top-0 bottom-0  w-100   top-0 start-0 w-100 h-100">
+				{% set element = block.slots.getSlot('background') %}
+				{% sw_include "@Storefront/storefront/element/cms-element-" ~ element.type ~ ".html.twig" ignore missing %}
+			</div>
+		{% endblock %}
+	</div>
+{% endblock %}

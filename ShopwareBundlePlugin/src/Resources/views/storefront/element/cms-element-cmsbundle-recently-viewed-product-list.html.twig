@@ -1,0 +1,45 @@
+{% block element_recently_viewed_product_listing %}
+    {% set countDesktop = element.translated.config.countDesktop.value %}
+    {% if countDesktop is empty || countDesktop is null %}
+        {% set countDesktop = 4 %}
+    {% endif %}
+    {% set countMobile = element.translated.config.countMobile.value %}
+    {% if countMobile is empty || countMobile is null %}
+        {% set countMobile = 3 %}
+    {% endif %}
+    {% set countTablet = element.translated.config.countTablet.value %}
+    {% if countTablet is empty || countTablet is null %}
+        {% set countTablet = 2 %}
+    {% endif %}
+    {% set defaultColumns = 3 %}
+    {% set listingColumns = 'mb-4 col-xs-' ~ countMobile ~ ' col-sm-' ~ countTablet ~ ' col-lg-' ~ countDesktop ~ ' col-xl-' ~ countDesktop %}
+
+    {# {% if section and section.type == 'sidebar' %}
+    		{% set listingColumns = 'col-sm-6 col-lg-6 col-xl-4' %}
+    	{% endif %} #}
+    {% set slot = cmsPage.getFirstElementOfType('recently-viewed-product-list') %}
+
+    {% set filterUrl = null %}
+    {% set dataUrl = null %}
+
+    {% if searchResult.currentFilters.navigationId %}
+        {% set filterUrl = url('frontend.cms.navigation.filter', { navigationId: searchResult.currentFilters.navigationId }) %}
+        {% set dataUrl = url('frontend.cms.navigation.page', { navigationId: searchResult.currentFilters.navigationId }) %}
+    {% endif %}
+
+    {% set sidebar = sectionType == 'sidebar' %}
+    {% set params = { slots: slot.id, 'no-aggregations': 1 } %}
+
+    <div class="js-recently-viewed-product-listing">
+        {% set recentlyViewedProductListOptions = {
+	    replaceSelectors:['.js-recently-viewed-product-listing'],
+		route: path('frontend.recently-viewed-product.list'),
+		productsPerPage: element.translated.config.productsPerPage.value,
+		sidebar: sidebar,
+	    boxLayout: element.translated.config.boxLayout.value,
+	    displayMode: element.translated.config.displayMode.value,
+	    listingColumns: listingColumns
+    } %}
+        <div data-cmsbundle-recently-viewed-product="true" data-cmsbundle-recently-viewed-product-options="{{ recentlyViewedProductListOptions|json_encode }}"></div>
+    </div>
+{% endblock %}

@@ -1,0 +1,77 @@
+.category-box{
+    background-color: $grey-light-bg;
+
+    .card-body{
+        padding-top: 15%;
+        .product{
+            &-image{
+                width: 100%;
+                height: auto;
+                max-width: 100%;
+                max-height: 100%;
+                
+                &-wrapper{
+                    height: 0;
+                    padding-bottom: 75%;
+                    position: relative;
+                }
+                &-link{
+                    position: absolute;
+                    top: 0;
+                }
+            }
+            &-info{
+                padding: rem(25);
+                position: absolute;
+                text-align: center;
+                width: 100%;
+                top: 0;
+                background: linear-gradient(180deg, #CBCBCB 0%, rgba(206, 206, 206, 0) 100%);
+
+                a{
+                    text-decoration: none;
+                }
+            }
+            &-name{
+                font-size: rem(24);
+                line-height: rem(24);
+                height: auto;
+                min-height: rem(30);
+                margin-bottom: rem(12);
+                color: $dark-grey-color;
+                font-weight: 400;
+            }
+            &-link{
+                display: inline-flex;
+                color: $medium-grey-color;
+                font-size: rem(20);
+                line-height: rem(20);
+                font-weight: 400;
+                opacity: 0;
+
+                .btn-text{
+                    color: $medium-grey-color;
+                    opacity: 0.6;
+                }
+
+                .tf-icon{
+                    font-size: rem(12);
+                    color: $primary-color;
+                    margin-left: rem(12);
+                }
+
+                &:hover{
+                    .btn-text{
+                        color: $primary-color;
+                    }
+                }
+            }
+        }
+    }
+
+    &:hover{
+        .product-link{
+            opacity: 1;
+        }
+    }
+}

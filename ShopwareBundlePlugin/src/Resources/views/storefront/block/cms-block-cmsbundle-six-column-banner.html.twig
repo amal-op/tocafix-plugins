@@ -1,0 +1,46 @@
+{% block block_cmsbundle_six_column %}
+<div class="cms-block-cmsbundle-six-column cmsbundle-custom">
+	<div class="row">
+		<div class="container">
+			<div class="row">
+				{% block block_cmsbundle_six_column_left_left %}
+					{% set element = block.slots.getSlot('left-left') %}
+					<div class="col-md-2 pb-4 pb-md-0">
+						{% sw_include "@Storefront/storefront/element/cms-element-" ~ element.type ~ ".html.twig" ignore missing  %}
+					</div>
+				{% endblock %}
+				{% block block_cmsbundle_six_column_left_right %}
+					{% set element = block.slots.getSlot('left-right') %}
+					<div class="col-md-2 pb-4 pb-md-0">
+						{% sw_include "@Storefront/storefront/element/cms-element-" ~ element.type ~ ".html.twig" ignore missing  %}
+					</div>
+				{% endblock %}
+				{% block block_cmsbundle_four_column_center_left %}
+					{% set element = block.slots.getSlot('center-left') %}
+					<div class="col-md-2 pb-4 pb-md-0">
+						{% sw_include "@Storefront/storefront/element/cms-element-" ~ element.type ~ ".html.twig" ignore missing  %}
+					</div>
+				{% endblock %}
+				{% block block_cmsbundle_four_column_center_right %}
+					{% set element = block.slots.getSlot('center-right') %}
+					<div class="col-md-2 pb-4 pb-md-0">
+						{% sw_include "@Storefront/storefront/element/cms-element-" ~ element.type ~ ".html.twig" ignore missing  %}
+					</div>
+				{% endblock %}
+				{% block block_cmsbundle_six_column_right_left %}
+					{% set element = block.slots.getSlot('right-left') %}
+					<div class="col-md-2 pb-4 pb-md-0">
+						{% sw_include "@Storefront/storefront/element/cms-element-" ~ element.type ~ ".html.twig" ignore missing  %}
+					</div>
+				{% endblock %}
+				{% block block_cmsbundle_six_column_right_right %}
+					{% set element = block.slots.getSlot('right-right') %}
+					<div class="col-md-2">
+						{% sw_include "@Storefront/storefront/element/cms-element-" ~ element.type ~ ".html.twig" ignore missing  %}
+					</div>
+				{% endblock %}
+			</div>
+		</div>
+	</div>
+</div>
+{% endblock %}

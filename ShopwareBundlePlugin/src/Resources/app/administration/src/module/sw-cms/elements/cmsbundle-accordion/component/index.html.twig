@@ -1,0 +1,13 @@
+{% block sw_cms_element_cmsbundle_accordion %}
+	<div class="sw-cms-el-cmsbundle-accordion">
+		{% block sw_cms_element_cmsbundle_accordion_list %}
+			<ul>
+				<li v-for="item in element.config.data.value" :key="item">
+					
+					{{ item.name }}
+					<sw-icon name="regular-chevron-down-s"></sw-icon>
+				</li>
+			</ul>
+		{% endblock %}
+	</div>
+{% endblock %}

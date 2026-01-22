@@ -1,0 +1,33 @@
+{% sw_extends '@Storefront/storefront/page/checkout/finish/finish-details.html.twig' %}
+
+{% block page_checkout_finish_order_dispatch_method %}
+
+    {{ parent() }}
+
+    {% block page_checkout_finish_order_delivery_date %}
+        <p>
+            <strong>{{ "tocafix-custom.detailInformation.preferred-delivery-date"|trans|sw_sanitize }}: </strong>
+            {{ page.order.customFields.tocafix_delivery_date | date("m/d/Y") }}
+        </p>
+    {% endblock %}
+
+    {% block page_checkout_finish_order_commission %}
+        <p>
+            <strong>{{ "tocafix-custom.detailInformation.commissionNo"|trans|sw_sanitize }}: </strong>
+            {{ page.order.customFields.tocafix_commissions_number }}
+        </p>
+
+        <p>
+            <strong>{{ "tocafix-custom.detailInformation.commissionName"|trans|sw_sanitize }}: </strong>
+            {{ page.order.customFields.tocafix_commissions_name }}
+        </p>
+    {% endblock %}
+
+    {% block page_checkout_finish_order_customer_reference %}
+        <p>
+            <strong>{{ "tocafix-custom.detailInformation.customerReferenceHeader"|trans|sw_sanitize }}: </strong>
+            {{ page.order.customFields.tocafix_customer_reference }}
+        </p>
+    {% endblock %}
+
+{% endblock %}

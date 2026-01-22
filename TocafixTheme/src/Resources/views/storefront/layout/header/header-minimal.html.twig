@@ -1,0 +1,33 @@
+{% sw_extends '@Storefront/storefront/layout/header/header-minimal.html.twig' %}
+
+{% block layout_header %}
+    <header class="header-minimal">
+        {% block layout_header_minimal_inner %}
+            <div class="container">
+                {% block layout_header_minimal_row %}
+                    <div class="row header-row header-minimal-row flex-nowrap">
+                        {% block layout_header_minimal_logo %}
+                            <div class="col-6 col-md-4 header-minimal-logo">
+                                {% sw_include '@Storefront/storefront/layout/header/logo-dark.html.twig' %}
+                            </div>
+                        {% endblock %}
+
+                        {% block layout_header_minimal_contact %}
+                            {{ parent() }}
+                        {% endblock %}
+
+                        {% block layout_header_minimal_button %}
+                            {{ parent() }}
+                        {% endblock %}
+
+                        {% if config('core.cart.wishlistEnabled') %}
+                            {% block layout_header_minimal_wishlist %}
+                                {{ parent() }}
+                            {% endblock %}
+                        {% endif %}
+                    </div>
+                {% endblock %}
+            </div>
+        {% endblock %}
+    </header>
+{% endblock %}

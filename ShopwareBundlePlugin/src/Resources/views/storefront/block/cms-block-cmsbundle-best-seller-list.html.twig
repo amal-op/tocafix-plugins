@@ -1,0 +1,34 @@
+{% block cms_block_cmsbundle_best_seller_list %}
+	<div class="cms-block-cmsbundle-product-list position-relative p-4">
+		{% block block_cmsbundle_best_seller_list_title %}
+			{% set element = block.slots.getSlot('title') %}
+			<div class="container py-2">
+				<div class="row">
+					<div class="col-md-12">
+						{% sw_include "@Storefront/storefront/element/cms-element-" ~ element.type ~ ".html.twig" ignore missing  %}
+					</div>
+				</div>
+			</div>
+		{% endblock %}
+		{% block block_best_seller_list_products %}
+			{% set element = block.slots.getSlot('bestSeller') %}
+			<div class="container py-2">
+				<div class="row">
+					<div class="col-md-12">
+						{% sw_include "@Storefront/storefront/element/cms-element-" ~ element.type ~ ".html.twig"   %}
+					</div>
+				</div>
+			</div>
+		{% endblock %}
+		{% block block_cmsbundle_best_seller_list_button %}
+			{% set element = block.slots.getSlot('button') %}
+			<div class="container py-2">
+				<div class="row">
+					<div class="col-md-12">
+						{% sw_include "@Storefront/storefront/element/cms-element-" ~ element.type ~ ".html.twig" ignore missing  %}
+					</div>
+				</div>
+			</div>
+		{% endblock %}
+	</div>
+{% endblock %}

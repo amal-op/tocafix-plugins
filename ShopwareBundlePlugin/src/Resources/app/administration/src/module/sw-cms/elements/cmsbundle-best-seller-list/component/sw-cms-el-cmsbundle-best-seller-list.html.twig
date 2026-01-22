@@ -1,0 +1,17 @@
+{% block sw_cms_element_best_seller_list %}
+
+	<div class="sw-cms-el-best-seller-list" :class="classes" :style="verticalAlignStyle">
+		{% block sw_cms_element_best_seller_list_content %}
+			<div class="sw-cms-el-best-seller-list__content">
+				{% block sw_cms_element_best_seller_list_product_holder %}
+					<div ref="productHolder" class="sw-cms-el-best-seller-list__product-holder">
+							{% block sw_cms_element_best_seller_list_demo_data %}
+								<sw-cms-el-product-box v-for="index in sliderBoxLimit" :key="index" :element="demoProductElement"/>
+							{% endblock %}
+					</div>
+				{% endblock %}
+
+			</div>
+		{% endblock %}
+	</div>
+{% endblock %}

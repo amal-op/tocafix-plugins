@@ -1,0 +1,48 @@
+<?xml version="1.0"?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <services>
+        <service id="TocafixCustomPlugin\Controller\CartLineItemController" public="true">
+            <argument type="service" id="Shopware\Core\Checkout\Cart\CartPersister" />
+
+            <call method="setContainer">
+                <argument type="service" id="service_container" />
+            </call>
+            <call method="setTwig">
+                <argument type="service" id="twig" />
+            </call>
+        </service>
+
+        <service id="TocafixCustomPlugin\Subscriber\CheckoutSubscriber">
+            <argument type="service" id="order.repository" />
+            <argument type="service" id="request_stack" />
+            <tag name="kernel.event_subscriber" />
+        </service>
+
+        <service id="TocafixCustomPlugin\Controller\DeliveryDateController" public="true">
+            <argument type="service" id="Shopware\Core\Checkout\Cart\CartPersister" />
+
+            <call method="setContainer">
+                <argument type="service" id="service_container" />
+            </call>
+        </service>
+
+        <service id="TocafixCustomPlugin\Core\Checkout\Cart\Order\OrderPersisterDecorator"
+            decorates="Shopware\Core\Checkout\Cart\Order\OrderPersister">
+            <argument
+                id="TocafixCustomPlugin\Core\Checkout\Cart\Order\OrderPersisterDecorator.inner"
+                type="service" />
+            <argument id="order.repository" type="service" />
+            <argument id="Shopware\Core\Checkout\Cart\Order\OrderConverter" type="service" />
+            <argument type="service" id="request_stack" />
+        </service>
+
+        <service id="TocafixCustomPlugin\Core\Checkout\Cart\CommissionCartValidator">
+            <argument type="service" id="request_stack" />
+            <tag name="shopware.cart.validator" />
+        </service>
+    </services>
+</container>

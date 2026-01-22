@@ -1,0 +1,12 @@
+{% block element_product_listing_wrapper %}
+	<div class="js-recently-viewed-product-listing">
+		{% sw_include '@Storefront/storefront/component/cmsbundle-product/listing.html.twig' with {
+	            searchResult: searchResult,
+	            sidebar: sidebar,
+	            boxLayout: boxLayout,
+	            displayMode: displayMode,
+	            listingColumns: listingColumns ?? 'col-sm-6 col-lg-4 col-xl-3',
+				filterRestriction: true 
+	        } %}
+	</div>
+{% endblock %}

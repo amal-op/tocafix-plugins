@@ -1,0 +1,22 @@
+{% block sw_cms_element_cmsbundle_manufacturer_detail %}
+	<div class="manufacturer-detail" :style="verticalAlignStyle">
+		<div class="manufacturer-name">{{manufacturerName}}</div>
+		<div class="manufacturer-description">{{description}}</div>
+		<div class="sw-cms-el-product-slider">
+			{% block sw_cms_element_product_slider_content %}
+				<div class="sw-cms-el-product-slider__content">
+					{% block sw_cms_element_product_slider_product_holder %}
+						<div ref="productHolder" class="sw-cms-el-product-slider__product-holder">
+
+							{% block sw_cms_element_product_slider_demo_data %}
+								<sw-cms-el-product-box v-for="index in sliderBoxLimit" :key="index" :element="demoProductElement"/>
+							{% endblock %}
+
+						</div>
+					{% endblock %}
+
+				</div>
+			{% endblock %}
+		</div>
+	</div>
+{% endblock %}

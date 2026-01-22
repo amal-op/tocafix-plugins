@@ -1,0 +1,26 @@
+{% sw_extends '@Storefront/storefront/layout/navigation/flyout.html.twig' %}
+
+{% block layout_navigation_flyout %}
+    {% set category = navigationTree.category %}
+    {% set name = category.translated.name %}
+    
+    {% block layout_navigation_flyout_bar %}{% endblock %}
+
+    {% block layout_navigation_flyout_content %}
+        <div class="navigation-flyout-content">
+            {% block layout_navigation_flyout_categories %}
+                <div class="navigation-flyout-categories">
+                    {% block layout_navigation_flyout_categories_recoursion %}
+                        {% sw_include '@Storefront/storefront/layout/navigation/categories.html.twig' with {
+                            navigationTree: navigationTree.children,
+                            navigationMedia: category.media,
+                            page: page
+                        } only %}
+                    {% endblock %}
+                </div>
+            {% endblock %}
+
+            {% block layout_navigation_flyout_teaser %}{% endblock %}
+        </div>
+    {% endblock %}
+{% endblock %}

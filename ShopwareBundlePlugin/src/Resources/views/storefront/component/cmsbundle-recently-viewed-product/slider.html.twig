@@ -1,0 +1,26 @@
+{# {% block block_cmsbundle_recently_viewed_product_slider %}
+<div class="product-slider-container js-recently-viewed-product-slider" data-base-slider-container="true">
+		{% for product in products %}
+			{% block element_product_slider_inner_item %}
+				<div class="product-slider-item">
+					{% sw_include '@Storefront/storefront/component/product/card/box.html.twig' with {
+							'layout': boxLayout,
+							'displayMode': displayMode
+						} %}
+				</div>
+			{% endblock %}
+		{% endfor %}
+	</div>
+{% endblock %} #}
+<div class="product-slider-container js-recently-viewed-product-slider">
+	{% for product in products %}
+		{% block element_product_slider_inner_item %}
+			<div class="recent-view-slider-item">
+				{% sw_include '@Storefront/storefront/component/product/card/box.html.twig' with {
+					'layout': boxLayout,
+					'displayMode': displayMode
+				} %}
+			</div>
+		{% endblock %}
+	{% endfor %}
+</div>

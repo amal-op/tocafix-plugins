@@ -1,0 +1,25 @@
+{
+  "name": "treestones/tocafix",
+  "description": "Tocafix Shopware Theme",
+  "type": "shopware-platform-plugin",
+  "license": "MIT",
+  "version": "1.0.3",
+  "autoload": {
+    "psr-4": {
+      "TocafixTheme\\": "src/"
+    }
+  },
+  "authors": [
+    {
+        "name": "treestones"
+    }
+  ],
+  "extra": {
+    "shopware-plugin-class": "TocafixTheme\\TocafixTheme",
+    "plugin-icon": "src/Resources/config/icon.png",
+    "label": {
+      "de-DE": "TocafixTheme plugin",
+      "en-GB": "TocafixTheme plugin"
+    }
+  }
+}

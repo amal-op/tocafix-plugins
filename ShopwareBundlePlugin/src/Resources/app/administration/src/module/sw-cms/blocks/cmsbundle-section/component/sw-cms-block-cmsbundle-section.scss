@@ -1,0 +1,21 @@
+.sw-cms-block-cmsbundle-section {
+    .background {
+        position: relative;
+        .sw-cms-slot-background{
+            position: absolute;
+            width: 100%;
+        }
+    }
+    .foreground {
+        width: 100%;
+        margin: 0 auto;
+        padding: 30px 15px;
+
+        .content-slots {
+            display: grid;
+            grid-template-columns: 1fr 1fr 1fr;
+            grid-gap: 5px;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        }
+    }
+}

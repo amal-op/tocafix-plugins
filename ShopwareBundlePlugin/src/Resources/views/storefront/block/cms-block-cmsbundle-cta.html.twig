@@ -1,0 +1,37 @@
+{% block block_cmsbundle_cta_block %}
+
+	{# CTA Block Background #}
+	{% set backgroundElement = block.slots.getSlot('background') %}
+	{% set desktopMedia = backgroundElement.data.mediaDesktop %}
+	{% set tabletMedia = backgroundElement.data.mediaTablet %}
+	{% set mobileMedia = backgroundElement.data.mediaMobile %}
+
+	{% set hasBgImage = false %}
+	{% if (desktopMedia || tabletMedia || mobileMedia) %}
+		{% set hasBgImage = true %}
+	{% endif %}
+
+	<div class="cta-block-wrapper{% if hasBgImage %} has-bg-image {% endif %} p-0">
+
+		{% block block_cmsbundle_cta_block_background %}
+			<div class="cta-block__background position-relative {% if hasBgImage %} position-relative{% endif %}">
+				{% set element = block.slots.getSlot('background') %}
+				{% sw_include "@Storefront/storefront/element/cms-element-" ~ element.type ~ ".html.twig" ignore missing %}
+
+				{% block block_cmsbundle_cta_inner_section %}
+					<div class="cta-block__foreground {% if hasBgImage %} {% endif %}">
+						{% block block_cmsbundle_cta_content %}
+							{% set element = block.slots.getSlot('content') %}
+							{% sw_include "@Storefront/storefront/element/cms-element-" ~ element.type ~ ".html.twig" ignore missing  %}
+						{% endblock %}
+					</div>
+				{% endblock %}
+			</div>
+
+			
+		{% endblock %}
+
+		
+
+	</div>
+{% endblock %}

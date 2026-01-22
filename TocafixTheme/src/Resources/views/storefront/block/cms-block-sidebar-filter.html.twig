@@ -1,0 +1,27 @@
+{% sw_extends '@Storefront/storefront/block/cms-block-sidebar-filter.html.twig' %}
+{% block block_sidebar_filter %}
+    {% set element = block.slots.getSlot('content') %}
+    {% set columns = 1 %}
+    {% block cms_breadcrumb %}
+    {% block cms_page_category_title %}
+        <div class="col-lg-12 col-xl-12 listing-page-heading">
+            <h1>{{ page.header.navigation.active.translated.name }}</h1>
+        </div>
+    {% endblock %}
+    <div class="col-12">
+        <div class="breadcrumb cms-listing-breadcrumb container">
+            {% sw_include '@Storefront/storefront/layout/breadcrumb-listing.html.twig' with {
+                context: context,
+                category: page.header.navigation.active
+            } only %}
+        </div>
+    </div>
+    {% endblock %}
+    
+    
+    <div class="col-12" data-cms-element-id="{{ element.id }}">
+        {% block block_sidebar_filter_inner %}
+            {% sw_include "@Storefront/storefront/element/cms-element-" ~ element.type ~ ".html.twig" ignore missing %}
+        {% endblock %}
+    </div>
+{% endblock %}

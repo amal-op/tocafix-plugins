@@ -1,0 +1,21 @@
+.sw-cms-preview-cmsbundle-two-by-one-column-banner {
+    width: 100%;
+    height: 130px;
+    padding: 16px;
+    display: flex;
+
+    .img1 {
+        display: block;
+        object-fit: cover;
+        padding: 5px;
+        width: 30%;
+    }
+    .img2 {
+        display: block;
+        object-fit: cover;
+        padding: 5px;
+        width: 70%;
+    }
+    
+}
+

@@ -1,0 +1,45 @@
+{% block element_cmsbundle_title %}
+
+	<div class="cms-element-{{ element.type }}">
+		{% block element_cmsbundle_title_inner %}
+			{% set title = element.config.title.value %}
+			
+			{% set titleHeading = element.config.titleHeading.value ?? 'h6' %}
+			{% set subTitle = element.config.subTitle.value %}
+			{% set subTitleHeading = element.config.subTitleHeading.value ?? 'h2' %}
+			{% set shortDescription = element.config.shortDescription.value %}
+			{% set position = element.config.titlePosition.value ?? 'center' %}
+
+			{% set buttonText = element.config.buttonText.value ?? '' %}
+			{% set buttonType = element.config.buttonType.value ?? '' %}
+			{% set newTab = element.config.newTab.value ?? '' %}
+			{% set url = element.config.url.value %}
+			{% if (title is not empty) or (subTitle is not empty) or (shortDescription is not empty) or (url is not empty) %}
+			<div class="title text-{{position}}">
+				{# <div class="title-inner"> #}
+                 
+					{% if title is not empty %}
+					<{{titleHeading}}>{{ title }}</{{titleHeading}}>
+					{% endif %}
+
+					{% if subTitle is not empty %}
+					<{{subTitleHeading}}>{{ subTitle }}</{{subTitleHeading}}>
+					{% endif %}
+
+					{% if shortDescription is not empty %}
+						<p>{{ shortDescription }}</p>
+					{% endif %}
+
+				{# </div> #}
+				
+				{% if buttonText %}
+					<div class="btn-wrap">
+						<a href="{{ url }}" class="btn btn-{{ buttonType }} text-white" {% if newTab %} target="_blank" {% endif %}>{{ buttonText }}</a>
+					</div>
+				{% endif %}
+			</div>
+			{% endif %}
+			
+		{% endblock %}
+	</div>
+{% endblock %}

@@ -1,0 +1,8 @@
+{% sw_extends '@Storefront/storefront/component/address/address-personal-vat-id.html.twig' %}
+
+{% block component_account_register_personal_vat_id_field %}
+    {% if activeRoute == 'frontend.account.profile.page' %}
+    {% else %}
+        {{ parent() }}
+    {% endif %}
+{% endblock %}

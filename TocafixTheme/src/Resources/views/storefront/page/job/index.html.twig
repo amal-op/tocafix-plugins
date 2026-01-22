@@ -1,0 +1,69 @@
+{% sw_extends '@Storefront/storefront/base.html.twig' %}
+{% block base_flashbags %}{% endblock %}
+
+{% block base_content %}
+	{% set job = page.job %}
+
+	{% block block_job_detail_content_top %}
+		<!-- Hero Section -->
+		<div class="hero">
+			<div class="hero__text">
+				<div class="hero__text-content">
+					<h1 class="hero__text-title">{{ job.translated.name }}</h1>
+					<p class="hero__text-paragraph">{{ job.translated.shortDescriptionDetail|raw }}</p>
+				</div>
+
+			</div>
+			<div class="hero__image">
+				{% set attributes = {
+							'alt': job.name,
+							'title': job.name,
+							'data-object-fit': 'cover'
+						} %}
+
+				{% sw_thumbnails 'job-image-thumbnails' with {
+							media: job.media,
+							sizes: {
+								'xs': '501px',
+								'sm': '315px',
+								'md': '427px',
+								'lg': '333px',
+								'xl': '284px'
+							},
+							attributes: attributes
+						} %}
+			</div>
+		</div>
+	{% endblock %}
+	
+	{% block block_job_detail_content %}
+		{% block block_job_detail_content_inner %}
+			<!-- ========== End Aufgaben =========== -->
+			<article class="aufgaben">
+				<div class="container">
+					<div class="row">
+						<div class="col-md-2 d-none d-md-block"></div>
+						<div class="col-md-8 col-sm-12">
+							{% block block_job_detail_content_description %}
+								<div class="aufgaben__content">
+									<div class="aufgaben__content-list-wrap">
+										{{ job.translated.description|raw }}
+									</div>
+								</div>
+							{% endblock %}
+						</div>
+						<div class="col-md-2 d-none d-md-block"></div>
+					</div>
+				</div>
+			</article>
+
+		{% endblock %}
+		<section class="cms-section bewerben">
+		<div class="cms-block cms-block-form">
+				{% sw_include '@Storefront/storefront/page/job/component/application-form.html.twig' with {
+					job: job,
+				} only %}
+		</div>
+		</section>
+	{% endblock %}
+{% endblock %}

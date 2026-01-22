@@ -1,0 +1,146 @@
+.sw-cms-el-config-cmsbundle-cta {
+    .add-button, .remove-button {
+        background-color: #000000;
+        color: #fff;
+        border-radius: 5px;
+        padding: 8px 16px;
+        margin: 10px 0;
+        font-weight: 600;
+        transition: background-color 0.3s ease;
+
+        &:hover {
+            background-color: #343434;
+        }
+    }
+
+    .sw-cms-el-config-cmsbundle-title__link,
+    .sw-cms-el-config-cmsbundle-title {
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 15px;
+
+        .sw-text-field, .sw-select-field {
+            margin-bottom: 10px;
+            width: 100%;
+            max-width: 400px;
+        }
+    }
+
+    .pr-10px {
+        padding-right: 10px;
+    }
+}
+
+.sw-cms-el-config-cmsbundle-title__link,
+.sw-cms-el-config-cmsbundle-title__link-tab {
+    margin-bottom: 15px;
+    
+    sw-dynamic-url-field, sw-switch-field {
+        border-radius: 4px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        transition: box-shadow 0.3s ease;
+        
+        &:focus {
+            box-shadow: 0 0 6px rgba(60, 60, 60, 0.8);
+        }
+    }
+}
+
+.sw-text-field, .sw-select-field {
+    width: 48%;
+    border-radius: 4px;
+    margin-bottom: 15px;
+    
+    input, select {
+        padding: 8px 12px;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        transition: border-color 0.3s ease;
+        
+        &:focus {
+            border-color: #131414;
+        }
+    }
+}
+
+.pr-10px {
+    padding-right: 10px;
+}
+
+.sw-cms-el-config-cmsbundle-main-title,
+.sw-cms-el-config-cmsbundle-sub-title {
+    width: 100%;
+    margin-bottom: 15px;
+}
+
+.sw-cms-el-config-cmsbundle-main-title-heading,
+.sw-cms-el-config-cmsbundle-sub-title-heading {
+    width: 48%;
+}
+
+.sw-cms-el-config-cmsbundle-short-description {
+    width: 100%;
+    margin-bottom: 15px;
+
+    input {
+        font-size: 1rem;
+        color: #555;
+    }
+}
+
+.button-wrapper {
+    margin-top: 20px;
+    border: #000000 1px solid;
+    padding: 10px;
+}
+.sw-cms-el-config-cmsbundle_cta-slider-item {
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    margin-bottom: 15px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    padding:20px;
+
+    &:hover {
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .slider-title {
+        display: flex;
+        align-items: center;
+        padding: 15px;
+        background-color: #f8f9fa;
+        border-bottom: 1px solid #ddd;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+
+        h4 {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin: 0;
+            color: #000307;
+            transition: color 0.3s ease;
+        }
+
+        &:hover {
+            background-color: #e9ecef;
+
+            h4 {
+                color: #000000;
+            }
+        }
+
+        &::after {
+            content: '\25BC';
+            margin-left: auto;
+            font-size: 1rem;
+            color: #000306;
+            transition: transform 0.3s ease;
+        }
+    }
+
+    &.is-open .slider-title::after {
+        transform: rotate(180deg);
+    }
+}
+

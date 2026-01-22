@@ -1,0 +1,70 @@
+{% block tocafix_team_category_list %}
+    <sw-page class="tocafix-team-category-list">
+
+        {% block tocafix_team_category_list_search_bar %}
+            <template #search-bar>
+                <sw-search-bar
+                    initial-search-type="tocafix_team_category"
+                    :initial-search="term"
+                    @search="onSearch">
+                </sw-search-bar>
+            </template>
+        {% endblock %}
+
+        {% block tocafix_team_category_list_smart_bar_header %}
+            <template #smart-bar-header>
+                {% block tocafix_team_category_list_smart_bar_header_title %}
+                    <h2>
+                        {% block tocafix_team_category_list_smart_bar_header_title_text %}
+                            {{ $tc('tocafix-team-category.list.textTeamOverview') }}
+                        {% endblock %}
+
+                        {% block tocafix_team_category_list_smart_bar_header_amount %}
+                            <span v-if="!isLoading" class="sw-page__smart-bar-amount">
+                                ({{ teamCategories.total }})
+                            </span>
+                        {% endblock %}
+                    </h2>
+                {% endblock %}
+            </template>
+        {% endblock %}
+
+        {% block tocafix_team_category_list_language_switch %}
+            <template #language-switch>
+                <sw-language-switch
+                    @on-change="onChangeLanguage"
+                    :save-changes-function="saveOnLanguageChange"
+                    :abort-change-function="abortOnLanguageChange">
+                </sw-language-switch>
+            </template>
+        {% endblock %}
+
+        {% block tocafix_team_category_list_smart_bar_actions %}
+            <template #smart-bar-actions>
+                {% block tocafix_team_category_list_smart_bar_actions_add %}
+                    <sw-button
+                        variant="primary"
+                        :router-link="{ name: 'tocafix.team.category.create' }">
+                        {{ $tc('tocafix-team-category.list.addButtonText') }}
+                    </sw-button>
+                {% endblock %}
+            </template>
+        {% endblock %}
+
+        {% block tocafix_team_category_list_content %}
+            <template #content>
+                {% block tocafix_team_category_list_content_list %}
+                    <sw-entity-listing
+                        v-if="teamCategories"
+                        :items="teamCategories"
+                        :repository="repository"
+                        :show-selection="false"
+                        :columns="columns"
+                        :is-loading="isLoading"
+                        detail-route="tocafix.team.category.detail">
+                    </sw-entity-listing>
+                {% endblock %}
+            </template>
+        {% endblock %}
+    </sw-page>
+{% endblock %}

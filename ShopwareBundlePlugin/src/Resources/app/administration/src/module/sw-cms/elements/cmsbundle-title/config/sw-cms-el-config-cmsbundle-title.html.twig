@@ -1,0 +1,144 @@
+{% block sw_cms_element_picture_config_config %}
+	<div class="sw-cms-el-config-cmsbundle_hero_slider">
+		{% block sw_cms_element_picture_config_tabs %}
+			<sw-tabs default-item="title">
+				<template #default="{ active }">
+					{% block sw_cms_element_picture_config_tab_title %}
+						<sw-tabs-item name="title" :active-tab="active">
+							{{ $tc('cmsbundle.element.general.tabs.title') }}
+						</sw-tabs-item>
+					{% endblock %}
+					{% block sw_cms_element_picture_config_tab_button %}
+						<sw-tabs-item name="button" :active-tab="active" v-if="element.config.ctaButton.value">
+							{{ $tc('cmsbundle.element.general.tabs.button') }}
+						</sw-tabs-item>
+					{% endblock %}
+				</template>
+				<template #content="{ active }">
+					<div v-if="active === 'title'" class="sw-cms-el-config-cmsbundle-title">
+						{% block sw_cms_element_cmsbundle_title_config %}
+							<div style="width:100%;display: flex;">
+								<sw-text-field v-model:value="element.config.title.value" class="sw-cms-el-config-cmsbundle-main-title pr-10px" type="text" :label="$tc('cmsbundle.element.general.config.title')"/>
+								<sw-select-field v-model:value="element.config.titleHeading.value" class="sw-cms-el-config-cmsbundle-main-title-heading" :label="$tc('cmsbundle.element.general.config.title-tag')">
+									<option value="h1">
+										H1
+									</option>
+									<option value="h2">
+										H2
+									</option>
+									<option value="h3">
+										H3
+									</option>
+									<option value="h4">
+										H4
+									</option>
+									<option value="h5">
+										H5
+									</option>
+									<option value="h6">
+										H6
+									</option>
+									<option value="span">
+										span
+									</option>
+									<option value="div">
+										div
+									</option>
+								</sw-select-field>
+							</div>
+							<div style="width:100%;display: flex;">
+								<sw-text-field v-model:value="element.config.subTitle.value" class="sw-cms-el-config-cmsbundle-sub-title pr-10px" type="text" :label="$tc('cmsbundle.element.general.config.sub-title')"/>
+								<sw-select-field v-model:value="element.config.subTitleHeading.value" class="sw-cms-el-config-cmsbundle-sub-title-heading" :label="$tc('cmsbundle.element.general.config.sub-title-tag')">
+									<option value="h1">
+										H1
+									</option>
+									<option value="h2">
+										H2
+									</option>
+									<option value="h3">
+										H3
+									</option>
+									<option value="h4">
+										H4
+									</option>
+									<option value="h5">
+										H5
+									</option>
+									<option value="h6">
+										H6
+									</option>
+									<option value="span">
+										span
+									</option>
+									<option value="div">
+										div
+									</option>
+								</sw-select-field>
+							</div>
+						{% endblock %}
+						{% block sw_cms_element_cmsbundle_title_position_config %}
+							<sw-select-field v-model:value="element.config.titlePosition.value" class="sw-cms-el-config-cmsbundle-title-position" :label="$tc('cmsbundle.element.general.config.title-position')">
+								<option value="left">
+									{{$tc('sw-text-editor-toolbar.title.alignLeft')}}
+								</option>
+								<option value="center">
+									{{$tc('sw-text-editor-toolbar.title.alignCenter')}}
+								</option>
+							</sw-select-field>
+						{% endblock %}
+						{% block sw_cms_element_cmsbundle_title_short_description_config %}
+							<sw-text-field v-model:value="element.config.shortDescription.value" class="sw-cms-el-config-cmsbundle-short-description" type="text" :label="$tc('cmsbundle.element.general.config.short-description')"/>
+						{% endblock %}
+						{% block sw_cms_element_cmsbundle_title_cta_config %}
+							<sw-switch-field v-model:value="element.config.ctaButton.value" class="sw-cms-el-config-cmsbundle-title__cta-tab" type="switch" :label="$tc('cmsbundle.element.general.config.enable-cta')"/>
+						{% endblock %}
+
+					</div>
+
+					<div v-if="active === 'button'" class="sw-cms-el-config-cmsbundle-title">
+						{% block sw_cms_element_cmsbundle_title_button %}
+							<div class="sw-cms-el-config-cmsbundle-title-button">
+								<sw-dynamic-url-field v-model:value="element.config.url.value"/>
+								<sw-switch-field v-model:value="element.config.newTab.value" class="sw-cms-el-config-cmsbundle-title-button-tab" type="switch" :label="$tc('cmsbundle.element.general.config.open-link-new-tab')"/>
+							</div>
+						{% endblock %}
+						{% block sw_cms_element_cmsbundle_title_config_button %}
+							<div style="width:100%;display: flex;">
+								<sw-text-field v-model:value="element.config.buttonText.value" class="pr-10px" type="text" :label="$tc('cmsbundle.element.general.config.button-text')"/>
+								<sw-select-field v-model:value="element.config.buttonType.value" :label="$tc('cmsbundle.element.general.config.button-type')">
+									<option value="success">
+										Success
+									</option>
+									<option value="primary">
+										Primary
+									</option>
+									<option value="secondary">
+										Secondary
+									</option>
+									<option value="danger">
+										Danger
+									</option>
+									<option value="warning">
+										Warning
+									</option>
+									<option value="info">
+										Info
+									</option>
+									<option value="light">
+										Light
+									</option>
+									<option value="dark">
+										Dark
+									</option>
+									<option value="link">
+										Link
+									</option>
+								</sw-select-field>
+							</div>
+						{% endblock %}
+					</div>
+				</template>
+			</sw-tabs>
+		{% endblock %}
+	</div>
+{% endblock %}

@@ -1,0 +1,13 @@
+.cms-element-product-listing{
+    .cms-listing{
+        &-row{
+            margin-left: rem(-8);
+            margin-right: rem(-8);
+        }
+        &-col{
+            padding-left: rem(8);
+            padding-right: rem(8);
+            margin-bottom: rem(40);
+        }
+    }
+}

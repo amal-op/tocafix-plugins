@@ -1,0 +1,12 @@
+{% block sw_cms_block_cmsbundle_category_list %}
+	<div class="sw-cms-block-cmsbundle-category-list">
+		<div class="category-list-bg">
+			<slot name="background"></slot>
+		</div>
+		<div class="category-list-slots">
+			<slot name="title"></slot>
+			<slot name="category"></slot>
+			<slot name="button"></slot>
+		</div>
+	</div>
+{% endblock %}

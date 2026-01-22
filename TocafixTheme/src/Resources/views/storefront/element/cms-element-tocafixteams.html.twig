@@ -1,0 +1,46 @@
+{% block tocafix_teams_content %}
+
+	{% set searchResult = element.data.result %}
+	<div class="team-cards-wrap col-12">
+	<div class="row">
+		{% for post in searchResult.elements %}
+			<div class="team-card-item col-3 mb-5">
+				<div class="team-card">
+					<div class="team-card__img">
+						{% sw_thumbnails 'tocafix-team-thumbnail' with {
+                        media:  post.media,
+                        sizes:  {
+                                'default': '400px'
+                                },
+                        attributes: {
+                                'class': 'img-fluid',
+                                'alt': (post.media.translated.alt ?: ''),
+                                'title': (post.media.translated.title ?: ''),
+                                'data-object-fit': 'cover'
+                                }
+                    }%}
+					</div>
+
+					<div class="team-card__content">
+							{% for category in post.teamCategories %}
+								<p class="team-card__category">{{ category.translated.name }}</p>
+							{% endfor %}
+							<h3 class="team-card__name">{{ post.translated.name }}</h3>
+							<p class="team-card__position">{{ post.translated.position }}</p>
+							<div class="team-card__phone">
+								<a href="tel:{{ post.phoneNumber }}" title="{{ post.phoneNumber }}">
+									<span class="team-card__link-text">{{ post.phoneNumber }}</span>
+								</a>
+							</div>
+							<div class="team-card__contact">
+								<a href="mailto:{{ post.email }}" target="_blank" title="{{ post.email }}">
+									<span class="team-card__link-text">{{ post.email }}</span>
+								</a>
+							</div>
+					</div>
+				</div>
+			</div>
+		{% endfor %}
+	</div>
+	</div>
+{% endblock %}

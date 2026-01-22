@@ -1,0 +1,39 @@
+{% block sw_cms_element_cmsbundle_accordion_config %}
+	<div class="sw-cms-el-config-cmsbundle-accordion">
+		<sw-tabs positionidentifier="sw-cms-el-config-cmsbundle-accordion__tabs" class="sw-cms-el-config-cmsbundle-accordion__tabs" default-item="content">
+			<template #default="{ active }">
+				{% block sw_cms_element_cmsbundle_accordion_config_tabs %}
+					<sw-tabs-item :title="$tc('cmsbundle.element.general.tabs.content')" name="content" :active-tab="active">
+						{{$tc('cmsbundle.element.general.tabs.content')}}
+					</sw-tabs-item>
+				{% endblock %}
+			</template>
+			<template #content="{ active }">
+				{% block sw_cms_element_cmsbundle_accordion_config_content %}
+					<sw-container v-if="active == 'content'" class="sw-cms-el-config-cmsbundle-accordion__content">
+						<sw-collapse v-for="(entry, index) in element.config.data.value" :key="index" :ref="'collapse_' + index">
+							<template #header="{ expanded }">
+								<div class="collapse-header" :class="expanded ? 'expanded' : ''">
+									{# <div class="drag-indicator">
+										<sw-icon name="regular-questionmark-s"></sw-icon>
+									</div> #}
+									<div class="text">{{entry.name}}</div>
+									<sw-button variant="danger" class="right" @click="showDeleteConfirmation(index)">{{$tc('cmsbundle.element.accordion.config.delete')}}</sw-button>
+								</div>
+								<sw-confirm-modal v-if="deleteConfirmationIndex === index" class="sw-my-component__confirm-delete-modal" type="delete" :text="$tc('cmsbundle.element.accordion.config.delete-confirm')" @confirm="deleteItem(index)" @cancel="cancelDelete" @close="cancelDelete"></sw-confirm-modal>
+							</template>
+							<template #content class="collapse-content">
+								<sw-text-field type="text" :label="$tc('cmsbundle.element.accordion.config.title')" :help-text="$tc('cmsbundle.element.accordion.config.title-help')" v-model:value="entry.name"></sw-text-field>
+
+								<sw-text-editor v-model:value="entry.content" mode="twig" :label="$tc('cmsbundle.element.accordion.config.content')" :softwraps="true"></sw-text-editor>
+
+							</template>
+						</sw-collapse>
+						<sw-button @click="addNew" class="sw-button--primary">{{$tc('cmsbundle.element.accordion.config.add-new')}}</sw-button>
+
+					</sw-container>
+				{% endblock %}
+			</template>
+		</sw-tabs>
+	</div>
+{% endblock %}

@@ -1,0 +1,15 @@
+.padding-top {
+    padding-top: rem(160);
+
+    @include desktop-sm(){
+        padding-top: rem(80);
+    }
+}
+
+.padding-bottom{
+    padding-bottom: rem(160);
+
+    @include desktop-sm(){
+        padding-bottom: rem(80);
+    }
+}

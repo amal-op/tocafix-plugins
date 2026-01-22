@@ -1,0 +1,14 @@
+.sw-cms-block-cmsbundle-category-list {
+    position: relative;
+    .category-list-bg {
+        position: relative;
+    }
+    .category-list-slots {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 100%;
+        padding: 15px;
+    }
+}

@@ -1,0 +1,312 @@
+.header-main{
+    padding: rem(30) 0;
+    position: relative;
+    top: -1px;
+    z-index: 8;
+    width: 100%;
+    height: rem(165);
+    backdrop-filter: blur(1px);
+
+    @include mobile-lg() {
+        padding: rem(20) 0;
+        height: rem(105);
+    }
+
+    .header-wrap{
+        // margin-left: rem(-20);
+        // margin-right: rem(-20);
+
+        @include mobile-lg() {
+            margin-left: rem(-14);
+            margin-right: rem(-14);
+        }
+    }
+
+    .header-left-col{
+        @include tablet-sm() {
+            position: static;
+            .header-logo-main{
+                width: auto;
+            }
+        }
+    }
+
+    .header-right-col{
+        @include tablet-sm() {
+            .search-toggle {
+                .header-actions-btn{
+                    display: none;
+                }
+            }
+        }
+    }
+
+    .header{
+        &-left-col, &-right-col{
+            padding: 0;
+        }
+        &-logo-col{
+            @include tablet-sm() {
+                width: rem(110);
+                left: 50%;
+                margin-top: rem(0);
+                margin-left: rem(-55);
+                position: absolute;
+            }
+        }
+        &-actions-group{
+            @include tablet-sm() {
+                margin-top: rem(18);
+            }
+        }
+    }
+
+    .container{
+        position: relative;
+        z-index: 1;
+    }
+
+    .header-logo-main{
+
+        @include mobile-lg() {
+            display: block;
+        }
+
+        &-link{
+            display: inline;
+        }
+
+        picture, img{
+            width: rem(210);
+            display: block;
+
+            @include desktop-sm() {
+                width: rem(180);
+            }
+
+            @include tablet-lg() {
+                width: rem(140);
+            }
+
+            @include mobile-lg() {
+                width: rem(100);
+            }
+        }
+    }
+
+    .header-action-item{
+        margin-left: rem(16);
+
+        @include desktop-sm() {
+            margin-left: rem(10);
+        }
+
+        @include tablet-lg() {
+            margin-left: rem(5);
+        }
+        @include mobile-lg() {
+            margin-left: 0;
+        }
+
+        &.header-wishlist{
+            @include tablet-sm() {
+                display: none;
+            }
+        }
+
+        &.language-dropdown{
+            .dropdown-toggle{
+                font-size: rem(25);
+                text-transform: uppercase;
+                font-weight: 500;
+                @include mobile-lg() {
+                    font-size: rem(16);
+                }
+                &::after{
+                    vertical-align: rem(4);
+                    @include mobile-lg() {
+                        vertical-align: rem(3);
+                        margin-left: 0;
+
+                    }
+                }
+            }
+            .dropdown-item {
+                text-transform: uppercase;
+            }
+        }
+    }
+
+    .header-actions-btn{
+        font-size: rem(28);
+        color: $black-color;
+        display: flex;
+        align-items: center;
+        position: relative;
+        overflow: visible;
+
+        @include tablet-lg() {
+            padding: rem(2) rem(10);
+        }
+        @include tablet-md() {
+            padding: rem(2) rem(12);
+        }
+        @include mobile-lg() {
+            font-size: rem(20);
+            padding: rem(5) rem(10);
+        }
+
+        &:hover{
+            color: $primary-color;
+        }
+
+        .btn-text{
+            font-size: rem(20);
+            font-weight: 400;
+            margin-left: rem(10);
+
+            @include desktop-sm() {
+                display: none;
+            }
+        }
+    }
+    
+    &.is-pinned{
+        // background-color: $white-color;
+
+        &:after{
+            // display: none;
+        }
+
+        .main-navigation{
+        
+            .main-navigation-menu{
+                & > a{
+                    // color: $black-color;
+                }
+            }
+        }
+    }
+}
+
+.main-navigation{
+    position: relative;
+    
+    &-link{
+        .main-navigation-link-text{
+            font-weight: normal;
+            padding-bottom: rem(10);
+            border-width: rem(4);
+        }
+
+        &.active, &:hover {
+            .main-navigation-link-text{
+                border-color: $primary-color;
+            }
+        }
+    }
+
+    .main-navigation-menu{
+        & > a{
+            font-size: rem(20);
+            line-height: rem(20);
+            color: $black-color;
+            padding-right: rem(25);
+
+            @include tablet-lg() {
+                font-size: rem(18);
+                padding-right: rem(15);
+            }
+
+            // &:nth-child(n+6){
+            //     display: none;
+            // }
+        }
+        & > div{
+            &.main-navigation-link{
+                font-size: rem(20);
+                line-height: rem(20);
+                color: $black-color;
+                cursor: pointer;
+    
+                @include tablet-lg() {
+                    font-size: rem(18);
+                }
+            }
+
+        }
+    }
+}
+
+.search-toggle{
+    position: relative;
+
+    .header-search-btn{
+        box-shadow: none;
+        border: rem(1) solid $grey-color;
+        border-left: 0;
+        font-size: 0;
+    }
+    .search-input-wrap{
+        position: absolute;
+        right: 50%;
+        top: rem(50);
+        margin-right: rem(-140);
+        min-width: rem(280);
+
+        @include mobile-lg() {
+            right: rem(30);
+            left: rem(30);
+            top: rem(80);
+            position: fixed;
+            margin: 0;
+            width: auto;
+        }
+
+        .input-group{
+            display: flex;
+        }
+        
+        .form-control{
+            border-right: 0;
+            box-shadow: none;
+            border-color: $grey-color;
+            &:focus{
+                border-color: $primary-color;
+            }
+        }
+
+        .form-control, .btn{
+            border-radius: 0;
+        }
+        .header-search-btn, .header-close-btn{
+           background-color: $white-color;
+        }
+    }
+    
+}
+
+.header{
+    &-minimal{
+        border-bottom: rem(1) solid rgba($border-grey-color, 0.25);
+        &-row{
+            padding: rem(20) 0;
+            .header-logo-picture{
+                max-width: rem(160);
+                @include mobile-lg(){
+                    max-width: rem(120);
+                }
+            }
+        }
+    }
+}
+
+
+.header-minimal{
+    .header-minimal-back-to-shop{
+        width: auto;
+    }
+    .header-minimal-row .header-logo-picture{
+        min-width: auto;
+    }
+}

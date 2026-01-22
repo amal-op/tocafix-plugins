@@ -1,0 +1,8 @@
+// Typography
+
+@include font-face('Open Sans', 'Light', 300, normal, 'OpenSans');
+@include font-face('Open Sans', 'Regular', 400, normal, 'OpenSans');
+@include font-face('Open Sans', 'Medium', 500, normal, 'OpenSans');
+@include font-face('Open Sans', 'SemiBold', 600, normal, 'OpenSans');
+@include font-face('Open Sans', 'SemiBoldItalic', 600, italic, 'OpenSans');
+@include font-face('Open Sans', 'Bold', 700, normal, 'OpenSans');

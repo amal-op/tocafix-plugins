@@ -1,0 +1,60 @@
+{% sw_extends '@Storefront/storefront/base.html.twig' %}
+
+{% block base_navigation %}{% endblock %}
+
+{% block base_main %}
+
+        {% set cmsPageType = page.landingPage ? page.landingPage.cmsPage : page.cmsPage %}
+        {% set cmsPageMainClasses = (' ' ~ cmsPageType.cssClass|striptags)|trim %}
+
+        <main class="content-main{% if cmsPageMainClasses %} {{ cmsPageMainClasses }}{% endif %}">
+            {% block base_flashbags %}
+                {{ parent() }}
+            {% endblock %}
+            {% set isProductPage = controllerName|lower == 'product' %}
+
+            {% block base_main_inner %}
+
+                {% if not isProductPage %}
+                    {% block base_breadcrumb_top %}
+                        {% sw_include '@Storefront/storefront/layout/breadcrumb.html.twig' with {
+                            context: context,
+                            category: page.product.seoCategory
+                        } only %}
+                    {% endblock %}
+                {% endif %}
+
+                <div class="container">
+
+                    {% if isProductPage %}
+                        {% block base_breadcrumb_top_product %}
+                            {% sw_include '@Storefront/storefront/layout/breadcrumb.html.twig' with {
+                                context: context,
+                                category: page.product.seoCategory
+                            } only %}
+                        {% endblock %}
+                    {% endif %}
+
+                    {% block base_main_container %}
+                        <div class="container-main">
+                            {% block base_breadcrumb %}{% endblock %}
+                            {% block base_content %}{% endblock %}
+                        </div>
+                    {% endblock %}
+                </div>
+            {% endblock %}
+        </main>
+{% endblock %}
+
+{% block base_footer %}
+    <footer class="footer-main" style="background-image: url({{ asset('/assets/Metal-Checker.jpg', 'theme') }})">
+        {% block base_footer_inner %}
+            {% sw_include '@Storefront/storefront/layout/footer/footer.html.twig' %}
+        {% endblock %}
+    </footer>
+{% endblock %}
+
+{% block base_body_script %}
+    {{ parent() }}
+    <script src="/bundles/tocafixtheme/assets/js/smooth-scroll.js" ></script>
+{% endblock %}

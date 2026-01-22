@@ -1,0 +1,247 @@
+{
+  "cmsbundle": {
+    "block": {
+      "column-banner": {
+        "label": {
+          "one": "One Column",
+          "two": "Two Column",
+          "three": "Three Column",
+          "four": "Four Column",
+          "five": "Five Column",
+          "six": "Six Column",
+          "two-by-one": "Two By One Column",
+          "one-by-two": "One By Two Column"
+        }
+      },
+      "hero-slider": {
+        "label": "Hero Slider"
+      },
+      "content-block": {
+        "label": "Content Block"
+      },
+      "category-list": {
+        "label": "Category List"
+      },
+      "category-slider": {
+        "label": "Category Slider"
+      },
+      "cta": {
+        "label": "CTA Block"
+      },
+      "product-cta":{
+        "label": "Product CTA"
+      },
+      "product-list": {
+        "label": "Product List"
+      },
+      "product-slider": {
+        "label": "Product Slider"
+      },
+      "cta-slider": {
+        "label": "CTA Slider"
+      },
+      "section": {
+        "label": "Section"
+      },
+      "best-seller-list": {
+        "label": "Best Seller List"
+      },
+      "recently-viewed-product-list": {
+        "label": "Recently Viewed Product List"
+      },
+      "recently-viewed-product-slider": {
+        "label": "Recently Viewed Product Slider"
+      },
+      "manufacturer-detail": {
+        "label": "Manufacturer Detail"
+      },
+      "accordion": {
+        "label": "Accordion"
+      },
+      "nav-tabs": {
+        "label": "Tabs"
+      },
+      "breadcrumbs": {
+        "label": "Breadcrumb"
+      },
+      "image-one-by-three-grid":{
+        "label": "Image One By Three Grid"
+      },
+      "image-three-by-one-grid":{
+        "label": "Image Three By One Grid"
+      },
+      "subcategory-list":{
+        "label":"Subcategory list"
+      },
+      "subcategory-slider":{
+        "label":"Subcategory Slider"
+      }
+    },
+    "element": {
+      "breadcrumbs": {
+        "label": "Breadcrumb"
+      },
+      "best-seller-list": {
+        "label": "Best Seller List"
+      },
+      "best-seller-slider": {
+        "label": "Best Seller Slider",
+        "config": {
+          "propertyGroupLabel": "Select color property"
+        }
+      },
+      "picture": {
+        "label": "Picture"
+      },
+      "hero-slider": {
+        "label": "Hero Slider"
+      },
+      "hero-slider-background": {
+        "label": "Hero Slider Background"
+      },
+      "background-image": {
+        "label": "Background Image"
+      },
+      "button": {
+        "label": "Button"
+      },
+      "category-list": {
+        "config": {
+          "categoryAssignmentType": "Category Assignment",
+          "selection": "Categories",
+          "auto-assignment": "Category Assignment",
+          "showDescription": "Show Description",
+          "showImage": "Show Image"
+        }
+      },
+      "cta": {
+        "label": "CTA"
+      },
+      "product-cta": {
+        "label": "Product CTA"
+      },
+      "cta-block": {
+        "label": "CTA Block"
+      },
+      "product-cta-block": {
+        "label": "Product CTA Block"
+      },
+      "title": {
+        "label": "Title",
+        "mainTitle": "Main Title",
+        "subTitle": "Sub Title",
+        "shortDescription": "Short Description"
+      },
+      "product-list": {
+        "config": {
+          "category-assignment": "Based On Category"
+        }
+      },
+      "manufacturer-detail": {
+        "label": "Manufacturer Detail",
+        "description": "Manufacturer Description",
+        "name": "Manufacturer Name"
+      },
+      "accordion": {
+        "label": "Accordion",
+        "config": {
+          "title": "Title",
+          "content": "Content",
+          "title-help": "Here you can set the title.",
+          "add-new": "Add new",
+          "delete-confirm": "Are you sure you want to delete this item?",
+          "delete": "Delete"
+        }
+      },
+      "nav-tabs": {
+        "label": "Tabs"
+      },
+      "subcategory-list": {
+        "label": "Subcategory list"
+      },
+      "subcategory-slider": {
+        "label": "Subcategory Slider"
+      },
+      "general": {
+        "config": {
+          "short-description": "Short Description",
+          "active": "Active",
+          "image": "Image",
+          "setting": "Setting",
+          "desktop": "Desktop",
+          "tablet": "Tablet",
+          "mobile": "Mobile",
+          "enable-lazy-load": "Enable Lazy Load",
+          "custom-class": "Custom Class",
+          "enable-autoplay": "Enable Autoplay",
+          "background-color": "Background Color",
+          "speed": "Speed",
+          "enable-controlls": "Enable Arrows",
+          "enable-dots": "Enable Dots",
+          "enable-loop": "Enable Loop",
+          "theme-color": "Theme Color",
+          "content-color": "Content Color",
+          "alignment": "Alignment",
+          "open-link-new-tab": "Open link in new tab",
+          "button-text": "Button Text",
+          "button-type": "Button Type",
+          "add-more-button": "Add More Button",
+          "category": "Category",
+          "image-position": "Image Position",
+          "title": "Title",
+          "title-tag": "Title Heading Tag",
+          "sub-title": "Sub Title",
+          "sub-title-tag": "Sub Title Heading Tag",
+          "title-position": "Title Position",
+          "horizontal-alignment": "Horizontal Alignment",
+          "content": {
+            "label": "Content",
+            "placeholder": "Enter image-text link..."
+          },
+          "enable-cta": "Enable Call To Action Button",
+          "desktop-count": "Desktop Count",
+          "tablet-count": "Tablet Count",
+          "mobile-count": "Mobile Count",
+          "bestSeller": "Best Seller",
+          "productsPerPage": "Number of products per page",
+          "max-height": "Maximum Height",
+          "object-fit": "Object Fit",
+          "contain": "Contain",
+          "cover": "Cover",
+          "fill": "Fill",
+          "scale": "Scale",
+          "none": "None",
+          "linkTo": "Link To",
+          "buttonText": "Button Text",
+          "slideTitle": "Slide Title",
+          "slideTag": "Slide Tag",
+          "addSliderItem": "Add Slider Item",
+          "sliderItems": "Slider Items",
+          "sliderItem": "Slider Item ",
+          "removeSliderItem": "Remove Slider Item",
+          "sliderSettings": "Slider Settings",
+          "navigation": "Navigation",
+          "remove-button": "Remove Button",
+          "add-button": "Add Button",
+          "product": "Product"
+        },
+        "tabs": {
+          "background": "Background",
+          "settings": "Settings",
+          "title": "Title",
+          "content": "Content",
+          "image": "Image",
+          "button": "Button",
+          "count": "Count",
+          "content-settings": "Content settings",
+          "slider-settings": "Slider settings",
+          "media": "Media",
+          "options": "Options"
+        }
+      },
+      "cta-slider": {
+        "label": "CTA Slider"
+      }
+    }
+  }
+}

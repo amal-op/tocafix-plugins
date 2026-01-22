@@ -1,0 +1,39 @@
+{% sw_extends '@Storefront/storefront/page/product-detail/description.html.twig' %}
+
+{% block utilities_offcanvas_content %}
+    {% block page_product_detail_description_container %}
+        <div class="product-detail-info">
+            {% block page_product_detail_description_title %} {% endblock %}
+
+            {% block page_product_detail_description_content %}
+                {% block page_product_detail_description_content_text %}
+                    <div class="product-detail-description-wrapper">
+                        <div class="product-detail-info-heading">
+                            <h3>{{ 'detail.description'|trans|sw_sanitize }}</h3>
+                        </div>
+                        <div class="product-detail-info-content">
+                            <strong>{{ page.product.translated.name }}</strong>
+                            <p>{{ page.product.translated.description|raw }}</p>
+                            {% if page.product.customFields.tocafix_dimension_text %}
+                                <p>{{ page.product.customFields.tocafix_dimension_text|raw }}</p>
+                            {% endif %}
+                        </div>
+                    </div>
+                {% endblock %}
+
+                {% block page_product_detail_description_content_properties %}
+                    {% if page.product.sortedProperties|length > 0 %}
+                        <div class="product-detail-characteristics-wrapper">
+                            <div class="product-detail-info-heading">
+                                <h3>{{ 'detail.characteristics'|trans|sw_sanitize }}</h3>
+                            </div>
+                            <div class="product-detail-info-content">
+                                {% sw_include '@Storefront/storefront/page/product-detail/properties.html.twig' %}
+                            </div>
+                        </div>
+                    {% endif %}
+                {% endblock %}
+            {% endblock %}
+        </div>
+    {% endblock %}
+{% endblock %}

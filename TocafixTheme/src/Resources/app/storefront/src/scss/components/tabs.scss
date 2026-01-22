@@ -1,0 +1,24 @@
+.card-tabs {
+    .nav{
+        &-item {
+            margin-right: rem(30);
+        }
+        &-link{
+            text-transform: uppercase;
+            line-height: rem(32);
+            font-size: rem(24);
+            font-weight: 600;
+            border-bottom: rem(3) solid transparent;
+            display: inline-block;
+            color: $border-grey-color;
+    
+            &:hover{
+                background: transparent;
+            }
+            &.active{
+                border-color: $primary-color;
+                color: $tab-active;
+            }
+        }
+    }
+}

@@ -1,0 +1,19 @@
+{% block sw_cms_block_cmsbundle_cta_slider %}
+	<div class="sw-cms-block-cmsbundle-cta-slider">
+		<div class="cta-slider-bg">
+			<slot name="background"></slot>
+		</div>
+		<div class="cta-slider-slots">
+			<slot name="title"></slot>
+			<div class="content-sections">
+				<slot name="cta1"></slot>
+				<slot name="cta2"></slot>
+				<slot name="cta3"></slot>
+				<slot name="cta4"></slot>
+				<slot name="cta5"></slot>
+				<slot name="cta6"></slot>
+			</div>
+			<slot name="button"></slot>
+		</div>
+	</div>
+{% endblock %}

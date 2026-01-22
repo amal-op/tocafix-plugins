@@ -1,0 +1,14 @@
+{% block sw_cms_element_cmsbundle_nav_tabs %}
+	<div class="sw-cms-el-cmsbundle-nav-tabs">
+		<div class="sw-tabs">
+			<div class="sw-tabs-content">
+				<template v-for="item in element.config.data.value">
+					<a class="sw-tabs-item">
+						{{ item.name }}
+					</a>
+				</template>
+			</div>
+		</div>
+		<div v-for="item in element.config.data.value.slice(0, 1)" v-html="item.content" class="sw-tabs__custom-content"></div>
+	</div>
+{% endblock %}

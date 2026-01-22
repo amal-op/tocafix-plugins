@@ -1,0 +1,195 @@
+{% block element_cmsbundle_cta %}
+    {# Button Settings #}
+    {% set buttonText1 = element.config.buttonText1.value ?? '' %}
+    {% set buttonType1 = element.config.buttonType1.value ?? '' %}
+    {% set newTab1 = element.config.newTab1.value ?? '' %}
+    {% set url1 = element.config.url1.value ?? 'javascript:;' %}
+    {% set buttonText2 = element.config.buttonText2.value ?? '' %}
+    {% set buttonType2 = element.config.buttonType2.value ?? '' %}
+    {% set newTab2 = element.config.newTab2.value ?? '' %}
+    {% set url2 = element.config.url2.value ?? 'javascript:;' %}
+    {% set buttonText3 = element.config.buttonText3.value ?? '' %}
+    {% set buttonType3 = element.config.buttonType3.value ?? '' %}
+    {% set newTab3 = element.config.newTab3.value ?? '' %}
+    {% set url3 = element.config.url3.value ?? 'javascript:;' %}
+
+    {# CTA Content Settings #}
+    {% set content = element.config.content.value %}
+    {% set title = element.config.title.value %}
+    {% set titleHeading = element.config.titleHeading.value ?? 'h6' %}
+    {% set subTitle = element.config.subTitle.value %}
+    {% set subTitleHeading = element.config.subTitleHeading.value ?? 'h2' %}
+    {% set shortDescription = element.config.shortDescription.value %}
+    {% set titlePosition = element.config.titlePosition.value ?? 'center' %}
+    {% set alignment = element.config.alignment.value ?? "center" %}
+    {% set customClass = element.config.customClass.value ?? "" %}
+    {% set active = element.config.active.value %}
+
+    {# CTA Element Background #}
+    {% set backgroundColor = element.config.backgroundColor.value %}
+    {% set desktopMedia = element.data.backgroundDesktop %}
+    {% set tabletMedia = element.data.backgroundTablet %}
+    {% set mobileMedia = element.data.backgroundMobile %}
+    {% set lazyload = element.config.lazyLoad.value ?? '' %}
+
+    {% set hasBgImage = false %}
+    {% if (desktopMedia or tabletMedia or mobileMedia) %}
+        {% set hasBgImage = true %}
+    {% endif %}
+
+    <div class="cms-element-{{ element.type }} h-100">
+        <div class="h-100 cta-element-wrapper{% if hasBgImage %} has-bg-image{% endif %} {% if backgroundColor %} {% endif %} {% if customClass %}{{ customClass }}{% endif %}" {% if backgroundColor %} style="background-color: {{ backgroundColor }}" {% endif %}>
+            {% block element_cmsbundle_cta_foreground %}
+                <div class="cta-element__foreground d-flex align-items-{{ alignment }} justify-content-{{ titlePosition }} position-relative h-100">
+                    {# CTA Foreground content #}
+                    <div class="cta-wrapper__inner text-{{ titlePosition }} {% if hasBgImage %} p-4 {% endif %} {% if backgroundColor %} p-4 {% endif %}">
+                        {% block element_cmsbundle_cta_background %}
+                            {% if hasBgImage %}
+                                <div class="cta-element__background position-absolute w-100 h-100">
+                                    {% if desktopMedia and desktopMedia.mimeType starts with 'video/' %}
+                                        <video controls class="cta-slider__video">
+                                            <source src="{{ desktopMedia.url }}" type="{{ desktopMedia.mimeType }}">
+                                            Your browser does not support the video tag.
+                                        </video>
+                                    {% elseif tabletMedia and tabletMedia.mimeType starts with 'video/' %}
+                                        <video controls class="cta-slider__video">
+                                            <source src="{{ tabletMedia.url }}" type="{{ tabletMedia.mimeType }}">
+                                            Your browser does not support the video tag.
+                                        </video>
+                                    {% elseif mobileMedia and mobileMedia.mimeType starts with 'video/' %}
+                                        <video controls class="cta-slider__video">
+                                            <source src="{{ mobileMedia.url }}" type="{{ mobileMedia.mimeType }}">
+                                            Your browser does not support the video tag.
+                                        </video>
+                                    {% else %}
+                                        <picture>
+                                            {% if desktopMedia %}
+                                                <source media="(min-width: {{ theme_config('breakpoint.lg') }}px)" srcset="{{ desktopMedia.url | sw_encode_url }}" type="{{ desktopMedia.mimeType }}"/>
+                                            {% endif %}
+                                            {% if tabletMedia %}
+                                                <source media="(min-width: {{ theme_config('breakpoint.md') }}px)" srcset="{{ tabletMedia.url | sw_encode_url }}" type="{{ tabletMedia.mimeType }}"/>
+                                            {% endif %}
+                                            {% if not tabletMedia %}
+                                                <source media="(min-width: {{ theme_config('breakpoint.md') }}px)" srcset="{{ desktopMedia.url | sw_encode_url }}" type="{{ desktopMedia.mimeType }}"/>
+                                            {% endif %}
+                                            {% if mobileMedia %}
+                                                <source media="(min-width: {{ theme_config('breakpoint.sm') }}px)" srcset="{{ mobileMedia.url | sw_encode_url }}" type="{{ mobileMedia.mimeType }}"/>
+                                                {% for thumbnailMobile in mobileMedia.thumbnails %}
+                                                    {% if thumbnailMobile.width == '400' %}
+                                                        <source media="(max-width: {{ theme_config('breakpoint.sm') - 1 }}px)" srcset="{{ thumbnailMobile.url | sw_encode_url }}" type="{{ mobileMedia.mimeType }}"/>
+                                                    {% endif %}
+                                                {% endfor %}
+                                            {% endif %}
+                                            {% if not mobileMedia %}
+                                                <source media="(min-width: {{ theme_config('breakpoint.sm') }}px)" srcset="{{ desktopMedia.url | sw_encode_url }}" type="{{ desktopMedia.mimeType }}"/>
+                                                {% for thumbnailDesktop in desktopMedia.thumbnails %}
+                                                    {% if thumbnailDesktop.width == '400' %}
+                                                        <source media="(max-width: {{ theme_config('breakpoint.sm') - 1 }}px)" srcset="{{ thumbnailDesktop.url | sw_encode_url }}" type="{{ desktopMedia.mimeType }}"/>
+                                                    {% endif %}
+                                                {% endfor %}
+                                            {% endif %}
+                                            <img src="{{ desktopMedia.url | sw_encode_url }}" {% for key, value in attributes %} {% if value != '' %} {{ key }}="{{ value }}" {% endif %} {% endfor %} width="{{ (desktopMedia.metaData.width / 2) | round }}" height="{{ (desktopMedia.metaData.height / 2) | round }}" {% if lazyload == true %} loading="lazy" {% endif %} class="w-100 h-100 object-fit-cover "/>
+                                        </picture>
+                                    {% endif %}
+                                </div>
+                            {% endif %}
+                        {% endblock %}
+                        {% if element.data.mediaDesktop %}
+                            {% block element_cmsbundle_cta_media %}
+                                {% if element.data.mediaDesktop.mimeType starts with 'video/' %}
+                                    <video controls class="cta-slider__video">
+                                        <source src="{{ element.data.mediaDesktop.url }}" type="{{ element.data.mediaDesktop.mimeType }}">
+                                        Your browser does not support the video tag.
+                                    </video>
+                                {% else %}
+                                    <div class="cta-image-wrap">
+                                        {% set attributes = {
+                                            'class': 'cms-image w-100 mb-3',
+                                            'alt': (element.data.mediaDesktop.translated.alt ?: ''),
+                                            'title': (element.data.mediaDesktop.translated.title ?: ''),
+                                            'loading': 'lazy'
+                                        } %}
+                                        {% sw_thumbnails 'cms-image-thumbnails' with {
+                                            media: element.data.mediaDesktop
+                                        } %}
+                                    </div>
+                                {% endif %}
+                            {% endblock %}
+                        {% endif %}
+                        {% if element.data.mediaTablet %}
+                            {% block element_cmsbundle_cta_media_tablet %}
+                                {% if element.data.mediaTablet.mimeType starts with 'video/' %}
+                                    <video controls class="cta-slider__video">
+                                        <source src="{{ element.data.mediaTablet.url }}" type="{{ element.data.mediaTablet.mimeType }}">
+                                        Your browser does not support the video tag.
+                                    </video>
+                                {% else %}
+                                    <div class="cta-image-wrap">
+                                        {% set attributes = {
+                                            'class': 'cms-image w-100 mb-3',
+                                            'alt': (element.data.mediaTablet.translated.alt ?: ''),
+                                            'title': (element.data.mediaTablet.translated.title ?: ''),
+                                            'loading': 'lazy'
+                                        } %}
+                                        {% sw_thumbnails 'cms-image-thumbnails' with {
+                                            media: element.data.mediaTablet
+                                        } %}
+                                    </div>
+                                {% endif %}
+                            {% endblock %}
+                        {% endif %}
+                        {% if element.data.mediaMobile %}
+                            {% block element_cmsbundle_cta_media_mobile %}
+                                {% if element.data.mediaMobile.mimeType starts with 'video/' %}
+                                    <video controls class="cta-slider__video">
+                                        <source src="{{ element.data.mediaMobile.url }}" type="{{ element.data.mediaMobile.mimeType }}">
+                                        Your browser does not support the video tag.
+                                    </video>
+                                {% else %}
+                                    <div class="cta-image-wrap">
+                                        {% set attributes = {
+                                            'class': 'cms-image w-100 mb-3',
+                                            'alt': (element.data.mediaMobile.translated.alt ?: ''),
+                                            'title': (element.data.mediaMobile.translated.title ?: ''),
+                                            'loading': 'lazy'
+                                        } %}
+                                        {% sw_thumbnails 'cms-image-thumbnails' with {
+                                            media: element.data.mediaMobile
+                                        } %}
+                                    </div>
+                                {% endif %}
+                            {% endblock %}
+                        {% endif %}
+                        {% if (title is not empty) or (subTitle is not empty) or (shortDescription is not empty) %}
+                            <div class="title">
+                                {% if title is not empty %}
+                                    <{{ titleHeading }}>{{ title|raw }}</{{ titleHeading }}>
+                                {% endif %}
+                                {% if subTitle is not empty %}
+                                    <{{ subTitleHeading }}>{{ subTitle }}</{{ subTitleHeading }}>
+                                {% endif %}
+                                {% if shortDescription is not empty %}
+                                    <p>{{ shortDescription }}</p>
+                                {% endif %}
+                            </div>
+                        {% endif %}
+                        {% if content is not empty %}
+                            {{ content|raw }}
+                        {% endif %}
+                        <div class="btn-wrap">
+                            {% if buttonText1 %}
+                                <a href="{{ url1 }}" class="btn btn-{{ buttonType1 }}" {% if newTab1 %} target="_blank" {% endif %}>{{ buttonText1 }}</a>
+                            {% endif %}
+                            {% if buttonText2 %}
+                                <a href="{{ url2 }}" class="btn btn-{{ buttonType2 }}" {% if newTab2 %} target="_blank" {% endif %}>{{ buttonText2 }}</a>
+                            {% endif %}
+                            {% if buttonText3 %}
+                                <a href="{{ url3 }}" class="btn btn-{{ buttonType3 }}" {% if newTab3 %} target="_blank" {% endif %}>{{ buttonText3 }}</a>
+                            {% endif %}
+                        </div>
+                    </div>
+                </div>
+            {% endblock %}
+        </div>
+    </div>
+{% endblock %}

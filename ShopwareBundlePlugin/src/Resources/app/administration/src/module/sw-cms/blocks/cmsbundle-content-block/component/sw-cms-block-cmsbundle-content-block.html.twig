@@ -1,0 +1,11 @@
+{% block sw_cms_block_cmsbundle_content_block %}
+<div class="sw-cms-block-cmsbundle-content-block">
+    <div class="content-block-bg">
+        <slot name="background"></slot>
+    </div>
+    <div class="content-block-slots">
+        <slot name="left"></slot>
+        <slot name="right"></slot>
+    </div>
+</div>
+{% endblock %}

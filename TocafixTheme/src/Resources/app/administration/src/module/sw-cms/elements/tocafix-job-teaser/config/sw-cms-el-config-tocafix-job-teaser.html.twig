@@ -1,0 +1,12 @@
+{% block sw_cms_element_tocafix_job_teaser_config %}
+    <div class="sw-cms-el-config-tocafix-job-teaser">
+        <sw-entity-multi-select 
+            :label="$tc('tocafix.element.job-teaser.config.jobSelect')" 
+            :context="jobSelectContext" 
+            :criteria="jobCriteria"
+            :repository="jobRepository"
+            @update:entityCollection="onJobChange"
+            v-model:entityCollection="jobCollection">
+        </sw-entity-multi-select>
+    </div>
+{% endblock %}

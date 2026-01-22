@@ -1,0 +1,14 @@
+.sw-cms-block-cmsbundle-recently-viewed-product-slider {
+    position: relative;
+    .recently-viewed-product-slider-bg {
+        position: relative;
+    }
+    .recently-viewed-product-slider-slots {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 100%;
+        padding: 15px;
+    }
+}

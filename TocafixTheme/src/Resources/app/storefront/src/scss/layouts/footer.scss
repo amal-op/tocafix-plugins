@@ -1,0 +1,208 @@
+.footer-main{
+    /* Overlay */
+
+    position: relative;
+    // background: url('../assets/Metal-Checker.jpg');
+    border: 0;
+
+    .container{
+        position: relative;
+        z-index: 1;
+    }
+
+    &:after{
+        content: "";
+        display: block;
+        background: linear-gradient(180deg, #D9D9D9 0%, rgba(217, 217, 217, 0) 91.67%), linear-gradient(90deg, rgba(221, 221, 221, 0) 0%, #E1E1E1 100%), rgba(219, 219, 219, 0.8);
+        position: absolute;
+        top: 0;
+        height: 100%;
+        width: 100%;
+    }
+
+
+    .footer-column-inner{
+        max-width: rem(540);
+
+        .footer-description-col{
+            margin-top: rem(30);
+            font-size: rem(18);
+            line-height: rem(27);
+            color: $dark-grey-color;
+
+            @include mobile-lg() {
+                font-size: rem(14);
+                line-height: rem(25);
+            }
+        }
+    }
+
+    .footer-columns{
+        padding-top: rem(70);
+        padding-bottom: rem(70);
+
+        @include tablet-sm() {
+            padding-bottom: rem(30);
+        }
+
+        .footer-column-headline{
+            padding-top: 0;
+            font-size: rem(24);
+            line-height: rem(24);
+            margin-top: rem(30);
+            font-weight: 400;
+
+            @include mobile-lg() {
+                font-size: rem(18);
+                margin-bottom: rem(5);
+            }
+        }
+        
+        .footer-column{
+            font-size: rem(16);
+            line-height: rem(24);
+
+            &-content-inner{
+                padding-bottom: 0;
+            }
+
+            @include tablet-md() {
+                padding-bottom: rem(30);
+            }
+            @include mobile-lg() {
+                font-size: rem(14);
+            }
+
+            .address{
+                max-width: rem(180);
+                color: $dark-grey-color;
+
+                @include mobile-lg() {
+                    max-width: 100%;
+                    font-size: rem(14);
+                }
+            }
+
+            .contact{
+                color: $dark-grey-color;
+                display: flex;
+                align-items: center;
+
+                .tf-icon{
+                    color: $primary-color;
+                    font-size: rem(24);
+
+                    @include mobile-lg() {
+                        font-size: rem(18);
+                    }
+                }
+
+                &-link{
+                    color: $dark-grey-color;
+                    margin-left: rem(15);
+                }
+
+                &.mail{
+                    margin-top: rem(20);
+                }
+            }
+
+            .footer-menu{
+                font-size: rem(16);
+                line-height: rem(30);
+                margin: 0;
+
+                li {
+                    padding: rem(2) 0;
+
+                    a{
+                        color: $dark-grey-color;
+    
+                        &:hover{
+                            color: $primary-color;
+                        }
+                        @include mobile-lg() {
+                            font-size: rem(14);
+                        }
+                    }
+                }
+            }
+        }
+    }
+    .footer-service-menu {
+        display: inline-flex;
+        
+        @include mobile-lg() {
+            margin-bottom: rem(5);
+        }
+
+        li{
+            a{
+                color: $medium-grey-color;
+    
+                    &:hover{
+                        color: $primary-color;
+                    }
+                @include mobile-lg() {
+                    font-size: rem(14);
+                }
+            }
+
+            & + li{
+                a{
+                    border-left: rem(2) $medium-grey-color solid;
+                    padding-left: rem(10);
+                    margin-left: rem(10);
+                }
+            }
+        }
+    }
+
+    .footer-main-end {
+        font-size: rem(16);
+        color: $medium-grey-color;
+
+        @include tablet-sm() {
+            text-align: center;
+            padding-bottom: rem(30);
+        }
+    }
+
+    .footer-copyright{
+        text-align: right;
+
+        @include tablet-sm() {
+            text-align: center;
+        }
+        @include mobile-lg() {
+            font-size: rem(14);
+        }
+    }
+
+    .footer-logo-main{
+        picture, img{
+            width: rem(210);
+            display: block;
+
+            @include tablet-lg() {
+                width: rem(180);
+            }
+
+            @include mobile-lg() {
+                width: rem(120);
+            }
+        }
+    }
+}
+
+.footer-minimal{
+    font-size: rem(14);
+    p{
+        font-size: rem(14);
+    }
+}
+
+.is-ctl-checkout .footer-minimal .footer-service-menu-list, .is-act-checkoutregisterpage .footer-minimal .footer-service-menu-list{
+    margin: 0;
+    padding: rem(10) 0;
+}

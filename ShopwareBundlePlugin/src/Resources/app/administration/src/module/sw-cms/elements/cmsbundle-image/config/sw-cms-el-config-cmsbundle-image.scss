@@ -1,0 +1,42 @@
+.sw-cms-el-config-cmsbundle-image {
+    
+    .sw-media-upload-v2 {
+        margin-bottom: 22px;
+
+        .sw-media-upload-v2__header {
+            display: none;
+        }
+    }
+
+    .sw-cms-el-config-cmsbundle-image__mapping-preview {
+        display: grid;
+        width: 100%;
+        height: 200px;
+        justify-items: center;
+        align-items: start;
+
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            overflow: hidden;
+        }
+
+        .sw-cms-el-config-cmsbundle-image__preview-info {
+            width: 100%;
+        }
+    }
+    .pr-10px{
+        padding-right: 10px;
+    }
+    .sw-field--switch {
+        margin-top: 0px;
+        margin-bottom: 0px;
+    }
+    .sw-media-upload-v2__preview{
+        img {
+            height:50px;
+            width:100px;
+        }
+    }
+}

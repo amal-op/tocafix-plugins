@@ -1,0 +1,19 @@
+.sw-cms-element-cmsbundle-nav-tabs{
+    #cmsbundle-nav-tabs{
+        border-bottom: 0;
+        .nav-item{
+            .nav-link{
+                &.active{
+                    background-color:$buy-btn-bg;
+                    color: $buy-btn-color;
+                    border: 1px solid $buy-btn-bg;
+                }
+                color: #000;
+            }
+        }
+        .tab-content{
+            padding-top: 30px;
+        }
+    }
+    
+}

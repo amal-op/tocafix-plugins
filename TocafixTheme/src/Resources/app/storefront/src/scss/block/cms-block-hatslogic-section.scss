@@ -1,0 +1,118 @@
+.section{
+
+    &__block-wrapper{
+        position: relative;
+        height: 100%;
+        width: 100%;
+    }
+
+    &__foreground{
+        top: 0;
+        position: relative;
+        z-index: 1;
+    }
+
+    &__background{
+        top: 0;
+        position: absolute;
+        z-index: 0;
+        width: 100%;
+        height: 100%;
+        display: block;
+    }
+
+    &__content{
+        display: flex;
+
+        .cms-element-cmsbundle-cta .cta-wrapper__inner{
+            padding: rem(40);
+            max-width: 100%;
+
+            @include tablet-lg() {
+                padding: rem(30);
+            }
+
+            .btn-wrap{
+                margin-bottom: 0;
+                
+                .btn{
+                    &-link{
+                        .btn-text{
+                            color: $medium-grey-color;
+                        }
+
+                        &:hover{
+                            .btn-text{
+                                color: $primary-color;
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+
+    // &.bg-overlay{
+    //     background: linear-gradient(90.36deg, rgba(0, 0, 0, 0.4) 0.29%, rgba(0, 0, 0, 0.308) 53.84%, rgba(0, 0, 0, 0.170772) 57.25%, rgba(0, 0, 0, 0) 99.69%), rgba(0, 0, 0, 0.3);
+    //     color: $white-color;
+    // }
+
+    &.has-bg-image{
+        &__background{
+            position: relative;
+            z-index: 0;
+            picture, img{
+                display: block;
+                width: 100%;
+                height: auto;
+            }
+        }
+        &__foreground{
+            top: 0;
+            position: absolute;
+            z-index: 1;
+        }
+    }
+}
+
+.cms-element-cmsbundle-title{
+    & + .cms-element-cmsbundle-section-block{
+        margin-top: rem(100);
+
+        max-width: rem(1420);
+        margin-left: auto;
+        margin-right: auto;
+
+        display: grid;
+        grid-template-rows: auto auto; /* Two rows, each with auto height */
+        grid-template-columns: repeat(6, 1fr); /* Three columns with equal width in the first row */
+        gap: rem(20); /* Adjust the gap between grid items as needed */
+
+        @include desktop-sm(){
+            margin-top: rem(60);
+        }
+
+        .item:nth-child(1),
+        .item:nth-child(2),
+        .item:nth-child(3) {
+            grid-column: span 2; /* Span 2 columns for items in the second row */
+
+            @include tablet-sm() {
+                grid-column: span 6 ;
+            }
+
+            @include mobile-lg() {
+                grid-column: span 6 ;
+            }
+        }
+
+        .item:nth-child(4),
+        .item:nth-child(5) {
+            grid-column: span 3; /* Span 2 columns for items in the second row */
+
+            @include mobile-lg() {
+                grid-column: span 6 ;
+            }
+        }
+    }
+}

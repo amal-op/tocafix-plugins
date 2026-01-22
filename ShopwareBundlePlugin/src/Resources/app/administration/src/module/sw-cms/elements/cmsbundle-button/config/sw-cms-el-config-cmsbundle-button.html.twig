@@ -1,0 +1,118 @@
+{% block sw_cms_element_button_config_config %}
+	<div class="sw-cms-el-config-cmsbundle-button">
+		{% block sw_cms_element_cmsbundle_title_config_link %}
+			<div class="sw-cms-el-config-cmsbundle-title__link">
+				<sw-dynamic-url-field v-model:value="element.config.url1.value"/>
+				<sw-switch-field v-model:value="element.config.newTab1.value" class="sw-cms-el-config-cmsbundle-title__link-tab" type="switch" :label="$tc('cmsbundle.element.general.config.open-link-new-tab')"/>
+			</div>
+		{% endblock %}
+		{% block sw_cms_element_cmsbundle_title_config_button %}
+			<div style="width:100%;display: flex;">
+				<sw-text-field v-model:value="element.config.buttonText1.value" class="pr-10px" type="text" :label="$tc('cmsbundle.element.general.config.button-text')"/>
+				<sw-select-field v-model:value="element.config.buttonType1.value" :label="$tc('cmsbundle.element.general.config.button-type')">
+					<option value="success">
+						Success
+					</option>
+					<option value="primary">
+						Primary
+					</option>
+					<option value="secondary">
+						Secondary
+					</option>
+					<option value="danger">
+						Danger
+					</option>
+					<option value="warning">
+						Warning
+					</option>
+					<option value="info">
+						Info
+					</option>
+					<option value="light">
+						Light
+					</option>
+					<option value="dark">
+						Dark
+					</option>
+					<option value="link">
+						Link
+					</option>
+				</sw-select-field>
+			</div>
+			<sw-switch-field v-model:value="element.config.buttomLevel1.value" type="switch" :label="$tc('cmsbundle.element.general.config.add-more-button')"/>
+			<div class="sw-cms-el-config-cmsbundle-title__link" v-if="element.config.buttomLevel1.value">
+				<sw-dynamic-url-field v-model:value="element.config.url2.value"/>
+				<sw-switch-field v-model:value="element.config.newTab2.value" class="sw-cms-el-config-cmsbundle-title__link-tab" type="switch" :label="$tc('cmsbundle.element.general.config.open-link-new-tab')"/>
+			</div>
+			<div style="width:100%;display: flex;" v-if="element.config.buttomLevel1.value">
+				<sw-text-field v-model:value="element.config.buttonText2.value" class="pr-10px" type="text" :label="$tc('cmsbundle.element.general.config.button-text')"/>
+				<sw-select-field v-model:value="element.config.buttonType2.value" :label="$tc('cmsbundle.element.general.config.button-type')">
+					<option value="success">
+						Success
+					</option>
+					<option value="primary">
+						Primary
+					</option>
+					<option value="secondary">
+						Secondary
+					</option>
+					<option value="danger">
+						Danger
+					</option>
+					<option value="warning">
+						Warning
+					</option>
+					<option value="info">
+						Info
+					</option>
+					<option value="light">
+						Light
+					</option>
+					<option value="dark">
+						Dark
+					</option>
+					<option value="link">
+						Link
+					</option>
+				</sw-select-field>
+			</div>
+			<sw-switch-field v-model:value="element.config.buttomLevel2.value" type="switch" v-if="element.config.buttomLevel1.value" :label="$tc('cmsbundle.element.general.config.add-more-button')"/>
+			<div class="sw-cms-el-config-cmsbundle-title__link" v-if="element.config.buttomLevel2.value">
+				<sw-dynamic-url-field v-model:value="element.config.url3.value"/>
+				<sw-switch-field v-model:value="element.config.newTab3.value" class="sw-cms-el-config-cmsbundle-title__link-tab" type="switch" :label="$tc('cmsbundle.element.general.config.open-link-new-tab')"/>
+			</div>
+			<div style="width:100%;display: flex;" v-if="element.config.buttomLevel2.value">
+				<sw-text-field v-model:value="element.config.buttonText3.value" class="pr-10px" type="text" :label="$tc('cmsbundle.element.general.config.button-text')"/>
+				<sw-select-field v-model:value="element.config.buttonType3.value" :label="$tc('cmsbundle.element.general.config.button-type')">
+					<option value="success">
+						Success
+					</option>
+					<option value="primary">
+						Primary
+					</option>
+					<option value="secondary">
+						Secondary
+					</option>
+					<option value="danger">
+						Danger
+					</option>
+					<option value="warning">
+						Warning
+					</option>
+					<option value="info">
+						Info
+					</option>
+					<option value="light">
+						Light
+					</option>
+					<option value="dark">
+						Dark
+					</option>
+					<option value="link">
+						Link
+					</option>
+				</sw-select-field>
+			</div>
+		{% endblock %}
+	</div>
+{% endblock %}

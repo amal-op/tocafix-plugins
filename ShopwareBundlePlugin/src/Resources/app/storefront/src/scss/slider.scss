@@ -1,0 +1,249 @@
+.cms-block-cmsbundle-product-slider{
+    .product-slider-wrapper{
+        position: relative;
+        .product-slider__background{
+            .background-wrap{
+                top: 0;
+                z-index: -1;
+                left: 0;
+            }
+        }
+    }
+}
+
+.cms-block-cmsbundle-category-slider{
+    .category-slider-wrapper{
+        position: relative;
+        .category-slider__background{
+            .background-wrap{
+                top: 0;
+                z-index: -1;
+            }
+        }
+    }
+}
+.cms-block-cmsbundle-best-seller-slider{
+    .best-seller-slider-wrapper{
+        position: relative;
+        .best-seller-slider__background{
+            .background-wrap{
+                top: 0;
+                z-index: -1;
+            }
+        }
+    }
+}
+.cms-block-cmsbundle-recently-viewed-product-slider{
+    .recently-viewed-product-slider-wrapper{
+        position: relative;
+        .recently-viewed-product-slider__background{
+            .background-wrap{
+                top: 0;
+                z-index: -1;
+            }
+        }
+    }
+}
+.base-slider{
+    .tns-inner{
+        // padding-top: 30px;
+        padding-bottom: 50px;
+    }
+}
+
+.cms-block-cmsbundle-cta-slider{
+    .cta-slider__background{
+        z-index: -2;
+    }
+}
+
+// cta slider element
+.cms-block-cmsbundle-three-column-grid{
+    .slide-tag{
+        background-color: #007bff;
+        padding: 0px 16px;
+    }
+    .tns-controls{
+        display: none;
+    }
+    .tns-nav{
+        z-index: 2;
+        bottom: 4px;
+    }
+    .cta-slider-controls-container{
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        button{
+            background-color: #fff;
+        }
+    }
+}
+
+.cta-slider {
+    &.has-border {
+        border: 2px solid #000; // Adjust border color and thickness
+    }
+    
+    &.has-nav {
+        padding-bottom: 20px; // Adjust padding to make space for navigation
+    }
+
+    .cta-slider-container {
+        display: flex;
+        flex-direction: row;
+        overflow: hidden;
+
+        .cms-element {
+            height: 100%;
+            flex: 1;
+            position: relative;
+
+            .cta-element-wrapper {
+                height: 100%;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                text-align: center;
+                padding: 20px;
+                background-size: cover;
+                background-position: center;
+
+                &.has-bg-image {
+                    background-image: url('');
+                    background-size: 90% auto; /* Reduce background image size */
+                    background-repeat: no-repeat;
+                }
+
+                .cta-element__foreground {
+                    z-index: 2; // Ensures content appears above background
+                    width: 100%;
+
+                    .cta-wrapper__inner {
+                        color: #fff; // Adjust the text color
+                        padding: 20px;
+
+                        .title {
+                            margin-bottom: 15px;
+
+                            h2,
+                            h6 {
+                                margin: 0;
+                                font-weight: bold; // Customize the font weight
+                            }
+
+                            p {
+                                margin-top: 10px;
+                            }
+                        }
+
+                        .btn-wrap {
+                            display: flex;
+                            gap: 10px; // Adjust spacing between buttons
+                            justify-content: center;
+
+                            .btn {
+                                padding: 10px 20px;
+                                font-size: 16px;
+                                text-transform: uppercase;
+                                transition: all 0.3s;
+
+                                &.btn-primary {
+                                    background-color: #007bff; // Customize primary button color
+                                    color: #fff;
+                                }
+
+                                &.btn-secondary {
+                                    background-color: #6c757d; // Customize secondary button color
+                                    color: #fff;
+                                }
+
+                                &:hover {
+                                    opacity: 0.8;
+                                }
+                            }
+                        }
+                    }
+                }
+
+                .cta-element__background {
+                    position: absolute;
+                    top: 0;
+                    left: 0;
+                    width: 100%;
+                    height: 100%;
+                    z-index: 1;
+                    background-position: center;
+                    opacity: 0.8;
+                    background-size: 90% auto; /* Reduce background image size */
+                    background-repeat: no-repeat;
+                }
+            }
+
+            .cta-slider__video {
+                width: 100%;
+                height: auto;
+                object-fit: cover;
+            }
+
+            .cta-image-wrap {
+                margin-bottom: 15px;
+
+                img {
+                    width: 80%; /* Increase inside image size */
+                    height: auto;
+                    object-fit: cover;
+                    border-radius: 8px;
+                    margin: 0 auto; /* Center the image */
+                    display: block; /* Ensure margin auto works */
+                }
+            }
+        }
+    }
+
+    .cta-slider__controls {
+        position: absolute;
+        top: 50%;
+        transform: translateY(-50%);
+        z-index: 3;
+
+        &_prev {
+            left: 10px;
+        }
+
+        &_next {
+            right: 10px;
+        }
+
+        .custom-cta-slider__controls_prev,
+        .custom-cta-slider__controls_next {
+            background-color: rgba(0, 0, 0, 0.5); // Adjust button background color
+            color: #fff;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+            transition: all 0.3s;
+
+            &:hover {
+                background-color: rgba(0, 0, 0, 0.7); // Darken on hover
+            }
+        }
+    }
+}
+
+// Media queries for responsiveness
+@media (max-width: 768px) {
+    .cta-slider {
+        .cta-wrapper__inner {
+            padding: 10px;
+        }
+    }
+}
+
+@media (max-width: 576px) {
+    .cta-slider {
+        .cta-wrapper__inner {
+            padding: 5px;
+        }
+    }
+}

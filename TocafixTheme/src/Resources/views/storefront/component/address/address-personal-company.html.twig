@@ -1,0 +1,54 @@
+{% sw_extends '@Storefront/storefront/component/address/address-personal-company.html.twig' %}
+
+{% block component_account_register_company_fields %}
+    <div class="{% if hasSelectedBusiness %}address-contact-type-company{% elseif prefix == "address" %}js-field-toggle-contact-type-company d-block{% endif %}">
+        {% block component_address_form_company_fields %}
+            {% set accountTypeRequired = true %}
+            <div class="{{ formRowClass }}">
+                {% block component_address_form_company_name %}
+                    <div class="form-group col-12">
+                        {% if formViolations.getViolations("/company") is not empty %}
+                            {% set violationPath = "/company" %}
+                        {% elseif formViolations.getViolations("/#{prefix}/company") is not empty %}
+                            {% set violationPath = "/#{prefix}/company" %}
+                        {% else %}
+                            {% set requiredMessage = "error.VIOLATION::IS_BLANK_ERROR"|trans({ '%field%': "address.companyNameLabel"|trans|sw_sanitize }) %}
+                        {% endif %}
+
+                        {% block component_address_form_company_name_label %}
+                            <label class="form-label"
+                                    for="{{ idPrefix ~ prefix }}company">
+                                {{ "address.companyNameLabel"|trans|sw_sanitize }}{% if accountTypeRequired %}{{ "general.required"|trans|sw_sanitize }}{% endif %}
+                            </label>
+                        {% endblock %}
+
+                        {% block component_address_form_company_name_input %}
+                            <input type="text"
+                                    class="form-control{% if violationPath %} is-invalid{% endif %}"
+                                    id="{{ idPrefix ~ prefix }}company"
+                                    placeholder="{{ "address.companyNamePlaceholder"|trans|striptags }}"
+                                    name="{{ prefix }}[company]"
+                                    value="{{ address.get('company') }}"
+                                    data-form-validation-required
+                                    {% if requiredMessage is defined and accountTypeRequired %}data-form-validation-required-message="{{ requiredMessage }}"{% endif %}
+                                    {% if accountTypeRequired %}required="required"{% endif %}>
+                        {% endblock %}
+
+                        {% block component_address_form_company_name_input_error %}
+                            {% if violationPath %}
+                                {% sw_include '@Storefront/storefront/utilities/form-violation.html.twig' %}
+                            {% endif %}
+                        {% endblock %}
+                    </div>
+                {% endblock %}
+            </div>
+            <div class="{{ formRowClass }}">
+                {% block component_address_form_company_department %}
+                {% endblock %}
+
+                {% block component_address_form_company_vatId %}
+                {% endblock %}
+            </div>
+        {% endblock %}
+    </div>
+{% endblock %}

@@ -1,0 +1,36 @@
+{% block page_checkout_cart_delivery_date_form %}
+    <form data-action="{{ path('frontend.checkout.delivery-date.add') }}"
+            class="cart-add-delivery-date"
+            data-form-csrf-handler="true"
+            method="post">
+
+        {% block page_checkout_cart_add_delivery_date_input_title %}
+            <div class="checkout-aside-add-delivery_date">
+                <strong>{{ "tocafix-custom.detailInformation.preferred-delivery-date"|trans|sw_sanitize }}</strong>
+            </div>
+        {% endblock %}
+
+        {% block page_checkout_cart_add_delivery_date_input_group %}
+            <div class="input-group checkout-aside-add-delivery_date">
+
+                {% block page_checkout_cart_add_delivery_date_input %}
+                    <input type="text"
+                            name="deliveryDate"
+                            class="form-control"
+                            id="addDeliveryDateInput"
+                            value="{{ page.cart.extensions.tocafix_delivery_date.deliveryDate }}">
+                {% endblock %}
+
+                {% block page_checkout_cart_add_delivery_date_submit %}
+                    <div class="input-group-append">
+                        <button class="btn btn-secondary"
+                                type="button"
+                                id="addDeliveryDateButton">
+                            {% sw_icon 'calendar' %}
+                        </button>
+                    </div>
+                {% endblock %}
+            </div>
+        {% endblock %}
+    </form>
+{% endblock %}

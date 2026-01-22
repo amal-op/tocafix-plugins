@@ -1,0 +1,59 @@
+{% block tocafix_job_list %}
+    <sw-page class="tocafix-job-list">
+
+        {% block tocafix_job_list_smart_bar_header %}
+            {# Updated: slot="smart-bar-header" to #smart-bar-header #}
+            <template #smart-bar-header>
+                {% block tocafix_job_list_smart_bar_header_title %}
+                    <h2>
+                        {% block tocafix_job_list_smart_bar_header_title_text %}
+                            {{ $tc('tocafix-job.list.textJobOverview') }}
+                        {% endblock %}
+
+                        {% block tocafix_job_list_smart_bar_header_amount %}
+                            <span v-if="!isLoading && jobs" class="sw-page__smart-bar-amount">
+                                ({{ jobs.total }})
+                            </span>
+                        {% endblock %}
+                    </h2>
+                {% endblock %}
+            </template>
+        {% endblock %}
+
+        {% block tocafix_job_list_smart_bar_actions %}
+            <template #smart-bar-actions>
+                <sw-button 
+                    variant="primary" 
+                    :router-link="{ name: 'tocafix.job.create' }">
+                    {{ $tc('tocafix-job.list.addButtonText') }}
+                </sw-button>
+            </template>
+        {% endblock %}
+
+        {% block tocafix_job_list_language_switch %}
+            <template #language-switch>
+                <sw-language-switch @on-change="onChangeLanguage"></sw-language-switch>
+            </template>
+        {% endblock %}
+
+        <template #content>
+            {% block tocafix_job_list_content %}
+                <sw-entity-listing
+                    v-if="jobs"
+                    :items="jobs"
+                    :repository="jobRepository"
+                    :show-selection="false"
+                    :columns="columns"
+                    detail-route="tocafix.job.detail">
+                    
+                    {% block tocafix_job_list_grid_columns_job_date %}
+                        <template #column-jobDate="{ item }">
+                            {{ formatDate(item.jobDate) }}
+                        </template>
+                    {% endblock %}
+
+                </sw-entity-listing>
+            {% endblock %}
+        </template>
+    </sw-page>
+{% endblock %}

@@ -1,0 +1,252 @@
+{
+  "name": "TocafixTheme",
+  "author": "treestones",
+  "previewMedia": "config/defaultThemePreview.png",
+  "views": [
+     "@Storefront",
+     "@Plugins",
+     "@TocafixTheme"
+  ],
+  "style": [
+    "app/storefront/src/scss/overrides.scss",
+    "@Storefront",
+    "app/storefront/src/scss/base.scss"
+  ],
+  "script": [
+    "@Storefront",
+    "app/storefront/dist/storefront/js/tocafix-theme.js"
+  ],
+  "asset": [
+    "@Storefront",
+    "app/storefront/src/assets"
+  ],
+  "config": {
+    "blocks": {
+        "themeColors": {
+            "label": {
+                "en-GB": "Theme Colors",
+                "de-DE": "Themenfarben"
+            }
+        },
+        "typography": {
+            "label": {
+                "en-GB": "Typography",
+                "de-DE": "Typografie"
+            }
+        },
+        "statusColors": {
+            "label": {
+                "en-GB": "Status colors",
+                "de-DE": "Statusfarben"
+            }
+        },
+        "eCommerce": {
+            "label": {
+                "en-GB": "E-Commerce",
+                "de-DE": "E-Commerce"
+            }
+        },
+        "media": {
+            "label": {
+                "en-GB": "Media",
+                "de-DE": "Medien"
+            }
+        },
+        "themeSettings": {
+            "label": {
+                "en-GB": "Theme Settings",
+                "de-DE": "Theme Settings"
+            }
+        }
+    },
+    "fields": {
+        "sw-color-brand-primary": {
+            "label": {
+                "en-GB": "Brand Primary",
+                "de-DE": "Marke primär"
+            },
+            "type": "color",
+            "value": "#ED1B2F",
+            "editable": true,
+            "block": "themeColors",
+            "order": 100
+        },
+        "sw-color-brand-secondary": {
+            "label": {
+                "en-GB": "Brand Secondary",
+                "de-DE": "Marke zweitrangig"
+            },
+            "type": "color",
+            "value": "#000000",
+            "editable": true,
+            "block": "themeColors",
+            "order": 200
+        },
+        "sw-border-color": {
+            "label": {
+                "en-GB": "Border Color",
+                "de-DE": "Randfarbe"
+            },
+            "type": "color",
+            "value": "#BBBBBB",
+            "editable": true,
+            "block": "themeColors",
+            "order": 300
+        },
+        "sw-background-color": {
+            "label": {
+                "en-GB": "Background Color",
+                "de-DE": "Hintergrundfarbe"
+            },
+            "type": "color",
+            "value": "#FFFFFF",
+            "editable": true,
+            "block": "themeColors",
+            "order": 400
+        },
+        "sw-font-family-base": {
+          "label": {
+            "en-GB": "Base font family",
+            "de-DE": "Basisschriftfamilie"
+          },
+          "type": "fontFamily",
+          "value": "'Open Sans', sans-serif",
+          "editable": true,
+          "block": "typography",
+          "order": 100
+        },
+        "sw-font-family-headline": {
+            "label": {
+                "en-GB": "Headline font family",
+                "de-DE": "Überschrift-Schriftfamilie"
+            },
+            "type": "fontFamily",
+            "value": "'Open Sans', sans-serif",
+            "editable": true,
+            "block": "typography",
+            "order": 200
+        },
+        "sw-text-color": {
+          "label": {
+              "en-GB": "Text Color",
+              "de-DE": "Textfarbe"
+          },
+          "type": "color",
+          "value": "#000000",
+          "editable": true,
+          "block": "typography",
+          "order": 300
+        },
+        "sw-headline-color": {
+          "label": {
+              "en-GB": "Headline Color",
+              "de-DE": "Überschriftenfarbe"
+          },
+          "type": "color",
+          "value": "#000000",
+          "editable": true,
+          "block": "typography",
+          "order": 400
+        },
+        "sw-logo-default": {
+            "label": {
+                "en-GB": "Default Logo",
+                "de-DE": "Standard-Logo"
+            },
+            "type": "media",
+            "value": "config/logo/tocafix.svg",
+            "editable": true,
+            "block": "media",
+            "order": 100
+        },
+        "sw-logo-favicon": {
+            "label": {
+                "en-GB": "Favicon",
+                "de-DE": "Favicon"
+            },
+            "type": "media",
+            "value": "config/logo/favicon.svg",
+            "editable": true,
+            "block": "media",
+            "order": 200
+        },
+        "sw-logo-desktop": {
+            "label": {
+              "en-GB": "Desktop logo",
+              "de-DE": "Desktop-Logo"
+            },
+            "type": "media",
+            "value": "config/logo/tocafix.svg",
+            "editable": false,
+            "block": "media",
+            "order": 300
+        },
+        "sw-logo-tablet": {
+            "label": {
+              "en-GB": "Tablet logo",
+              "de-DE": "Tablet-Logo"
+            },
+            "type": "media",
+            "value": "config/logo/tocafix.svg",
+            "editable": false,
+            "block": "media",
+            "order": 400
+        },
+        "sw-logo-mobile": {
+            "label": {
+              "en-GB": "Mobile logo",
+              "de-DE": "Mobile-Logo"
+            },
+            "type": "media",
+            "value": "config/logo/tocafix.svg",
+            "editable": false,
+            "block": "media",
+            "order": 500
+        },
+        "sw-logo-footer-desktop": {
+            "label": {
+              "en-GB": "Desktop logo",
+              "de-DE": "Desktop-Logo"
+            },
+            "type": "media",
+            "value": "config/logo/tocafix-dark.svg",
+            "editable": false,
+            "block": "media",
+            "order": 500
+        },
+        "sw-logo-footer-tablet": {
+            "label": {
+              "en-GB": "Tablet logo",
+              "de-DE": "Tablet-Logo"
+            },
+            "type": "media",
+            "value": "config/logo/tocafix-dark.svg",
+            "editable": false,
+            "block": "media",
+            "order": 600
+        },
+        "sw-logo-footer-mobile": {
+            "label": {
+              "en-GB": "Mobile logo",
+              "de-DE": "Mobile-Logo"
+            },
+            "type": "media",
+            "value": "config/logo/tocafix-dark.svg",
+            "editable": false,
+            "block": "media",
+            "order": 700
+        },
+        "sw-logo-share": {
+            "label": {
+              "en-GB": "Mobile logo",
+              "de-DE": "Mobile-Logo"
+            },
+            "type": "media",
+            "value": "config/logo/tocafix.svg",
+            "editable": false,
+            "block": "media",
+            "order": 800
+        }
+    }
+  }
+}

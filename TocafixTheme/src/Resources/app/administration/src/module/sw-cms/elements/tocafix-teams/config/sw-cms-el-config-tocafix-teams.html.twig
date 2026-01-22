@@ -1,0 +1,27 @@
+{% block sw_cms_element_tocafix_teams_config %}
+    <div class="sw-cms-el-config-tocafix-teams">
+        <sw-container columns="1fr 1fr 1fr 1fr" gap="20px">
+            <sw-single-select 
+                :label="$tc('tocafix.element.teams.config.category')"
+                :options="categories" 
+                valueProperty="id" 
+                labelProperty="name"
+                v-model:value="element.config.category.value">
+                <template #selection-label-property="{ item }">
+                    {{ item.name || item.translated.name }}
+                </template>
+                <template #result-label-property="{ item }">
+                    {{ item.name || item.translated.name }}
+                </template>
+            </sw-single-select>
+
+            <sw-number-field 
+                numberType="int"
+                :min="0"
+                :label="$tc('tocafix.element.teams.config.numberofposts.title')"
+                v-model:value="element.config.numberOfPosts.value"
+                :helpText="$tc('tocafix.element.teams.config.numberofposts.help')">
+            </sw-number-field>
+        </sw-container>
+    </div>
+{% endblock %}

@@ -1,0 +1,25 @@
+{
+    "tocafix-job": {
+        "general": {
+            "mainMenuItemGeneral": "Jobs",
+            "descriptionTextModule": "Manage Jobs here"
+        },
+        "list": {
+            "addButtonText": "Add Job",
+            "columnName": "Name",
+            "columnJobDate": "Job Date",
+            "textJobOverview": "Jobs"
+        },
+        "detail": {
+            "nameLabel": "Name",
+            "jobDateLabel": "Job Date",
+            "shortDescriptionTeaserLabel": "Short Description for Teaser View",
+            "shortDescriptionDetailLabel": "Short Description for Detail View",
+            "descriptionLabel": "Description",
+            "mediaLabel": "Picture Upload",
+            "cancelButtonText": "Cancel",
+            "saveButtonText": "Save",
+            "errorTitle": "Error saving the Job"
+        }
+    }
+}

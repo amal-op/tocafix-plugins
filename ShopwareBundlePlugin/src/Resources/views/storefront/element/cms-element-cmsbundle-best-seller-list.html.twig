@@ -1,0 +1,58 @@
+{% block element_product_listing %}
+    {% set searchResult = element.data.product.data %}
+    {% set element = block.slots.getSlot('bestSeller') %}
+
+    {% set bestSeller = {
+		border: element.border.value,
+		rotate: element.rotate.value,
+		boxLayout: element.boxLayout.value,
+		elMinWidth: element.elMinWidth.value,
+		navigation: element.navigation.value,
+		countMobile: element.countMobile.value,
+		countTablet: element.countTablet.value,
+		displayMode: element.displayMode.value,
+		verticalAlign: element.verticalAlign.value
+	} %}
+
+    {% set countDesktop = element.translated.config.countDesktop.value %}
+    {% if countDesktop is empty || countDesktop is null %}
+        {% set countDesktop = 4 %}
+    {% endif %}
+    {% set countMobile = element.translated.config.countMobile.value %}
+    {% if countMobile is empty || countMobile is null %}
+        {% set countMobile = 3 %}
+    {% endif %}
+    {% set countTablet = element.translated.config.countTablet.value %}
+    {% if countTablet is empty || countTablet is null %}
+        {% set countTablet = 2 %}
+    {% endif %}
+    {% set defaultColumns = 3 %}
+    {% set listingColumns = 'mb-4 col-xs-' ~ countMobile ~ ' col-sm-' ~ countTablet ~ ' col-lg-' ~ countDesktop ~ ' col-xl-' ~ countDesktop %}
+
+    {# {% if section and section.type == 'sidebar' %}
+    		{% set listingColumns = 'col-sm-6 col-lg-6 col-xl-4' %}
+    	{% endif %} #}
+
+    {% set slot = cmsPage.getFirstElementOfType('best-seller-listing') %}
+
+    {% set filterUrl = null %}
+    {% set dataUrl = null %}
+
+    {% if searchResult.currentFilters.navigationId %}
+        {% set filterUrl = url('frontend.cms.navigation.filter', { navigationId: searchResult.currentFilters.navigationId }) %}
+        {% set dataUrl = url('frontend.cms.navigation.page', { navigationId: searchResult.currentFilters.navigationId }) %}
+    {% endif %}
+
+    {% set sidebar = sectionType == 'sidebar' %}
+    {% set params = { slots: slot.id, 'no-aggregations': 1 } %}
+
+    {% block element_product_listing_wrapper %}
+        {% sw_include '@Storefront/storefront/component/cmsbundle-best-seller/listing.html.twig' with {
+            searchResult: searchResult,
+            sidebar: sidebar,
+            boxLayout: element.translated.config.boxLayout.value,
+            displayMode: element.translated.config.displayMode.value,
+            listingColumns: listingColumns
+        } %}
+    {% endblock %}
+{% endblock %}

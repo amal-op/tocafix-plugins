@@ -1,0 +1,87 @@
+{% block element_product_slider %}
+	{% if not sliderConfig %}
+		{% set sliderConfig = element.fieldConfig.elements %}
+	{% endif %}
+	{% if element.data.products.elements %}
+	{% set sliderId = 'product-slider-' ~ random() %}
+		<div class="cms-element-{{ element.type }}{% if sliderConfig.displayMode.value == " standard" and sliderconfig.verticalalign.value %} has-vertical-alignment{% endif %}">
+			{% block element_product_slider_alignment %}
+				{% if config.verticalAlign.value %}
+					<div class="cms-element-alignment{% if sliderConfig.verticalAlign.value == " center" %} align-self-center{% elseif sliderConfig.verticalAlign.value == " flex-end" %} align-self-end{% else %} align-self-start{% endif %}">
+					{% endif %}
+					{% set productSliderOptions = {
+							slider: {
+								gutter: 30,
+								autoplayButtonOutput: false,
+								nav: sliderConfig.dots.value,
+								slideBy: 2,
+								items: sliderConfig.countDesktop.value,
+								mouseDrag: true,
+								controls: sliderConfig.controlls.value ? true : false,
+								autoplay: sliderConfig.autoPlay.value ? true : false,
+								speed: sliderConfig.speed.value,
+								loop: sliderConfig.loop.value,
+								revButton: '#' ~ sliderId ~ ' .product-slider__controls_prev',
+                        		nextButton: '#' ~ sliderId ~ ' .product-slider__controls_next',
+								navPosition: 'bottom',
+								responsive: {
+									md: {
+										items: sliderConfig.countTablet.value
+									},
+									xs: {
+										items: sliderConfig.countMobile.value
+									}
+								}
+							}
+						} 
+					%} 
+					
+					{% block element_product_slider_slider %}
+						<div id="{{ sliderId }}" class="base-slider product-slider{% if sliderConfig.border.value %} has-border{% endif %}{% if sliderConfig.navigation.value %} has-nav{% endif %}" data-base-slider="true" data-base-slider-options="{{ productSliderOptions|json_encode }}">
+							{% block element_product_slider_inner %}
+								{% block element_product_slider_element %}
+									<div class="product-slider-container" data-base-slider-container="true">
+										{% for product in element.data.products.elements %}
+											{% block element_product_slider_inner_item %}
+												<div class="product-slider-item">
+													{% sw_include '@Storefront/storefront/component/product/card/box.html.twig' with {
+														'layout': sliderConfig.boxLayout.value,
+														'displayMode': sliderConfig.displayMode.value
+													} %}
+												</div>
+											{% endblock %}
+										{% endfor %}
+									</div>
+								{% endblock %}
+
+
+								{% block element_custom_product_slider_controls %}
+									{% if sliderConfig.controlls.value %}
+										<div class="product-slider-controls-container">
+											<div class="base-slider-controls" data-base-slider-controls="true">
+												{% block element_custom_product_slider_controls_items %}
+													<button class="base-slider-controls-prev product-slider__controls_prev{% if sliderConfig.border.value %} has-border{% endif %} start-0">
+														{% block element_custom_product_slider_controls_items_prev_icon %}
+															{% sw_icon 'arrow-head-left' %}
+														{% endblock %}
+													</button>
+													<button class="base-slider-controls-next product-slider__controls_next{% if sliderConfig.border.value %} has-border{% endif %} end-0">
+														{% block element_custom_product_slider_controls_items_next_icon %}
+															{% sw_icon 'arrow-head-right' %}
+														{% endblock %}
+													</button>
+												{% endblock %}
+											</div>
+										</div>
+									{% endif %}
+								{% endblock %}
+							{% endblock %}
+						</div>
+					{% endblock %}
+					{% if config.verticalAlign.value %}
+						</div>
+					{% endif %}
+			{% endblock %}
+		</div>
+	{% endif %}
+{% endblock %}

@@ -1,0 +1,16 @@
+{% block block_job_teaser %}
+	<div class="col-12">
+		{% block block_content_teaser_title %}
+			{% set element = block.slots.getSlot('settings') %}
+			{% sw_include "@Storefront/storefront/element/cms-element-" ~ element.type ~ ".html.twig" ignore missing %}
+		{% endblock %}
+
+		{% block block_tocafix_jobs %}
+			{% set element = block.slots.getSlot('content') %}
+
+			{% block block_tocafix_jobs_inner %}
+				{% sw_include "@Storefront/storefront/element/cms-element-" ~ element.type ~ ".html.twig" ignore missing %}
+			{% endblock %}
+		{% endblock %}
+	</div>
+{% endblock %}

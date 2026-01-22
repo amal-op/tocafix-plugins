@@ -1,0 +1,70 @@
+/*------------------*
+# Variables
+*------------------*/
+
+// Breakpoints (added for theme)
+$desktop-lg: 1800px; // Wide Desktop Screens (Above 1680 - Large Screens)
+$desktop-md: 1640px; // Medium Desktop Screens (Like 1480 - Macbook & Macbook Pro)
+$desktop-sm: 1420px; // Small Desktop Screens
+
+$tablet-lg: 1024px; // Landscape Tablet
+$tablet-md: 991px; // Portrait Medium Tablet
+$tablet-sm: 768px; // Portrait Tablet
+
+$mobile-lg: 680px; // Mobile Landscale
+$mobile-md: 540px; // Mobile Medium Portrait
+$mobile-sm: 480px; // Mobile Portrait
+
+/*
+* Paths
+*/
+$theme-assets-path: '/bundles/tocafixtheme/assets';
+$theme-font-path: '/bundles/tocafixtheme/assets/fonts';
+
+/*
+ * Base colors
+*/
+
+// Theme colours (default in shopware)
+$primary-color: $sw-color-brand-primary;
+$secondary-color: $sw-color-brand-secondary;
+$border-color: $sw-border-color;
+$background-color: $sw-background-color;
+
+// Ecommerce (default in shopware)
+$price-color:  $sw-color-price;
+$buy-button-background-color: $sw-color-buy-button;
+$buy-button-color: $sw-color-buy-button-text;
+
+// Typography (default in shopware)
+$font-normal: $sw-font-family-base;
+$font-bold: $sw-font-family-headline;
+$text-color: $sw-text-color;
+$headine-color: $sw-headline-color;
+
+//Status Colors (default in shopware)
+$success-color: $sw-color-success;
+$info-color: $sw-color-info;
+$warning-color: $sw-color-warning;
+$danger-color: $sw-color-danger;
+
+$white-color: #ffffff;
+$black-color: #000000;
+$grey-color: #7f7f7f;
+$dark-grey-color: #212529;
+$medium-grey-color: #495057;
+$light-grey-color: #D7D7D7;
+$grey-light-bg: #DEE2E6;
+$sidebar-grey-bg: #F4F5F6;
+$sidebar-item-bg: #A3A3A3;
+$sidebar-level2-item: #404040;
+$sidebar-level3-item: #5A585D;
+$filter-border: #5C5C5C;
+$pagination-color: #9F9F9F;
+$sidebar-item-color: #E1E1E1;
+$border-grey-color: #A3A3A3;
+$price-color: #333333;
+$dark-black: #1E1E1E;
+$tab-active: #404040;
+$primary-btn-hover: #d11123;
+$label-color: #484848;

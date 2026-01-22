@@ -1,0 +1,8 @@
+{% block cmsbundle_el_breadcrumbs %}
+	<div class="cmsbundle-breadcrumbs">
+		{% sw_include '@Storefront/storefront/layout/breadcrumb.html.twig' with {
+      context: context,
+      category: page.header.navigation.active
+    } only %}
+	</div>
+{% endblock %}

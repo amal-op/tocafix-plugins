@@ -1,0 +1,12 @@
+@import "../../../scss/variables.scss";
+
+.sw-cms-el-cmsbundle-hero-slider {
+    display: flex;
+    max-width: 100%;
+
+    img {
+        display: block;
+        max-width: 100%;
+        width: 100%;
+    }
+}

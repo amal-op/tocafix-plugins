@@ -1,0 +1,7 @@
+{% block sw_cms_element_cmsbundle_background_image %}
+	<div class="sw-cms-el-cmsbundle-background-image" :style="backgroundStyle">
+		{% block sw_cms_element_cmsbundle_background_image_content %}
+			<img v-if="mediaUrl" :src="mediaUrl" alt="" :style="imageStyle">
+		{% endblock %}
+	</div>
+{% endblock %}

@@ -1,0 +1,31 @@
+.container, .cms-section .boxed{
+    max-width: rem(1680);
+
+    @include desktop-lg() {
+        max-width: rem(1520);
+    }
+
+    @include desktop-md() {
+        max-width: rem(1420);
+    }
+
+    @include desktop-sm() {
+        max-width: rem(1180);
+    }
+
+    @include tablet-lg() {
+        max-width: 95%;
+    }
+
+    @include mobile-lg() {
+        max-width: 100%;
+        padding-left: rem(30);
+        padding-right: rem(30);
+    }
+}
+
+@include mobile-lg() {
+    .cms-block-container-row{
+        margin: 0;
+    }
+}

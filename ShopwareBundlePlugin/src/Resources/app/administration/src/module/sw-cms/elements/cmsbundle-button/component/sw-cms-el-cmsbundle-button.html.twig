@@ -1,0 +1,8 @@
+{% block sw_cms_element_cmsbundle_button %}
+	<div class="sw-cms-el-cmsbundle-button text-center">
+		<button v-if="buttonText1" type="button" class="sw-button sw-button-process sw-button--primary">{{buttonText1}}</button>
+		<button v-if="buttonText2" type="button" class="sw-button sw-button-process sw-button--primary">{{buttonText2}}</button>
+		<button v-if="buttonText3" type="button" class="sw-button sw-button-process sw-button--primary">{{buttonText3}}</button>
+		<button v-if="!buttonText1 && !buttonText2 && !buttonText3" type="button" class="sw-button sw-button-process sw-button--primary">Button</button>
+	</div>
+{% endblock %}

@@ -1,0 +1,19 @@
+{
+  "name": "treestones/tocafix-custom",
+  "description": "Custom plugin",
+  "type": "shopware-platform-plugin",
+  "version": "1.0.5",
+  "license": "MIT",
+  "autoload": {
+    "psr-4": {
+      "TocafixCustomPlugin\\": "src/"
+    }
+  },
+  "extra": {
+    "shopware-plugin-class": "TocafixCustomPlugin\\TocafixCustomPlugin",
+    "label": {
+      "de-DE": "Custom plugin",
+      "en-GB": "Custom plugin"
+    }
+  }
+}

@@ -1,0 +1,19 @@
+{
+  "name": "treestones/tocafix-import",
+  "description": "Import plugin",
+  "type": "shopware-platform-plugin",
+  "license": "MIT",
+  "version": "1.0.0",
+  "autoload": {
+    "psr-4": {
+      "TocafixImportPlugin\\": "src/"
+    }
+  },
+  "extra": {
+    "shopware-plugin-class": "TocafixImportPlugin\\TocafixImportPlugin",
+    "label": {
+      "de-DE": "Import plugin",
+      "en-GB": "Import plugin"
+    }
+  }
+}

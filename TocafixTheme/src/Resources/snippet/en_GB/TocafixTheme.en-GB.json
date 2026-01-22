@@ -1,0 +1,87 @@
+{
+    "general": {
+        "viewAll": "View all",
+        "scroll": "Scroll"
+    },
+    "footer": {
+        "about": {
+            "description": "Unser Motto lautet: Tocafix hält alles fest. Das Angebot von tocafix ist eine herausragende Kombination mit einer breiten Auswahl an Qualitätsprodukten und kürzesten Lieferfristen."
+        },
+        "contact": {
+            "label": "Tocafix AG",
+            "address": "Industriestrasse 176, CH-8957 Spreitenbach",
+            "phone": "+41 62 288 90 00",
+            "email": "info@tocafix.ch"
+        },
+        "copyright": {
+            "label": "Tofafix AG"   
+        }
+    },
+    "listing": {
+        "filter": {
+            "filterPanelLabel": "Filter selection:"
+        },
+        "sorting": {
+            "sortingLabel": "Sort by:"
+        },
+        "pageCount": "PAGE %current% IN %total%"
+    },
+    "detail": {
+        "listPricePercentage": "(%price%% OFF)",
+        "specifications": "Specifications",
+        "description": "Description",
+        "characteristics": "Characteristics"
+    },
+    "button":{
+        "moreText": "Learn more"
+    },
+    "shipping": {
+        "costShipping": "Excl. shipping costs",
+        "freeShipping": "Free shipping"
+    },
+    "job": {
+        "teaser": {
+            "title": "Vacancies"
+        },
+        "detail": {
+            "description": "Description",
+            "applicationForm": {
+                "title": "Apply now",
+                "salutationMale": "Mr.",
+                "salutationFemale": "Mrs",
+                "name": "Name",
+                "namePlaceHolder": "Enter Name...",
+                "lastName": "Last Name",
+                "lastNamePlaceHolder": "Enter Last Name...",
+                "street": "Street, No.",
+                "streetPlaceHolder": "Enter street and house number...",
+                "postCode": "ZIP / City",
+                "postCodePlaceHolder": "Enter ZIP / City...",
+                "phone": "Phone",
+                "phonePlaceHolder": "Enter phone number...",
+                "email": "E-Mail",
+                "emailPlaceHolder": "Enter email address...",
+                "message": "Message",
+                "messagePlaceHolder": "Enter your Message...",
+                "coverLetter": "Cover letter / letter of motivation",
+                "resume": "Resume / CV",
+                "files": {
+                    "placeHolder": "Choose a file..."
+                },
+                "certificate": "Certificates",
+                "jobReferences": "Job references",
+                "requiredMessage": "The fields marked with an asterisk (*) are mandatory. The maximum file size is 5 MB. Allowed file types are pdf,doc,docx.",
+                "privacyTitle": "Privacy",
+                "privacyTextStart": "I have the",
+                "privacyTextHighlight": "Privacy Policy",
+                "privacyTextEnd": "note taken",
+                "submitButton": "Submit application",
+                "successMessage": "Application form submitted successfully",
+                "jobTitle": "Job Title",
+                "salutation": "Salutation",
+                "attachmentExtErrorMessage": "Please upload allowed file types (pdf,doc,docx)",
+                "attachmentSizeErrorMessage": "The file size exceeds the maximum limit of 5 MB"
+            }
+        }
+    }
+}

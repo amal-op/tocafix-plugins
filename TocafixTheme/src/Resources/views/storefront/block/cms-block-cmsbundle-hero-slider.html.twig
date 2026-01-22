@@ -1,0 +1,139 @@
+{% sw_extends '@ShopwareBundlePlugin/storefront/block/cms-block-cmsbundle-hero-slider.html.twig' %}
+
+{% block block_hatslogic_hero_slider %}
+	{% set backgroundElement = block.slots.getSlot("background") %}
+	{% set backgroundElementConfig = backgroundElement.config %}
+	
+	<div class="hero-slider-container">
+		{% block block_gallery_slider %}
+			{% set gallerySliderOptions = {
+			slider: {
+				navPosition: 'bottom',
+				speed: backgroundElementConfig.speed.value,
+				gutter: gutter ? gutter : 0,
+				controls:  backgroundElementConfig.dots.value,
+				navs: backgroundElementConfig.navigation.value,
+				loop: backgroundElementConfig.loop.value,
+				autoplay: backgroundElementConfig.autoPlay.value,
+				autoHeight: false,
+				autoplayButtonOutput: false,
+				startIndex: startIndexThumbnails ? startIndexThumbnails : null,
+				prevButton: '.hero-slider__controls_prev',
+				nextButton: '.hero-slider__controls_next',
+				mouseDrag: true
+			},
+			thumbnailSlider: {
+				items: (galleryPosition == "underneath") ? 6 : 5,
+				slideBy: (galleryPosition == "underneath") ? 5 : 4,
+				controls: true,
+				startIndex: startIndexThumbnails ? startIndexThumbnails : null,
+				responsive: {
+					xs: {
+						enabled: false,
+						controls: false
+					},
+					sm: {
+						enabled: false,
+						controls: false
+					}
+				}
+			}
+		} %}
+		<div class="hero-slider-wrapper slider-wrapper{% if backgroundElementConfig.overlay.value %} bg-overlay{% endif %}">
+			<div class="hero-slider-theme" style="background-color:{{backgroundElementConfig.colour.value}}" data-gallery-slider="true" data-gallery-slider-options='{{ gallerySliderOptions|json_encode }}'>
+
+				<div class="base-slider hero-slider{% if backgroundElementConfig.navigation.value %} has-nav{% endif %}">
+
+					{% set desktopMedia = backgroundElement.data.mediaDesktop %}
+					{% set tabletMedia = backgroundElement.data.mediaTablet %}
+					{% set mobileMedia = backgroundElement.data.mediaMobile %}
+					{% set isBgImage = false %}
+					{% if (desktopMedia || tabletMedia || mobileMedia) %}
+						{% set isBgImage = true %}
+						<picture class="position-realative">
+							{% if desktopMedia != null %}
+								<source media="(min-width: {{ theme_config('breakpoint.lg') }}px)" srcset="{{ desktopMedia.url | sw_encode_url }}" type="{{ desktopMedia.mimeType }}"/>
+							{% endif %}
+							{% if tabletMedia != null %}
+								<source media="(min-width: {{ theme_config('breakpoint.md') }}px)" srcset="{{ tabletMedia.url | sw_encode_url }}" type="{{ tabletMedia.mimeType }}"/>
+							{% endif %}
+							{% if tabletMedia == null %}
+								<source media="(min-width: {{ theme_config('breakpoint.md') }}px)" srcset="{{ desktopMedia.url | sw_encode_url }}" type="{{ desktopMedia.mimeType }}"/>
+							{% endif %}
+							{% if mobileMedia != null %}
+								<source media="(min-width: {{ theme_config('breakpoint.sm') }}px)" srcset="{{ mobileMedia.url | sw_encode_url }}" type="{{ mobileMedia.mimeType }}"/>
+								{% for thumbnailMobile in mobileMedia.thumbnails %}
+									{% if thumbnailMobile.width == '400' %}
+										<source media="(max-width: {{ theme_config('breakpoint.sm') - 1 }}px)" srcset="{{ mobileMedia.url | sw_encode_url }}" type="{{ mobileMedia.mimeType }}"/>
+									{% endif %}
+								{% endfor %}
+							{% endif %}
+							{% if mobileMedia == null %}
+								<source media="(min-width: {{ theme_config('breakpoint.sm') }}px)" srcset="{{ desktopMedia.url | sw_encode_url }}" type="{{ desktopMedia.mimeType }}"/>
+								{% for thumbnailDesktop in desktopMedia.thumbnails %}
+									{% if thumbnailDesktop.width == '400' %}
+										<source media="(max-width: {{ theme_config('breakpoint.sm') - 1 }}px)" srcset="{{ desktopMedia.url | sw_encode_url }}" type="{{ thumbnailDesktop.mimeType }}"/>
+									{% endif %}
+								{% endfor %}
+							{% endif %}
+							<img src="{{ desktopMedia|sw_encode_media_url }}" {% for key, value in attributes %} {% if value != '' %} {{ key }}="{{ value }}" {% endif %} {% endfor %} width="100%" height="auto" {% if lazyload == true %} loading="lazy" {% endif %}/>
+						</picture>
+					{% endif %}
+
+					<div class="slider-container {% if (isBgImage) %} position-absolute top-0 bottom-0 {% endif %} d-flex" data-gallery-slider-container="true">
+						{% set totalslides = 6 %}
+						{% for i in 1..totalslides %}
+							{% set slotName = "bannerSlider0"~ i %}
+							{% set slide = 'block_slider_slide_' ~ i %}
+							{% set slideInner = 'block_slider_slide_inner_' ~ i %}
+							{% block slide %}
+								{% set element = block.slots.getSlot(slotName) %}
+								{% if (element.config.active.value) %}
+									<div class="slider-item">
+										{% block slideInner %}
+											{% if i == 1 %}
+												{% sw_include "@Storefront/storefront/element/cms-element-" ~ element.type ~ ".html.twig" ignore missing with { lazyload: false } %}
+											{% else %}
+												{% sw_include "@Storefront/storefront/element/cms-element-" ~ element.type ~ ".html.twig" ignore missing  %}
+											{% endif %}
+										{% endblock %}
+									</div>
+								{% endif %}
+							{% endblock %}
+						{% endfor %}
+					</div>
+				</div>
+
+				{% block element_hero_slider_controls %}
+					<div class="hero-slider-controls-container">
+						{% if backgroundElementConfig.navigation.value %}
+							<div class="base-slider-controls" data-gallery-slider-controls="true">
+								{% block element_hero_slider_controls_items %}
+									<button class="base-slider-controls-prev hero-slider__controls_prev{% if backgroundElementConfig.border.value %} has-border{% endif %}">
+										{% block element_hero_slider_controls_items_prev_icon %}
+											<i class="tf-icon icon-angle flipped"></i>
+										{% endblock %}
+									</button>
+									<button class="base-slider-controls-next hero-slider__controls_next{% if backgroundElementConfig.border.value %} has-border{% endif %}">
+										{% block element_hero_slider_controls_items_next_icon %}
+											<i class="tf-icon icon-angle"></i>
+										{% endblock %}
+									</button>
+								{% endblock %}
+							</div>
+						{% endif %}
+					</div>
+				{% endblock %}
+
+				<button class="scroll-down"> {{ "general.scroll"|trans|sw_sanitize }} </button>
+				
+
+			</div>
+		</div>
+
+		
+		{% endblock %}
+
+		
+	</div>
+{% endblock %}

@@ -1,0 +1,17 @@
+{% block sw_cms_element_cmsbundle_cta_block %}
+<div class="sw-cms-el-cmsbundle-cta-block">
+    {% block sw_cms_element_cmsbundle_cta_block_content %}
+    <div class="sw-cms-el-cmsbundle-cta__content">
+				<img v-if="(!title && !subTitle && !shortDescription && !content && !mediaUrl)" :src="assetFilter('/shopwarebundleplugin/static/img/cta-element.jpg')" alt=""/>
+				<img v-else-if="(title || subTitle || shortDescription || content)" :src="assetFilter('/shopwarebundleplugin/static/img/column-banner.png')" alt=""/>
+				<div v-if="title || subTitle || shortDescription || content" class="sw-cms-el-cmsbundle-cta__content-text" :style="contentStyle">
+					<div v-html="title"></div>
+					<div v-html="subTitle"></div>
+					<div>{{shortDescription}}</div>
+					<p v-html="content" class="sw-cms-el-cmsbundle-cta__content-text__content"></p>
+				</div>
+			</div>
+    
+    {% endblock %}
+</div>
+{% endblock %}

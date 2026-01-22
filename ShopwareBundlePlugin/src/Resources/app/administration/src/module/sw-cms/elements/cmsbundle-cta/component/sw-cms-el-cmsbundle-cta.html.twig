@@ -1,0 +1,16 @@
+{% block sw_cms_element_cmsbundle_cta %}
+	<div class="sw-cms-el-cmsbundle-cta">
+		{% block sw_cms_element_cmsbundle_cta_content %}
+			<div class="sw-cms-el-cmsbundle-cta__content" :style="backgroundStyle">
+				<img v-if="(!title && !subTitle && !shortDescription && !content) || staticFallBackImageDesktop!=backgroundMediaUrl" :src="backgroundMediaUrl" alt=""/>
+				<img v-if="(title || subTitle || shortDescription || content) && staticFallBackImageDesktop==backgroundMediaUrl" :src="assetFilter('/shopwarebundleplugin/static/img/vertical-column.jpg')" alt="" />
+				<div v-if="title || subTitle || shortDescription || content" class="sw-cms-el-cmsbundle-cta__content-text" :style="contentStyle">
+					<div v-html="title"></div>
+					<div v-html="subTitle"></div>
+					<div class="description-text">{{shortDescription}}</div>
+					<p v-html="content" class="sw-cms-el-cmsbundle-cta__content-text__content"></p>
+				</div>
+			</div>
+		{% endblock %}
+	</div>
+{% endblock %}

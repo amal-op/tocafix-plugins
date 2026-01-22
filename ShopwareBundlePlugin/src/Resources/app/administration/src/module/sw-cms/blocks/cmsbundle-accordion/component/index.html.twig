@@ -1,0 +1,11 @@
+{% block sw_cms_block_cmsbundle_accordion %}
+	<div class="sw-cms-block-cmsbundle-accordion">
+		<div class="accordion-bg">
+			<slot name="background"></slot>
+		</div>
+		<div class="accordion-slots">
+			<slot name="title"></slot>
+			<slot name="accordion"></slot>
+		</div>
+	</div>
+{% endblock %}

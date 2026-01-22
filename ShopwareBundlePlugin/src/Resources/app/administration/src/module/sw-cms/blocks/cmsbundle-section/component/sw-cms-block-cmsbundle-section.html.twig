@@ -1,0 +1,20 @@
+{% block sw_cms_block_cmsbundle_section %}
+	<div class="sw-cms-block-cmsbundle-section">
+		<div class="background">
+			<slot name="background"></slot>
+			<div class="foreground">
+				<slot name="title"></slot>
+				<div class="content-slots">
+					<slot name="content1"></slot>
+					<slot name="content2"></slot>
+					<slot name="content3"></slot>
+					<slot name="content4"></slot>
+					<slot name="content5"></slot>
+					<slot name="content6"></slot>
+				</div>
+				<slot name="button"></slot>
+			</div>
+		</div>
+		
+	</div>
+{% endblock %}

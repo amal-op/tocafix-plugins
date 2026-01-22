@@ -1,0 +1,50 @@
+{% block page_checkout_cart_commisions %}
+    <div class="row cart-add-commisions-container mt-4">
+        {% block page_checkout_cart_add_commisions %}
+            <div class="col-md-12">
+                {% if controllerAction is same as('cartPage') || controllerAction is same as('confirmPage') %}
+                    {% block page_checkout_tocafix_commission_form %}
+                    {% if controllerAction is same as('cartPage') %}
+                        <form data-action="{{ path('frontend.checkout.line-item.update-commission') }}"
+                            class="form-inline"
+                            method="post"
+                            data-tocafix-commission="true"
+                        >
+                    {% else %}
+                        <div class="form-inline mb-4">
+                    {% endif %}
+                        
+                            <div class="form-group mb-2">
+                                <label for="commissionNo" class="sr-only">{{ "tocafix-custom.detailInformation.commissionNo"|trans|sw_sanitize }}</label>
+                                <input type="text" name="commissionNo" {% if controllerAction is same as('confirmPage') %} form="confirmOrderForm" {% endif %} class="form-control" id="commissionNo" value="{{page.cart.extensions.tocafix_commission.commissionNumber}}" placeholder="{{ 'tocafix-custom.detailInformation.commissionNo'|trans|sw_sanitize }}">
+                            </div>
+
+                            <div class="form-group mx-sm-3 mb-2">
+                                <label for="commissionName" class="sr-only">{{ "tocafix-custom.detailInformation.commissionName"|trans|sw_sanitize }}</label>
+                                <input type="text" name="commissionName" {% if controllerAction is same as('confirmPage') %} form="confirmOrderForm" {% endif %} class="form-control" id="commissionName" value="{{page.cart.extensions.tocafix_commission.commissionName}}" placeholder="{{ 'tocafix-custom.detailInformation.commissionName'|trans|sw_sanitize }}">
+                            </div>
+
+                    {% if controllerAction is same as('cartPage') %}
+                            <button type="button" class="save-commisions btn btn-primary mb-2">{{ "tocafix-custom.detailInformation.saveButton"|trans|sw_sanitize }}</button>
+                        </form>
+                    {% else %}
+                        </div>
+                    {% endif %}
+                    {% endblock %}
+                {% else %}
+                    {% block page_checkout_tocafix_commission_display %}
+                        {% set commissionName = cart.customFields.commissionName %}
+                        {% set commissionNumber = cart.customFields.commissionNumber %}
+                        {% if commissionNumber %}
+                            <p>{{ "tocafix-custom.detailInformation.commissionNo"|trans }}: {{ commissionNumber }},&nbsp;</p>
+                        {% endif %}
+                        {% if commissionName %}
+                            <p>{{ "tocafix-custom.detailInformation.commissionName"|trans }}: {{ commissionName }}</p>
+                        {% endif %}
+                    {% endblock %}
+                {% endif %}
+                <div class="col-md-12 commission-response d-none"></div>
+            </div>
+        {% endblock %}
+    </div>
+{% endblock %}

@@ -1,0 +1,38 @@
+{% block subcategory_listing %}
+	<div class="cms-element-subcategory-listing-wrapper">
+		{% block element_subcategory_listing_wrapper_content %}
+			<div class="cms-element-subcategory-listing">
+				{% block element_subcategory_listing_row %}
+					<div class="row cms-listing-row js-listing-wrapper">
+						{% if searchResult.elements > 0 %}
+							{% block element_subcategory_listing_col %}
+								{% for subcategory in searchResult %}
+									<div class="cms-listing-col {{ listingColumns }}">
+										{% block element_subcategory_listing_box %}
+											{% sw_include '@Storefront/storefront/component/subcategory/card.html.twig' with {
+                                                'layout': boxLayout,
+                                                'displayMode': displayMode
+                                            } %}
+										{% endblock %}
+									</div>
+								{% endfor %}
+							{% endblock %}
+						{% else %}
+							{% block element_subcategory_listing_col_empty %}
+								<div class="cms-listing-col col-12">
+									{% block element_subcategory_listing_col_empty_alert %}
+										{% sw_include '@Storefront/storefront/utilities/alert.html.twig' with {
+                                            type: 'info',
+                                            content: 'listing.emptyResultMessage'|trans|sw_sanitize
+                                        } %}
+									{% endblock %}
+								</div>
+							{% endblock %}
+						{% endif %}
+					</div>
+				{% endblock %}
+
+			</div>
+		{% endblock %}
+	</div>
+{% endblock %}

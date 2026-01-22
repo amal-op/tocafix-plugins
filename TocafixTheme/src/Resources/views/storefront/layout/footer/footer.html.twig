@@ -1,0 +1,142 @@
+{% sw_extends '@Storefront/storefront/layout/footer/footer.html.twig' %}
+
+{% block layout_footer_inner_container %}
+    <div class="container small">
+
+        {% block layout_footer_navigation %}
+            <div id="footerColumns"
+                 class="row footer-columns"
+                 data-collapse-footer="true"
+                 role="list">
+
+                {% block layout_footer_navigation_logo %}
+                    <div class="col-lg-8 col-xl-7 col-12 footer-column">
+                        <div class="footer-column-inner">
+                            {% block layout_footer_logo %}
+                                <div class="footer-logo-col">
+                                    {% sw_include '@Storefront/storefront/layout/footer/logo.html.twig' %}
+                                </div>
+                            {% endblock %}
+
+                            {% block layout_footer_description %}
+                                <div class="footer-description-col">
+                                    {{ 'footer.about.description'|trans|sw_sanitize }}
+                                </div>
+                            {% endblock %}
+                        </div>
+                    </div>
+                {% endblock %}
+
+                {% block layout_footer_navigation_hotline_headline %}
+                    <div class="col-lg-2 col-xl-3 col-7 footer-column d-flex justify-content-start justify-content-lg-end">
+                        <div class="footer-column-inner">
+                            <h3 class="footer-column-headline footer-headline">{{ 'footer.contact.label'|trans|sw_sanitize }}</h3>
+                            <p class="address">{{ 'footer.contact.address'|trans|sw_sanitize }}</p>
+                            <div class="contact phone"> <i class="tf-icon icon-phone"></i> <a class="contact-link" href="tel:{{ 'footer.contact.phone'|trans|sw_sanitize }}">{{ 'footer.contact.phone'|trans|sw_sanitize }}</a> </div>
+                            <div class="contact mail"> <i class="tf-icon icon-mail"></i> <a class="contact-link" href="mailto:{{ 'footer.contact.email'|trans|sw_sanitize }}">{{ 'footer.contact.email'|trans|sw_sanitize }}</a> </div>
+                        </div>
+                    </div>
+                {% endblock %}
+
+                {% block layout_footer_navigation_columns %}
+                    {% for root in page.footer.navigation.tree %}
+                        {% block layout_footer_navigation_column %}
+                        
+                            <div class="col-lg-2 col-5 footer-column d-flex justify-content-start justify-content-lg-end">
+                                <div class="footer-column-inner mr-0 mr-lg-4">
+                                    {% block layout_footer_navigation_information_headline %}
+                                        <h3 class="footer-column-headline footer-headline"
+                                            aria-controls="collapseFooter{{ loop.index }}">
+
+                                            {% if root.category.type == 'folder' %}
+                                                {{ root.category.translated.name }}
+                                            {% else %}
+                                                <a href="{{ category_url(root.category) }}"
+                                                {% if category_linknewtab(root.category) %}target="_blank"{% endif %}
+                                                title="{{ root.category.translated.name }}">
+                                                    {{ root.category.translated.name }}
+                                                </a>
+                                            {% endif %}
+                                            {% block layout_footer_navigation_information_icons %}{% endblock %}
+                                        </h3>
+                                    {% endblock %}
+
+                                    {% block layout_footer_navigation_information_content %}
+                                        <div id="collapseFooter{{ loop.index }}"
+                                            class="footer-column-content"
+                                            aria-labelledby="collapseFooterTitle{{ loop.index }}">
+                                            <div class="footer-column-content-inner">
+                                                {% block layout_footer_navigation_information_links %}
+                                                    <ul class="footer-menu list-unstyled">
+                                                        {% for treeItem in root.children %}
+                                                            {% set category = treeItem.category %}
+                                                            {% set name = category.translated.name %}
+
+                                                            {# @deprecated tag:v6.5.0 - Use "category.translated.externalLink" directly or category_url function instead. #}
+                                                            {% set externalLink = category.translated.externalLink %}
+
+                                                            {% block layout_footer_navigation_information_link_item %}
+                                                                <li class="footer-link-item">
+                                                                    {% block layout_footer_navigation_information_link %}
+                                                                        {% if category.type == 'folder' %}
+                                                                            <div>{{ name }}</div>
+                                                                        {% else %}
+                                                                            <a href="{{ category_url(category) }}"
+                                                                            {% if category_linknewtab(category) %}target="_blank"{% endif %}
+                                                                            title="{{ name }}">{{ name }}</a>
+                                                                        {% endif %}
+                                                                    {% endblock %}
+                                                                </li>
+                                                            {% endblock %}
+                                                        {% endfor %}
+                                                    </ul>
+                                                {% endblock %}
+                                            </div>
+                                        </div>
+                                    {% endblock %}
+                                </div>
+                            </div>
+                        
+                        {% endblock %}
+                    {% endfor %}
+                {% endblock %}
+
+                {% block layout_footer_navigation_hotline_content %}{% endblock %}
+            </div>
+        {% endblock %}
+
+        {% block layout_footer_main_end_row %}
+            <div class="footer-main-end row flex-column flex-column-md-reverse flex-md-row">
+                {% block layout_footer_service_menu %}
+                    <div class="service-menus col-12 col-md-6">
+                        {% block layout_footer_service_menu_content %}
+                            {% apply spaceless %}
+                                <ul class="footer-service-menu list-unstyled">
+                                    {% for serviceMenuItem in page.header.serviceMenu %}
+                                        {% block layout_footer_service_menu_item %}
+                                            <li>
+                                                <a href="{{ category_url(serviceMenuItem) }}"
+                                                {% if category_linknewtab(serviceMenuItem) %}target="_blank"{% endif %}
+                                                title="{{ serviceMenuItem.translated.name }}">{{ serviceMenuItem.translated.name }}</a>
+                                            </li>
+                                        {% endblock %}
+                                    {% endfor %}
+                                </ul>
+                            {% endapply %}
+                        {% endblock %}
+                    </div>
+                {% endblock %}
+                {% block layout_footer_copyright %}
+                    <div class="footer-copyright col-12 col-md-6">
+                       &copy; {{ "footer.copyright.label"|trans|sw_sanitize }} {{ 'now' | date('Y') }}
+                    </div>
+                {% endblock %}
+            </div>
+        {% endblock %}
+
+        {% block layout_footer_payment_shipping_logos %}{% endblock %}
+
+    </div>
+
+    {% block layout_footer_bottom %}{% endblock %}
+{% endblock %}

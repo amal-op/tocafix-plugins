@@ -1,0 +1,98 @@
+{% block block_cmsbundle_cta_slider %}
+	<div class="cta-slider-wrapper position-relative">
+		{% block block_cta_slider_foreground %}
+			<div class="cta-slider__foreground text-white">
+				<div class="container">
+					{% block block_cmsbundle_cta_slider_title %}
+						{% set element = block.slots.getSlot('title') %}
+						{% sw_include "@Storefront/storefront/element/cms-element-" ~ element.type ~ ".html.twig" ignore missing  %}
+					{% endblock %}
+
+					{% block block_cmsbundle_cta_slider_content %}
+						{% set sliderConfig =  block.slots.getSlot('background').fieldConfig.elements %}
+						{% set sliderControlls = false  %}
+						{% set ctaSliderOptions = {
+								slider: {
+									gutter: 30,
+									autoplayButtonOutput: false,
+									nav: true,
+									slideBy: 2,
+									items: 3,
+									mouseDrag: true,
+									controls: sliderControlls,
+									autoplay: false,
+									speed: 1000,
+									loop: true,
+									prevButton: '.cta-slider__controls_prev',
+									nextButton: '.cta-slider__controls_next',
+									navPosition: 'bottom',
+									responsive: {
+										md: {
+											items: 2
+										},
+										xs: {
+											items: 1
+										}
+									}
+								}
+							}
+						%}
+						{% block element_cta_slider_slider %}
+							<div class="base-slider cta-slider{% if sliderConfig.border.value %} has-border{% endif %}{% if sliderConfig.navigation.value %} has-nav{% endif %}" data-base-slider="true" data-base-slider-options="{{ ctaSliderOptions|json_encode }}{% if sliderConfig.overlay.value %} bg-overlay{% endif %}">
+								{% block element_cta_slider_inner %}
+									{% block element_cta_slider_element %}
+										<div class="cta-slider-container" data-base-slider-container="true">
+											{% for i in 1..6 %}
+												{% block element_cta_slider_inner_item %}
+													{% set slotName = "cta" ~ i %}
+													{% set element = block.slots.getSlot(slotName) %}
+													{% if (element.config.title.value || element.config.subTitle.value || element.config.content.value || element.data.mediaDesktop || element.data.mediaTablet || element.data.mediaMobile) %}
+														<div class="cta-slider-item">
+															{% sw_include "@Storefront/storefront/element/cms-element-" ~ element.type ~ ".html.twig" ignore missing  %}
+														</div>
+													{% endif %}
+												{% endblock %}
+											{% endfor %}
+										</div>
+									{% endblock %}
+
+									{% block element_cta_slider_controls %}
+										<div class="cta-slider-controls-container">
+											{% if sliderControlls %}
+												<div class="base-slider-controls" data-base-slider-controls="true">
+													{% block element_cta_slider_controls_items %}
+														<button class="base-slider-controls-prev start-0 cta-slider__controls_prev{% if sliderConfig.border.value %} has-border{% endif %}">
+															{% block element_cta_slider_controls_items_prev_icon %}
+																{% sw_icon 'arrow-head-left' %}
+															{% endblock %}
+														</button>
+														<button class="base-slider-controls-next end-0 cta-slider__controls_next{% if sliderConfig.border.value %} has-border{% endif %}">
+															{% block element_cta_slider_controls_items_next_icon %}
+																{% sw_icon 'arrow-head-right' %}
+															{% endblock %}
+														</button>
+													{% endblock %}
+												</div>
+											{% endif %}
+										</div>
+									{% endblock %}
+								{% endblock %}
+							</div>
+						{% endblock %}
+					{% endblock %}
+					
+					{% block block_cmsbundle_cta_button %}
+						{% set element = block.slots.getSlot('button') %}
+						{% sw_include "@Storefront/storefront/element/cms-element-" ~ element.type ~ ".html.twig" ignore missing  %}
+					{% endblock %}
+				</div>
+			</div>
+		{% endblock %}
+		{% block block_cta_slider_background %}
+			<div class="cta-slider__background  {% if isBgImage %} position-absolute top-0 bottom-0 start-0 w-100 {% else %}position-absolute {% endif %}  top-0 start-0 w-100 h-100">
+				{% set element = block.slots.getSlot('background') %}
+				{% sw_include "@Storefront/storefront/element/cms-element-" ~ element.type ~ ".html.twig" ignore missing %}
+			</div>
+		{% endblock %}
+	</div>
+{% endblock %}

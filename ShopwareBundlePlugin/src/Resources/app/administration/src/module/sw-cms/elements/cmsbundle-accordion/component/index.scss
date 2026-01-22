@@ -1,0 +1,15 @@
+.sw-cms-el-cmsbundle-accordion {
+    ul {
+        list-style-type: none;
+        li {
+            background-color: #e7eef5;
+            padding: 10px;
+            margin: 5px;
+            display: flex;
+            justify-content: space-between;
+            svg{
+                width: 16px;
+            }
+        }
+    }
+}

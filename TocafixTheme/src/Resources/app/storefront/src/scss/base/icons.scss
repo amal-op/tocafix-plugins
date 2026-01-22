@@ -1,0 +1,58 @@
+@font-face {
+  font-family: 'tocafix-icon';
+  src:  url('#{$theme-assets-path}/fonts/TocafixIcons/tocafix-icon.eot');
+  src:  url('#{$theme-assets-path}/fonts/TocafixIcons/tocafix-icon.eot#iefix') format('embedded-opentype'),
+    url('#{$theme-assets-path}/fonts/TocafixIcons/tocafix-icon.ttf') format('truetype'),
+    url('#{$theme-assets-path}/fonts/TocafixIcons/tocafix-icon.woff') format('woff'),
+    url('#{$theme-assets-path}/fonts/TocafixIcons/tocafix-icon.svg#tocafix-icon') format('svg');
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap;
+}
+  
+[class*='tf-icon-']:before, [class*='tf-icon']:before{
+	display: inline-block;
+  font-family: 'tocafix-icon';
+  font-style: normal;
+  font-weight: normal;
+  line-height: 1;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale
+}
+
+.tf-icon{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  &.flipped{
+    transform: rotate(180deg);
+  }
+}
+
+.tf-icon{
+  &.icon-heart:before {
+    content: "\f004";
+  }
+  &.icon-menu:before {
+    content: "\f0c9";
+  }
+  &.icon-search:before {
+    content: "\e904";
+  }
+  &.icon-angle:before {
+    content: "\e905";
+  }
+  &.icon-account:before {
+    content: "\e900";
+  }
+  &.icon-cart:before {
+    content: "\e901";
+  }
+  &.icon-mail:before {
+    content: "\e902";
+  }
+  &.icon-phone:before {
+    content: "\e903";
+  }
+}

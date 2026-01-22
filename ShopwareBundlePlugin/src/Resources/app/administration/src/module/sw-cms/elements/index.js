@@ -1,0 +1,26 @@
+import "./cmsbundle-image";
+import "./cmsbundle-background-image";
+import "./cmsbundle-title";
+import "./cmsbundle-button";
+import "./cmsbundle-cta";
+import "./cmsbundle-cta-block";
+import "./cmsbundle-product-cta";
+// TODO: The commented line should be removed
+// import "./cmsbundle-product-cta-block";
+import "./cmsbundle-product-slider";
+import "./cmsbundle-product-list";
+import "./cmsbundle-hero-slider";
+import "./cmsbundle-hero-slider-background";
+import "./cmsbundle-category-list";
+import "./cmsbundle-category-slider";
+import "./cmsbundle-best-seller-list";
+import "./cmsbundle-best-seller-slider";
+import "./cmsbundle-recently-viewed-product-list";
+import "./cmsbundle-recently-viewed-product-slider";
+import "./cmsbundle-manufacturer-detail";
+import "./cmsbundle-accordion";
+import "./cmsbundle-nav-tabs";
+import "./cmsbundle-breadcrumbs";
+import "./cmsbundle-cta-slider";
+import "./cmsbundle-subcategory-list";
+import "./cmsbundle-subcategory-slider";

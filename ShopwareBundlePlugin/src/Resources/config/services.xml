@@ -1,0 +1,104 @@
+<?xml version="1.0"?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <services>
+        <service id="ShopwareBundlePlugin\DataResolver\CmsBundleImageCmsElementResolver">
+            <argument type="service" id="media.repository" />
+            <tag name="shopware.cms.data_resolver" />
+        </service>
+        <service id="ShopwareBundlePlugin\DataResolver\CmsBundleCtaCmsElementResolver">
+            <argument type="service" id="media.repository" />
+            <tag name="shopware.cms.data_resolver" />
+        </service>
+        <service id="ShopwareBundlePlugin\DataResolver\CmsBundleProductCtaCmsElementResolver">
+            <argument type="service" id="media.repository" />
+            <argument type="service" id="sales_channel.product.repository" />
+            <tag name="shopware.cms.data_resolver" />
+        </service>
+        <service id="ShopwareBundlePlugin\DataResolver\CmsBundleBackgroundCmsElementResolver">
+            <argument type="service" id="media.repository" />
+            <tag name="shopware.cms.data_resolver" />
+        </service>
+        <service id="ShopwareBundlePlugin\DataResolver\CmsBundleHeroSliderCmsElementResolver">
+            <argument type="service" id="media.repository" />
+            <tag name="shopware.cms.data_resolver" />
+        </service>
+        <service
+            id="ShopwareBundlePlugin\DataResolver\CmsBundleHeroSliderBackgroundCmsElementResolver">
+            <argument type="service" id="media.repository" />
+            <tag name="shopware.cms.data_resolver" />
+        </service>
+        <service id="ShopwareBundlePlugin\DataResolver\CmsBundleCategorySliderCmsElementResolver">
+            <tag name="shopware.cms.data_resolver" />
+        </service>
+        <service id="ShopwareBundlePlugin\DataResolver\CmsBundleCategoryListCmsElementResolver">
+            <argument type="service" id="category.repository" />
+            <tag name="shopware.cms.data_resolver" />
+        </service>
+        <service id="ShopwareBundlePlugin\DataResolver\CmsBundleProductSliderCmsElementResolver">
+            <tag name="shopware.cms.data_resolver" />
+        </service>
+        <service id="ShopwareBundlePlugin\DataResolver\CmsBundleProductListingCmsElementResolver">
+            <argument type="service"
+                id="Shopware\Core\Content\Product\SalesChannel\Listing\ResolveCriteriaProductListingRoute" />
+            <tag name="shopware.cms.data_resolver" />
+        </service>
+        <service id="ShopwareBundlePlugin\DataResolver\CmsBundleBestSellerListingCmsElementResolver">
+            <argument type="service"
+                id="ShopwareBundlePlugin\Storefront\Element\CmsBundleBestSellerListPageLoader" />
+            <tag name="shopware.cms.data_resolver" />
+        </service>
+        <service id="ShopwareBundlePlugin\Storefront\Element\CmsBundleBestSellerListPageLoader">
+            <argument type="service" id="order_line_item.repository" />
+            <argument type="service" id="Shopware\Storefront\Page\GenericPageLoader" />
+            <argument type="service" id="product.repository" />
+        </service>
+        <service id="ShopwareBundlePlugin\DataResolver\CmsBundleBestSellerSliderCmsElementResolver">
+            <argument type="service"
+                id="ShopwareBundlePlugin\Storefront\Element\CmsBundleBestSellerListPageLoader" />
+            <tag name="shopware.cms.data_resolver" />
+        </service>
+        <service
+            id="ShopwareBundlePlugin\DataResolver\CmsBundleManufacturerDetailCmsElementResolver">
+            <tag name="shopware.cms.data_resolver" />
+            <argument type="service"
+                id="Shopware\Core\Content\Product\SalesChannel\Listing\Processor\CompositeListingProcessor" on-invalid="ignore" />
+            <argument type="service"
+                id="ShopwareBundlePlugin\Storefront\Element\CmsBundleManufacturerPoductListingRoute" />
+        </service>
+        <service id="ShopwareBundlePlugin\Storefront\Controller\ShopwareBundleController"
+            public="true">
+            <argument type="service" id="product.repository"></argument>
+            <call method="setContainer">
+                <argument type="service" id="service_container" />
+            </call>
+            <call method="setTwig">
+                <argument type="service" id="twig" />
+            </call>
+        </service>
+        <service
+            id="ShopwareBundlePlugin\Storefront\Element\CmsBundleManufacturerPoductListingRoute">
+            <argument type="service"
+                id="Shopware\Core\Content\Product\SalesChannel\Listing\ProductListingLoader" />
+        </service>
+        <service id="ShopwareBundlePlugin\DataResolver\CmsBundleCtaSliderCmsElementResolver">
+			<argument type="service" id="Shopware\Core\Content\Media\Cms\DefaultMediaResolver"/>
+			<tag name="shopware.cms.data_resolver" />
+		</service>
+        <service id="ShopwareBundlePlugin\DataResolver\CmsBundleSubCategorySliderCmsElementResolver">
+			<argument type="service" id="ShopwareBundlePlugin\Storefront\Element\SubCategoryListPageLoader"/>
+			<tag name="shopware.cms.data_resolver" />
+		</service>
+        <service id="ShopwareBundlePlugin\DataResolver\CmsBundleSubCategoryListCmsElementResolver">
+			<argument type="service" id="ShopwareBundlePlugin\Storefront\Element\SubCategoryListPageLoader"/>
+			<tag name="shopware.cms.data_resolver" />
+		</service>
+        <service id="ShopwareBundlePlugin\Storefront\Element\SubCategoryListPageLoader">
+			<argument type="service" id="category.repository"/>
+			<argument type="service" id="Shopware\Storefront\Page\GenericPageLoader"/>
+		</service>
+    </services>
+</container>

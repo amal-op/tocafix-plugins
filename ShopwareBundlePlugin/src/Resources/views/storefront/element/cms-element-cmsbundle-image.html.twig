@@ -1,0 +1,67 @@
+{% block element_cmsbundle_image %}
+    {% set desktopMedia = element.data.mediaDesktop %}
+	{% set tabletMedia = element.data.mediaTablet %}
+	{% set mobileMedia = element.data.mediaMobile %}
+    {% set customClass = element.config.customClass.value ?? '' %}
+
+    {% set config = {
+       'lazyLoad':element.config.lazyLoad.value,
+       'alignment':element.config.alignment.value,
+       'maxHeight':element.config.maxHeight.value,
+       'objectFit':element.config.objectFit.value,
+       'customClass':element.config.customClass.value
+    } %}
+
+    <div class="cms-element-{{ element.type }} h-100 {% if config.alignment %}align-items-{{config.alignment}} {% endif %}{{config.customClass}}">
+        {% block element_cmsbundle_image_inner %}
+                {% block element_cmsbundle_image_container %}
+                    {% if element.data.mediaDesktop.url %}
+                        <div class="cms-image-container h-100">
+                            {% block element_cmsbundle_image_media %}
+                                {% set attributes = {
+                                    'class': 'cms-image' ~ (config.lazyLoad ? ' lazyload' : '') ~ ' img-fluid w-100 object-fit-' ~ config.objectFit,
+                                    'alt': (desktopMedia.translated.alt ?: 'image'),
+                                    'title': (desktopMedia.translated.title ?: 'image'),
+							    } %}
+
+                                {% if (desktopMedia || tabletMedia || mobileMedia) %}
+                                    <picture>
+                                        {% if desktopMedia != null %}
+                                            <source media="(min-width: {{ theme_config('breakpoint.lg') }}px)" srcset="{{ desktopMedia.url | sw_encode_url }}" type="{{ desktopMedia.mimeType }}"/>
+                                        {% endif %}
+                                        {% if tabletMedia != null %}
+                                            <source media="(min-width: {{ theme_config('breakpoint.md') }}px)" srcset="{{ tabletMedia.url | sw_encode_url }}" type="{{ tabletMedia.mimeType }}"/>
+                                        {% endif %}
+                                        {% if tabletMedia == null %}
+                                            <source media="(min-width: {{ theme_config('breakpoint.md') }}px)" srcset="{{ desktopMedia.url | sw_encode_url }}" type="{{ desktopMedia.mimeType }}"/>
+                                        {% endif %}
+                                        {% if mobileMedia != null %}
+                                            <source media="(min-width: {{ theme_config('breakpoint.sm') }}px)" srcset="{{ mobileMedia.url | sw_encode_url }}" type="{{ mobileMedia.mimeType }}"/>
+                                                {% for thumbnailMobile in mobileMedia.thumbnails %}
+                                                {% if thumbnailMobile.width == '400' %}
+                                                    <source media="(max-width: {{ theme_config('breakpoint.sm') - 1 }}px)" srcset="{{ thumbnailMobile.url | sw_encode_url }}" type="{{ mobileMedia.mimeType }}"/>
+                                                {% endif %}
+                                            {% endfor %}
+                                        {% endif %}
+                                        {% if mobileMedia == null %}
+                                            <source media="(min-width: {{ theme_config('breakpoint.sm') }}px)" srcset="{{ desktopMedia.url | sw_encode_url }}" type="{{ desktopMedia.mimeType }}"/>
+                                            {% for thumbnailDesktop in desktopMedia.thumbnails %}
+                                                {% if thumbnailDesktop.width == '400' %}
+                                                    <source media="(max-width: {{ theme_config('breakpoint.sm') - 1 }}px)" srcset="{{ thumbnailDesktop.url | sw_encode_url }}" type="{{ thumbnailDesktop.mimeType }}"/>
+                                                {% endif %}
+                                            {% endfor %}
+                                        {% endif %}
+                                        <img src="{{ desktopMedia|sw_encode_media_url }}" {% for key, value in attributes %} {% if value != '' %} {{ key }}="{{ value }}" 
+                                        {% endif %} {% endfor %} width="{{ (desktopMedia.metaData.width / 2) | round }}" height="{{ (desktopMedia.metaData.height / 2) | round }}" 
+                                        {% if config.lazyLoad == true %} loading="lazy" {% endif %} style = "max-height:{{config.maxHeight}}px"
+                                        />
+                                    </picture>
+                                {% endif %}
+                            {% endblock %}
+                        </div>
+                    {% endif %}
+                {% endblock %}
+            
+        {% endblock %}
+    </div>
+{% endblock %}

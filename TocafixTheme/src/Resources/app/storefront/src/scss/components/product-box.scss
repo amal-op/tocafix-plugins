@@ -1,0 +1,161 @@
+.product{
+    &-link-wrap{
+        text-decoration: none;
+        color: $black-color;
+        .product-image-wrapper{
+            border-color: $primary-color;
+            .product-image{
+                transition: 0.3s all;
+                transform: scale(0.975);
+            }
+        }
+
+        .product-info{
+            h4{
+                font-size: rem(16.7);
+                font-weight: 600;
+                line-height: rem(22.83);
+                color: $black-color;
+                @include max-lines(1);
+                @include mobile-lg() {
+                    font-size: rem(14);
+                    display: block;
+                    line-height: 1.3;
+                }
+            }
+            p.description{
+                font-size: rem(15.83);
+                line-height: rem(21.56);
+                color: rgba($black-color, 0.7);
+                min-height: rem(65);
+                font-weight: 400;
+                @include max-lines(3);
+
+                @include mobile-lg() {
+                    font-size: rem(12);
+                    min-height: auto;
+                    line-height: 1.3;
+                }
+            }
+        }
+        &:hover{
+            color: $black-color;
+            text-decoration: none;
+            .product-info{
+                h4{
+                    color: $primary-color;
+                }
+            }
+
+            .product-image-wrapper{
+                border-color: $primary-color;
+                .product-image{
+                    transform: scale(1);
+                }
+            }
+        }
+    }
+    &-box{
+        &.box-standard,
+        &.box-wishlist{
+            border: 0;
+        }
+        &.box-wishlist{
+            .product-info{
+                .description{
+                    display: none;
+                }
+            }
+        }
+        .card-body{
+            padding: 0;
+        }
+        .product{
+            &-wishlist{
+                display: none;   
+            }
+            &-image-wrapper{
+                position: relative;
+                border: rem(1) solid $border-grey-color;
+                padding-bottom: 100%;
+                margin-bottom: rem(30);
+                height: 0;
+                .product-image, .product-image-placeholder{
+                    margin: auto;
+                    width: 100%;
+                    object-fit: contain;
+                    position: absolute;
+                    top: 0;
+                    bottom: 0;
+                    left: 0;
+                    right: 0;
+                }
+            }
+            &-cheapest-price{
+                min-height: auto;
+                margin-bottom: 0;
+                font-size: rem(10);
+                opacity: 0.5;
+            }
+            &-price{
+                text-transform: uppercase;
+                font-size: rem(18);
+                line-height: rem(24.51);
+                font-weight: 600;
+                color: $dark-black;
+                @include mobile-lg() {
+                    font-size: rem(16);
+                }
+
+                &-info{
+                    margin-top: rem(10);
+                }
+
+                &-wrapper{
+                    text-transform: uppercase;
+                    font-size: rem(18);
+                    line-height: rem(24.51);
+                    font-weight: 600;
+                    color: $dark-black;
+                }
+
+                .list-price{
+                    &-sale{
+                        color: $dark-black;
+                    }
+                    &-price{
+                        margin-left: rem(10);
+                        text-decoration: line-through;
+                        text-decoration-color: rgba($black-color, 40%);
+                        color: rgba($black-color, 40%);
+                        font-weight: 600;
+
+                        @include mobile-lg() {
+                            margin-left: rem(5);
+                        }
+                    }
+                    &-percentage{
+                        color: rgba($primary-color, 80%);
+                        font-weight: 600;
+                        font-size: rem(18.98);
+                        line-height: rem(25.85);
+                        margin-left: rem(5);
+
+                        @include mobile-lg() {
+                            font-size: rem(14.98);
+                            line-height: rem(20.85);
+                            display: block;
+                            position: absolute;
+                            top: 10px;
+                            right: 10px;
+                        }
+                    }
+                }
+            }
+            &-price-unit{
+                height: auto;
+                margin: 0;
+            }
+        }
+    }
+}

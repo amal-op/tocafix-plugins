@@ -1,0 +1,57 @@
+{% sw_extends '@Storefront/storefront/layout/footer/footer-minimal.html.twig' %}
+
+{% block layout_footer_inner_container %}
+    <footer class="footer-minimal">
+        {% block layout_footer_bottom %}
+        <div class="footer-bottom">
+            {% block layout_footer_service_menu %}
+                <div class="container">
+                    {% block layout_footer_service_menu_content %}
+                        {% apply spaceless %}
+                            <ul class="footer-service-menu-list list-unstyled">
+                                {% for serviceMenuItem in page.header.serviceMenu %}
+                                    {% block layout_footer_service_menu_item %}
+                                        <li class="footer-service-menu-item">
+                                            <a class="footer-service-menu-link"
+                                               href="{{ category_url(serviceMenuItem) }}"
+                                               {% if category_linknewtab(serviceMenuItem) %}target="_blank"{% endif %}
+                                               title="{{ serviceMenuItem.translated.name }}">
+                                                {{ serviceMenuItem.translated.name }}
+                                            </a>
+                                        </li>
+                                    {% endblock %}
+                                {% endfor %}
+                            </ul>
+                        {% endapply %}
+                    {% endblock %}
+                </div>
+            {% endblock %}
+
+            {% block layout_footer_vat %}
+                <div class="footer-vat">
+                    {% if context.taxState == "gross" %}
+                        <p>
+                            {{ "footer.includeVat"|trans({
+                                '%url%': path('frontend.cms.page',{ id: config('core.basicInformation.shippingPaymentInfoPage') })
+                            })|raw }}
+                        </p>
+                    {% else %}
+                        <p>
+                            {{ "footer.excludeVat"|trans({
+                                '%url%': path('frontend.cms.page',{ id: config('core.basicInformation.shippingPaymentInfoPage') })
+                            })|raw }}
+                        </p>
+                    {% endif %}
+                </div>
+            {% endblock %}
+
+            {% block layout_footer_copyright %}
+                <div class="footer-copyright">
+                    {% sw_icon 'shopware' style {'size':'xs'} %}
+                    {{ "footer.copyrightInfo"|trans|sw_sanitize }}
+                </div>
+            {% endblock %}
+        </div>
+    {% endblock %}
+    </footer>
+{% endblock %}

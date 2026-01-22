@@ -1,0 +1,96 @@
+.object-fit-cover{
+    object-fit: cover;
+}
+.object-fit-contain{
+    object-fit: contain;
+}
+.object-fit-fill{
+    object-fit: fill;
+}
+.object-fit-scale{
+    object-fit: scale-down;
+}
+.object-fit-none{
+    object-fit: none;
+}
+.center{
+    text-align: center;
+}
+
+.translate-v-center{
+    transform: translate(0, -50%);
+}
+
+.cta-slider {
+    &__container {
+        position: relative;
+        display: flex;
+        overflow: hidden;
+        gap: 20px;
+    }
+
+    &__item {
+        position: relative;
+        flex: 0 0 auto;
+        width: calc(100% / 3); /* Adjust based on the responsive config */
+        background-size: cover;
+        background-position: center;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        text-align: center;
+    }
+
+    &__image {
+        width: 100%;
+        height: auto;
+    }
+
+    &__content {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        color: #fff;
+        z-index: 2;
+    }
+
+    &__title {
+        font-size: 1.5rem;
+        margin-bottom: 1rem;
+    }
+
+    &__button {
+        background-color: #007bff;
+        color: #fff;
+        padding: 0.5rem 1rem;
+        text-decoration: none;
+        display: inline-block;
+    }
+}
+
+.cta-slider-controls-container {
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin-top: 1rem;
+
+    .base-slider-controls {
+        display: flex;
+        gap: 0.5rem;
+
+        button {
+            background: none;
+            border: none;
+            color: #000;
+            cursor: pointer;
+            font-size: 1.5rem;
+        }
+
+        .has-border {
+            border: 1px solid #000;
+            padding: 0.5rem;
+        }
+    }
+}

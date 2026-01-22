@@ -1,0 +1,216 @@
+{% block sw_cms_element_product_slider_config %}
+	<div class="sw-cms-el-config-product-slider">
+
+		{% block sw_cms_element_product_slider_config_tabs %}
+			<sw-tabs position-identifier="sw-cms-element-config-product-slider" class="sw-cms-el-config-product-slider__tabs" default-item="content">
+				<template #default="{ active }">
+
+					{% block sw_cms_element_product_slider_config_tab_content %}
+						<sw-tabs-item :title="$tc('sw-cms.elements.general.config.tab.content')" name="content" :active-tab="active">
+							{{ $tc('sw-cms.elements.general.config.tab.content') }}
+						</sw-tabs-item>
+					{% endblock %}
+
+					{% block sw_cms_element_product_slider_config_tab_count %}
+						<sw-tabs-item :title="$tc('cmsbundle.element.general.tabs.count')" name="count" :active-tab="active">
+							{{ $tc('cmsbundle.element.general.tabs.count') }}
+						</sw-tabs-item>
+					{% endblock %}
+
+					{% block sw_cms_element_product_slider_config_tab_options %}
+						<sw-tabs-item :title="$tc('sw-cms.elements.general.config.tab.settings')" name="settings" :active-tab="active">
+							{{ $tc('sw-cms.elements.general.config.tab.settings') }}
+						</sw-tabs-item>
+					{% endblock %}
+				</template>
+
+				<template #content="{ active }">
+
+					{% block sw_cms_element_product_slider_config_content %}
+						<sw-container v-if="active === 'content'" class="sw-cms-el-config-product-slider__tab-content">
+
+							{% block sw_cms_element_product_slider_config_content_product_assignment_type %}
+								<sw-single-select v-model:value="element.config.products.source" class="sw-cms-el-config-product-slider__product-assignment-type-select" :label="$tc('sw-cms.elements.productSlider.config.label.productAssignmentType')" :options="productAssignmentTypes" show-clearable-button @update:value="onChangeAssignmentType"/>
+							{% endblock %}
+
+							{% block sw_cms_element_category_slider_config_content_categories %}
+								<sw-entity-multi-select v-model:entity-collection="productCollection" class="sw-cms-el-config-product-slider__products" :label="$tc('sw-cms.elements.productSlider.config.label.selection')" :placeholder="$tc('sw-cms.elements.productSlider.config.placeholder.selection')" :context="productMultiSelectContext" :criteria="productMediaFilter" @update:entity-collection="onProductsChange">
+									<template #selection-label-property="{ item }">
+										<sw-product-variant-info :variations="item.variation">
+											{{ item.translated.name || item.name }}
+										</sw-product-variant-info>
+									</template>
+									<template #result-item="{ item, index }">
+										<slot name="result-item" v-bind="{ item, index }">
+											<sw-select-result v-bind="{ item, index, selected: isSelected(item.id)}">
+
+												{% block sw_entity_single_select_base_results_list_result_label %}
+													<span class="sw-select-result__result-item-text">
+														<sw-product-variant-info :variations="item.variation">
+															{{ item.translated.name || item.name }}
+														</sw-product-variant-info>
+													</span>
+												{% endblock %}
+											</sw-select-result>
+										</slot>
+									</template>
+								</sw-entity-multi-select>
+							{% endblock %}
+						</sw-container>
+					{% endblock %}
+
+					{% block sw_cms_element_product_slider_config_count %}
+						<sw-container v-if="active === 'count'" class="sw-cms-el-config-product-slider__tab-content">
+							<sw-select-field v-model:value="element.config.countDesktop.value" :label="$tc('cmsbundle.element.general.config.desktop-count')">
+								<option value="6">
+									6
+								</option>
+								<option value="5">
+									5
+								</option>
+								<option value="4">
+									4
+								</option>
+								<option value="3">
+									3
+								</option>
+								<option value="2">
+									2
+								</option>
+								<option value="1">
+									1
+								</option>
+							</sw-select-field>
+							<sw-select-field v-model:value="element.config.countTablet.value" :label="$tc('cmsbundle.element.general.config.tablet-count')">
+								<option value="6">
+									6
+								</option>
+								<option value="5">
+									5
+								</option>
+								<option value="4">
+									4
+								</option>
+								<option value="3">
+									3
+								</option>
+								<option value="2">
+									2
+								</option>
+								<option value="1">
+									1
+								</option>
+							</sw-select-field>
+							<sw-select-field v-model:value="element.config.countMobile.value" :label="$tc('cmsbundle.element.general.config.mobile-count')">
+								<option value="6">
+									6
+								</option>
+								<option value="5">
+									5
+								</option>
+								<option value="4">
+									4
+								</option>
+								<option value="3">
+									3
+								</option>
+								<option value="2">
+									2
+								</option>
+								<option value="1">
+									1
+								</option>
+							</sw-select-field>
+						</sw-container>
+					{% endblock %}
+					{% block sw_cms_element_product_slider_config_settings %}
+						<sw-container v-if="active === 'settings'" class="sw-cms-el-config-product-slider__tab-settings">
+
+							{% block sw_cms_element_product_slider_config_settings_display_mode %}
+								<sw-select-field v-model:value="element.config.displayMode.value" :label="$tc('sw-cms.elements.general.config.label.displayMode')">
+									<option value="standard">
+										{{ $tc('sw-cms.elements.general.config.label.displayModeStandard') }}
+									</option>
+									<option value="cover">
+										{{ $tc('sw-cms.elements.general.config.label.displayModeCover') }}
+									</option>
+									<option value="contain">
+										{{ $tc('sw-cms.elements.general.config.label.displayModeContain') }}
+									</option>
+								</sw-select-field>
+							{% endblock %}
+
+
+							{% block sw_cms_element_product_slider_config_settings_vertical_align %}
+								<sw-select-field v-model:value="element.config.verticalAlign.value" :label="$tc('sw-cms.elements.general.config.label.verticalAlign')" :placeholder="$tc('sw-cms.elements.general.config.label.verticalAlign')">
+									<option value="flex-start">
+										{{ $tc('sw-cms.elements.general.config.label.verticalAlignTop') }}
+									</option>
+									<option value="center">
+										{{ $tc('sw-cms.elements.general.config.label.verticalAlignCenter') }}
+									</option>
+									<option value="flex-end">
+										{{ $tc('sw-cms.elements.general.config.label.verticalAlignBottom') }}
+									</option>
+								</sw-select-field>
+							{% endblock %}
+
+
+							{% block sw_cms_element_product_slider_config_settings_box_layout %}
+								<sw-select-field v-model:value="element.config.boxLayout.value" :label="$tc('sw-cms.elements.productBox.config.label.layoutType')">
+									<option value="standard">
+										{{ $tc('sw-cms.elements.productBox.config.label.layoutTypeStandard') }}
+									</option>
+									<option value="image">
+										{{ $tc('sw-cms.elements.productBox.config.label.layoutTypeImage') }}
+									</option>
+									<option value="minimal">
+										{{ $tc('sw-cms.elements.productBox.config.label.layoutTypeMinimal') }}
+									</option>
+								</sw-select-field>
+							{% endblock %}
+
+
+							{% block sw_cms_element_product_slider_config_settings_border %}
+								<sw-switch-field v-model:value="element.config.border.value" bordered :label="$tc('sw-cms.elements.productSlider.config.label.border')"/>
+							{% endblock %}
+
+							{% block sw_cms_element_product_slider_config_settings_min_width %}
+								<sw-text-field v-model:value="element.config.elMinWidth.value" :label="$tc('sw-cms.elements.productSlider.config.label.minWidth')" :placeholder="$tc('sw-cms.elements.productSlider.config.placeholder.minWidth')"/>
+							{% endblock %}
+							{% block sw_cms_element_cmsbundle_hero_slider_background_config_media_upload_setting %}
+
+								{% block sw_cms_element_cmsbundle_hero_slider_background_backconfig_autoplay %}
+									<div class="sw-cms-el-config-cmsbundle-hero-slider-autoplay sw-field-item">
+										<sw-switch-field v-model:value="element.config.autoPlay.value" class="sw-cms-el-config-cmsbundle-hero-slider-autoplay" type="switch" :label="$tc('cmsbundle.element.general.config.enable-autoplay')"/>
+									</div>
+								{% endblock %}
+								{% block sw_cms_element_cmsbundle_hero_slider_background_config_speed %}
+									<sw-text-field v-model:value="element.config.speed.value" class="sw-cms-el-config-cmsbundle-hero-slider-speed sw-field-item" type="text" :label="$tc('cmsbundle.element.general.config.speed')"/>
+								{% endblock %}
+
+								{% block sw_cms_element_cmsbundle_hero_slider_background_backconfig_controlls %}
+									<div class="sw-cms-el-config-cmsbundle-hero-slider-controlls sw-field-item">
+										<sw-switch-field v-model:value="element.config.controlls.value" class="sw-cms-el-config-cmsbundle-hero-slider-controlls" type="switch" :label="$tc('cmsbundle.element.general.config.enable-controlls')"/>
+									</div>
+								{% endblock %}
+								{% block sw_cms_element_cmsbundle_hero_slider_background_backconfig_dots %}
+									<div class="sw-cms-el-config-cmsbundle-hero-slider-dots sw-field-item">
+										<sw-switch-field v-model:value="element.config.dots.value" class="sw-cms-el-config-cmsbundle-hero-slider-dots" type="switch" :label="$tc('cmsbundle.element.general.config.enable-dots')"/>
+									</div>
+								{% endblock %}
+
+								{% block sw_cms_element_cmsbundle_hero_slider_background_config_loop %}
+									<div class="sw-cms-el-config-cmsbundle-hero-slider-loop sw-field-item">
+										<sw-switch-field v-model:value="element.config.loop.value" class="sw-cms-el-config-cmsbundle-hero-slider-loop" type="switch" :label="$tc('cmsbundle.element.general.config.enable-loop')"/>
+									</div>
+								{% endblock %}
+
+							{% endblock %}
+						</sw-container>
+					{% endblock %}
+				</template>
+			</sw-tabs>
+		{% endblock %}
+	</div>
+{% endblock %}

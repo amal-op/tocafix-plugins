@@ -1,0 +1,15 @@
+{% block sw_cms_block_cmsbundle_product %}
+	<div class="sw-cms-block-cmsbundle-product-slider">
+		<div class="background">
+			<slot name="background"></slot>
+		</div>
+		<div class="foreground">
+			<slot name="title"></slot>
+			<slot name="product"></slot>
+			<slot name="button"></slot>
+		</div>
+		<!--<div class="background">
+			<slot name="background"></slot>
+		</div>-->
+	</div>
+{% endblock %}

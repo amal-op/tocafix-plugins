@@ -1,0 +1,25 @@
+{
+    "tocafix-job": {
+        "general": {
+            "mainMenuItemGeneral": "Jobs",
+            "descriptionTextModule": "Hier Jobs verwalten"
+        },
+        "list": {
+            "addButtonText": "Jobs hinzufügen",
+            "columnName": "Stellenbezeichnung",
+            "columnJobDate": "Datum",
+            "textJobOverview": "Jobs"
+        },
+        "detail": {
+            "nameLabel": "Stellenbezeichnung",
+            "jobDateLabel": "Datum",
+            "shortDescriptionTeaserLabel": "Kurzbeschrieb Teaser",
+            "shortDescriptionDetailLabel": "Kurzbeschrieb Detail",
+            "descriptionLabel": "Beschreibung",
+            "mediaLabel": "Bild hochladen",
+            "cancelButtonText": "Abbrechen",
+            "saveButtonText": "Speichern",
+            "errorTitle": "Fehler beim Speichern des Jobs"
+        }
+    }
+}

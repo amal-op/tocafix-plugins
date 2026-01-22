@@ -1,0 +1,162 @@
+{% block element_cmsbundle_hero_slider %}
+
+	{% set customClass = element.config.customClass.value %}
+	<div class="hero-slide cms-element-{{ element.type }} h-100 {{ customClass }}">
+		{% set contentColor = element.config.contentColor.value ?? 'black' %}
+		{% set className = "content-div-" ~ random() %}
+		<style>
+			.{{className}}* {
+				color: {{contentColor}}
+				;
+			}
+		</style>
+		{% block element_cmsbundle_image_inner %}
+			{% set content = element.config.content.value %}
+			{% set title = element.config.title.value %}
+			{% set titleHeading = element.config.titleHeading.value ?? 'h6' %}
+			{% set subTitle = element.config.subTitle.value %}
+			{% set subTitleHeading = element.config.subTitleHeading.value ?? 'h2' %}
+			{% set titlePosition = element.config.titlePosition.value ?? 'start' %}
+			{% set buttonText1 = element.config.buttonText1.value ?? '' %}
+			{% set buttonType1 = element.config.buttonType1.value ?? '' %}
+			{% set newTab1 = element.config.newTab1.value ?? '' %}
+			{% set url1 = element.config.url1.value ?? 'javascript:;' %}
+			{% set buttonText2 = element.config.buttonText2.value ?? '' %}
+			{% set buttonType2 = element.config.buttonType2.value ?? '' %}
+			{% set newTab2 = element.config.newTab2.value ?? '' %}
+			{% set url2 = element.config.url2.value ?? 'javascript:;' %}
+			{% set buttonText3 = element.config.buttonText3.value ?? '' %}
+			{% set buttonType3 = element.config.buttonType3.value ?? '' %}
+			{% set newTab3 = element.config.newTab3.value ?? '' %}
+			{% set url3 = element.config.url3.value ?? 'javascript:;' %}
+			{% set alignment = element.config.alignment.value ?? 'center' %}
+			{% set active = element.config.active.value %}
+			{% set lazyload = element.config.lazyLoad.value %}
+
+			{% block element_cmsbundle_image_container %}
+
+				<div class="hero-slide__content {{className}} h-100 d-flex flex-md-row flex-column  justify-content-center justify-content-md-between p-3 position-relative">
+						<div class="d-flex flex-column justify-content-{{alignment}} align-items-{{titlePosition}}">
+							{% if title %}
+								<{{titleHeading}}>{{ title }}</{{titleHeading}}>
+							{% endif %}
+
+							{% if subTitle %}
+								<{{subTitleHeading}}>{{ subTitle }}</{{subTitleHeading}}>
+							{% endif %}
+
+							{% if content %}
+								<p>{{ content|raw }}</p>
+							{% endif %}
+
+							{% if buttonText1 %}
+								<a href="{{ url1 }}" class="btn btn-{{ buttonType1 }} text-white" {% if newTab1 %} target="_blank" {% endif %}>{{ buttonText1 }}</a>
+							{% endif %}
+
+							{% if buttonText2 %}
+								<a href="{{ url2 }}" class="btn btn-{{ buttonType2 }} text-white" {% if newTab2 %} target="_blank" {% endif %}>{{ buttonText2 }}</a>
+							{% endif %}
+
+							{% if buttonText3 %}
+								<a href="{{ url3 }}" class="btn btn-{{ buttonType3 }} text-white" {% if newTab3 %} target="_blank" {% endif %}>{{ buttonText3 }}</a>
+							{% endif %}
+						</div>
+					{% if element.data.mediaDesktop.url %}
+						<div class="cms-image-container p-2 {% if (element.config.imageHorizontalAlignment.value == 'left') %}order-first{% endif %} d-flex justify-content-center align-items-center">
+							{% block element_cmsbundle_image_media %}
+								{% set attributes = {
+                                            'class': 'cms-image img-fluid',
+                                            'alt': (element.data.mediaDesktop.translated.alt ?: ''),
+                                            'title': (element.data.mediaDesktop.translated.title ?: ''),
+                                        } %}
+								{% set desktopMedia = element.data.mediaDesktop %}
+								{% set tabletMedia = element.data.mediaTablet %}
+								{% set mobileMedia = element.data.mediaMobile %}
+								{% if (desktopMedia || tabletMedia || mobileMedia) %}
+									<picture>
+										{% if desktopMedia != null %}
+											<source media="(min-width: {{ theme_config('breakpoint.lg') }}px)" srcset="{{ desktopMedia.url | sw_encode_url }}" type="{{ desktopMedia.mimeType }}"/>
+										{% endif %}
+										{% if tabletMedia != null %}
+											<source media="(min-width: {{ theme_config('breakpoint.md') }}px)" srcset="{{ tabletMedia.url | sw_encode_url }}" type="{{ tabletMedia.mimeType }}"/>
+										{% endif %}
+										{% if tabletMedia == null %}
+											<source media="(min-width: {{ theme_config('breakpoint.md') }}px)" srcset="{{ desktopMedia.url | sw_encode_url }}" type="{{ desktopMedia.mimeType }}"/>
+										{% endif %}
+										{% if mobileMedia != null %}
+											<source media="(min-width: {{ theme_config('breakpoint.sm') }}px)" srcset="{{ mobileMedia.url | sw_encode_url }}" type="{{ mobileMedia.mimeType }}"/>
+											{% for thumbnailMobile in mobileMedia.thumbnails %}
+												{% if thumbnailMobile.width == '400' %}
+													<source media="(max-width: {{ theme_config('breakpoint.sm') - 1 }}px)" srcset="{{ thumbnailMobile.url | sw_encode_url }}" type="{{ mobileMedia.mimeType }}"/>
+												{% endif %}
+											{% endfor %}
+										{% endif %}
+										{% if mobileMedia == null %}
+											<source media="(min-width: {{ theme_config('breakpoint.sm') }}px)" srcset="{{ desktopMedia.url | sw_encode_url }}" type="{{ desktopMedia.mimeType }}"/>
+											{% for thumbnailDesktop in desktopMedia.thumbnails %}
+												{% if thumbnailDesktop.width == '400' %}
+													<source media="(max-width: {{ theme_config('breakpoint.sm') - 1 }}px)" srcset="{{ thumbnailDesktop.url | sw_encode_url }}" type="{{ thumbnailDesktop.mimeType }}"/>
+												{% endif %}
+											{% endfor %}
+										{% endif %}
+										<img src="{{ desktopMedia|sw_encode_media_url }}" {% for key, value in attributes %} {% if value != '' %} {{ key }}="{{ value }}" {% endif %} {% endfor %} width="{{ (desktopMedia.metaData.width / 2) | round }}" height="{{ (desktopMedia.metaData.height / 2) | round }}" {% if lazyload == true %} loading="lazy" {% endif %}/>
+									</picture>
+								{% endif %}
+							{% endblock %}
+						</div>
+					{% endif %}
+					{% set attributes = {
+					'class': 'cms-image w-100 h-auto',
+					'alt': (element.data.mediaDesktop.translated.alt ?: ''),
+					'title': (element.data.mediaDesktop.translated.title ?: ''),
+				} %}
+					{% set desktopBackgroundMedia = element.data.backgroundDesktop %}
+					{% set tabletBackgroundMedia = element.data.backgroundTablet %}
+					{% set mobileBackgroundMedia = element.data.backgroundMobile %}
+					{% if (desktopBackgroundMedia || tabletBackgroundMedia || mobileBackgroundMedia) %}
+						<div class="hero-slide__background {% if isBgImage %} position-absolute top-0 bottom-0 start-0 w-100 {% else %}position-absolute {% endif %}  top-0 start-0 w-100 h-100" style="z-index: -2">
+							<picture>
+								{% if desktopBackgroundMedia != null %}
+									<source media="(min-width: {{ theme_config('breakpoint.lg') }}px)" srcset="{{ desktopBackgroundMedia.url | sw_encode_url }}" type="{{ desktopBackgroundMedia.mimeType }}"/>
+								{% endif %}
+								{% if tabletBackgroundMedia != null %}
+									<source media="(min-width: {{ theme_config('breakpoint.md') }}px)" srcset="{{ tabletBackgroundMedia.url | sw_encode_url }}" type="{{ tabletBackgroundMedia.mimeType }}"/>
+								{% endif %}
+								{% if tabletBackgroundMedia == null %}
+									<source media="(min-width: {{ theme_config('breakpoint.md') }}px)" srcset="{{ desktopBackgroundMedia.url | sw_encode_url }}" type="{{ desktopBackgroundMedia.mimeType }}"/>
+								{% endif %}
+								{% if mobileBackgroundMedia != null %}
+									<source media="(min-width: {{ theme_config('breakpoint.sm') }}px)" srcset="{{ mobileBackgroundMedia.url | sw_encode_url }}" type="{{ mobileBackgroundMedia.mimeType }}"/>
+									{% for thumbnailMobile in mobileBackgroundMedia.thumbnails %}
+										{% if thumbnailMobile.width == '400' %}
+											<source media="(max-width: {{ theme_config('breakpoint.sm') - 1 }}px)" srcset="{{ thumbnailMobile.url | sw_encode_url }}" type="{{ mobileMedia.mimeType }}"/>
+										{% endif %}
+									{% endfor %}
+								{% endif %}
+								{% if mobileBackgroundMedia == null %}
+									<source media="(min-width: {{ theme_config('breakpoint.sm') }}px)" srcset="{{ desktopBackgroundMedia.url | sw_encode_url }}" type="{{ desktopBackgroundMedia.mimeType }}"/>
+									{% for thumbnailDesktop in desktopBackgroundMedia.thumbnails %}
+										{% if thumbnailDesktop.width == '400' %}
+											<source media="(max-width: {{ theme_config('breakpoint.sm') - 1 }}px)" srcset="{{ thumbnailDesktop.url | sw_encode_url }}" type="{{ thumbnailDesktop.mimeType }}"/>
+										{% endif %}
+									{% endfor %}
+								{% endif %}
+								<img src="{{ desktopBackgroundMedia|sw_encode_media_url }}" {% for key, value in attributes %} {% if value != '' %} {{ key }}="{{ value }}" {% endif %} {% endfor %} width="{{ (desktopBackgroundMedia.metaData.width / 2) | round }}" height="{{ (desktopBackgroundMedia.metaData.height / 2) | round }}" {% if lazyload == true %} loading="lazy" {% endif %}/>
+							</picture>
+						</div>
+					{% else %}
+						{% set backgroundColor = element.config.backgroundColor.value ?? 'white' %}
+						<style>
+							.{{className}}* {
+								background-color: {{backgroundColor}}
+								;
+							}
+						</style>
+					{% endif %}
+				</div>
+
+
+			{% endblock %}
+		{% endblock %}
+	</div>
+{% endblock %}

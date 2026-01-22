@@ -1,0 +1,112 @@
+{% sw_extends '@Storefront/storefront/component/pagination.html.twig' %}
+{% block component_pagination_nav %}
+    {% set currentPage = ((criteria.offset + 1) / criteria.limit)|round(0, 'ceil') %}
+    {% set totalEntities = total ? total : entities.total %}
+    {% set totalPages = (totalEntities / criteria.limit)|round(0, 'ceil') %}
+
+    {% set paginationSuffix = '' %}
+    {# @deprecated tag:v6.5.0 - pagination template will append `paginationSuffix` for input and label ids to avoid duplicate ids. #}
+    {% if feature('v6.5.0.0') and paginationLocation %}
+        {% set paginationSuffix = '-' ~ paginationLocation %}
+    {% endif %}
+
+    {% if totalPages > 1 %}
+        <nav aria-label="pagination" class="pagination-nav">
+            {% block component_pagination %}
+            <ul class="pagination">
+                
+
+                {% block component_pagination_prev %}
+                    <li class="page-item page-prev{% if currentPage == 1 %} disabled{% endif %}">
+                        {% block component_pagination_prev_input %}
+                            {{ parent() }}
+                        {% endblock %}
+
+                        {% block component_pagination_prev_label %}
+                            <label class="page-link" for="p-prev{{ paginationSuffix }}">
+                                {% block component_pagination_prev_link %}
+                                    {% block component_pagination_prev_icon %}
+                                        <i class="tf-icon icon-angle flipped"></i>
+                                    {% endblock %}
+                                {% endblock %}
+                            </label>
+                        {% endblock %}
+                    </li>
+                {% endblock %}
+
+                {% block component_pagination_loop %}
+                    {% set start = 1 %}
+
+                    {% set end = totalPages %}
+
+                    {% for page in start..end %}
+
+                        {% set isActive = (currentPage == page) %}
+
+                        {% block component_pagination_item %}
+                            <li class="page-item{% if isActive %} active{% endif %}">
+                                {% block component_pagination_item_input %}
+                                    <input type="radio"
+                                           name="p"
+                                           id="p{{ page }}{{ paginationSuffix }}"
+                                           value="{{ page }}"
+                                           class="d-none"
+                                           title="pagination"
+                                           {% if isActive %}checked="checked"{% endif %}>
+                                {% endblock %}
+
+                                {% block component_pagination_item_label %}
+                                    {% if (page >= currentPage + 8 || page <= currentPage - 6) && page != end && page != start %}
+                                    {% elseif (page >= currentPage + 5 || page <= currentPage - 3) && page != end && page != start %}
+                                        <label class="page-link seperator"
+                                            for="p{{ page }}{{ paginationSuffix }}">
+                                            {% block component_pagination_item_link_hide %}
+                                                {% block component_pagination_item_text_hide %}
+                                                    |
+                                                {% endblock %}
+                                            {% endblock %}
+                                        </label>
+                                    
+                                    {% else %}
+                                        <label class="page-link"
+                                            for="p{{ page }}{{ paginationSuffix }}">
+                                            {% block component_pagination_item_link %}
+                                                {% block component_pagination_item_text %}
+                                                    {{ page }}
+                                                {% endblock %}
+                                            {% endblock %}
+                                        </label>
+                                    {% endif %}
+                                {% endblock %}
+                            </li>
+                        {% endblock %}
+
+                    {% endfor %}
+                {% endblock %}
+
+                {% block component_pagination_next %}
+                    <li class="page-item page-next{% if currentPage == totalPages %} disabled{% endif %}">
+                        {% block component_pagination_next_input %}
+                            {{ parent() }}
+                        {% endblock %}
+
+                        {% block component_pagination_next_label %}
+                            <label class="page-link" for="p-next{{ paginationSuffix }}">
+                                {% block component_pagination_next_link %}
+                                    {% block component_pagination_next_icon %}
+                                        <i class="tf-icon icon-angle "></i>
+                                    {% endblock %}
+                                {% endblock %}
+                            </label>
+                        {% endblock %}
+                    </li>
+                {% endblock %}
+            </ul>
+        {% endblock %}
+        </nav>
+    {% endif %}
+
+    {% block component_page_count %}
+        <div class="pagenation-count">{{ "listing.pageCount"|trans({'%current%': currentPage, '%total%': totalPages })|sw_sanitize }}</div>
+    {% endblock %}
+{% endblock %}

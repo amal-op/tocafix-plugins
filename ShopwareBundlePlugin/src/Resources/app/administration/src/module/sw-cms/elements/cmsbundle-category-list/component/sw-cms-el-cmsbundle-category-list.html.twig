@@ -1,0 +1,29 @@
+{% block sw_cms_element_category_list %}
+    <div class="sw-cms-el-category-list" :class="classes" :style="verticalAlignStyle">
+
+        {% block sw_cms_element_category_list_content %}
+            <div class="sw-cms-el-category-list__content">
+
+                {% block sw_cms_element_category_list_category_holder %}
+                    <div ref="categoryHolder" class="sw-cms-el-category-list__category-holder">
+                        {% block sw_cms_element_category_list_demo_data %}
+                            <div class="flex-auto" v-for="index in getDummyBoxes(sliderBoxLimit)" :key="index">
+                                <div class="sw-cms-el-category-box box-standard">
+                                    <div class="sw-cms-el-category-box__content">
+                                        <div class="sw-cms-el-category-box__media">
+                                            <a href="#" title="Variant category" class="sw-cms-el-category-box__image-link">
+                                                <img :src="mediaUrl(null)" class="sw-cms-el-category-box__image" />
+                                            </a>
+                                        </div>
+                                        {{ $tc('cmsbundle.element.general.config.category') }}
+                                    </div>
+                                </div>
+                            </div>
+                        {% endblock %}
+                    </div>
+                {% endblock %}
+
+            </div>
+        {% endblock %}
+    </div>
+{% endblock %}

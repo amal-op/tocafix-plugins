@@ -1,0 +1,241 @@
+{
+  "cmsbundle": {
+    "block": {
+      "column-banner": {
+        "label": {
+          "one": "Eine Spalte",
+          "two": "Zwei Spalten",
+          "three": "Drei Spalten",
+          "four": "Vier Spalten",
+          "five": "Fünf Spalten",
+          "six": "Sechs Spalten",
+          "two-by-one": "Zwei mal eins Spalte",
+          "one-by-two": "Eins mal zwei Spalten"
+        }
+      },
+      "hero-slider": {
+        "label": "Held Slider"
+      },
+      "content-block": {
+        "label": "Inhaltsblock"
+      },
+      "category-list": {
+        "label": "Kategorieliste"
+      },
+      "category-slider": {
+        "label": "Kategorie Slider"
+      },
+      "cta": {
+        "label": "CTA Block"
+      },
+      "product-cta":{
+        "label": "Produkt CTA"
+      },
+      "product-list": {
+        "label": "Produktliste"
+      },
+      "product-slider": {
+        "label": "Produkt Slider"
+      },
+      "cta-slider": {
+        "label": "CTA Slider"
+      },
+      "section": {
+        "label": "Abschnitt"
+      },
+      "best-seller-list": {
+        "label": "Bestsellerliste"
+      },
+      "recently-viewed-product-list": {
+        "label": "Zuletzt angesehene Produktliste"
+      },
+      "recently-viewed-product-slider": {
+        "label": "Zuletzt angesehene Produkt Slider"
+      },
+      "manufacturer-detail": {
+        "label": "Hersteller Detail"
+      },
+      "accordion": {
+        "label": "Akkordeon"
+      },
+      "nav-tabs": {
+        "label": "Registerkarten"
+      },
+      "breadcrumbs": {
+        "label": "Brotkrümel"
+      },
+      "subcategory-list":{
+        "label":"Unterkategorieliste"
+      },
+      "subcategory-slider":{
+        "label":"Unterkategorie-Slider"
+      }
+    },
+    "element": {
+      "breadcrumbs": {
+        "label": "Brotkrümel"
+      },
+      "best-seller-list": {
+        "label": "Bestsellerliste"
+      },
+      "best-seller-slider": {
+        "label": "Bestseller-Schieberegler",
+        "config": {
+          "propertyGroupLabel": "Farbeigenschaft auswählen"
+        }
+      },
+      "picture": {
+        "label": "Bild"
+      },
+      "hero-slider": {
+        "label": "Held Slider"
+      },
+      "hero-slider-background": {
+        "label": "Held Slider Hintergrund"
+      },
+      "background-image": {
+        "label": "Hintergrundbild"
+      },
+      "button": {
+        "label": "Schaltfläche"
+      },
+      "category-list": {
+        "config": {
+          "categoryAssignmentType": "Kategorie Zuweisung",
+          "selection": "Kategorien",
+          "auto-assignment": "Kategorie Zuweisung",
+          "showDescription": "Kategorienbeschreibung anzeigen",
+          "showImage": "Bild anzeigen"
+        }
+      },
+      "cta": {
+        "label": "Handlungsaufforderung"
+      },
+      "product-cta": {
+        "label": "Produkt CTA"
+      },
+      "cta-block": {
+        "label": "Block mit Handlungsaufforderungen"
+      },
+      "product-cta-block": {
+        "label": "Produkt CTA Block"
+      },
+      "title": {
+        "label": "Titel",
+        "mainTitle": "Haupttitel",
+        "subTitle": "Untertitel",
+        "shortDescription": "Kurzbeschreibung"
+      },
+      "product-list": {
+        "config": {
+          "category-assignment": "Basierend auf Kategorie"
+        }
+      },
+      "manufacturer-detail": {
+        "label": "Hersteller Detail",
+        "description": "Hersteller Beschreibung",
+        "name": "Hersteller Name"
+      },
+      "accordion": {
+        "label": "Akkordeon",
+        "config": {
+          "title": "Titel",
+          "content": "Inhalt",
+          "title-help": "Hier können Sie die Überschrift einstellen.",
+          "add-new": "Hinzufügen",
+          "delete-confirm": "Sind Sie sicher, dass Sie diesen Eintrag löschen wollen?",
+          "delete": "Löschen"
+        }
+      },
+      "nav-tabs": {
+        "label": "Registerkarten"
+      },
+      "subcategory-list": {
+        "label": "Unterkategorieliste"
+      },
+      "subcategory-slider": {
+        "label": "Unterkategorie-Slider"
+      },
+      "general": {
+        "config": {
+          "short-description": "Kurzbeschreibung",
+          "active": "Aktiv",
+          "image": "Bild",
+          "setting": "Einstellung",
+          "desktop": "Desktop",
+          "tablet": "Tablet",
+          "mobile": "Mobil",
+          "enable-lazy-load": "Lazy Load aktivieren",
+          "custom-class": "Benutzerdefinierte Klasse",
+          "enable-autoplay": "Autoplay aktivieren",
+          "background-color": "Hintergrundfarbe",
+          "speed": "Geschwindigkeit",
+          "enable-controlls": "Aktivieren Sie Pfeile",
+          "enable-dots": "Punkte aktivieren",
+          "enable-loop": "Schleife aktivieren",
+          "theme-color": "Themenfarbe",
+          "content-color": "Inhaltsfarbe",
+          "alignment": "Ausrichtung",
+          "open-link-new-tab": "Link in neuem Tab öffnen",
+          "button-text": "Schaltflächentext",
+          "button-type": "Schaltflächentyp",
+          "add-more-button": "Weitere Schaltfläche hinzufügen",
+          "category": "Kategorie",
+          "image-position": "Bildposition",
+          "title": "Titel",
+          "title-tag": "Titel-Überschrift-Tag",
+          "sub-title": "Untertitel",
+          "sub-title-tag": "Untertitel-Überschrift-Tag",
+          "title-position": "Titelposition",
+          "horizontal-alignment": "Horizontale Ausrichtung",
+          "content": {
+            "label": "Inhalt",
+            "placeholder": "Geben Sie den Bildtext-Link ein..."
+          },
+          "enable-cta": "Call To Action Button aktivieren",
+          "desktop-count": "Desktop-Anzahl",
+          "tablet-count": "Tablet-Anzahl",
+          "mobile-count": "Mobil-Anzahl",
+          "bestSeller": "Bestseller",
+          "productsPerPage": "Anzahl der Produkte pro Seite",
+          "max-height": "Maximale Höhe",
+          "object-fit": "Objektanpassung",
+          "contain": "Enthalten",
+          "cover": "Überdecken",
+          "fill": "Vollständig",
+          "scale": "Skalieren",
+          "none": "Nichts",
+          "linkTo": "Link zu",
+          "buttonText": "Schaltflächentext",
+          "slideTitle": "Folientitel",
+          "slideTag": "Folientag",
+          "addSliderItem": "Hinzufügen",
+          "sliderItems": "Folien",
+          "sliderItem": "Folie ",
+          "removeSliderItem": "Entfernen",
+          "sliderSettings": "Folien Einstellungen",
+          "navigation": "Navigation",
+          "remove-button": "Entfernen",
+          "add-button": "Hinzufügen",
+          "product": "Produkt"
+        },
+        "tabs": {
+          "background": "Hintergrund",
+          "settings": "Einstellungen",
+          "title": "Titel",
+          "content": "Inhalt",
+          "image": "Bild",
+          "button": "Schaltfläche",
+          "count": "Anzahl",
+          "content-settings": "Inhaltseinstellungen",
+          "slider-settings": "Slidereinstellungen",
+          "media": "Medien",
+          "options": "Optionen"
+        }
+      },
+      "cta-slider": {
+        "label": "CTA Slider"
+      }
+    }
+  }
+}

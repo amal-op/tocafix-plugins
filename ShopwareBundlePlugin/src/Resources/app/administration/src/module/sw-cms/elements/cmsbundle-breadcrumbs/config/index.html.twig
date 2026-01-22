@@ -1,0 +1,38 @@
+{% block cmsbundle_el_config_breadcrumbs %}
+	<div class="sw-cms-el-config-breadcrumbs">
+		{% block cmsbundle_el_config_breadcrumbs_tabs %}
+			<sw-tabs position-identifier="sw-cms-element-config-best-seller-slider" class="sw-cms-el-config-best-seller-slider__tabs" default-item="settings">
+				<template #default="{ active }">
+					{% block sw_cms_element_best_seller_slider_config_tab_options %}
+						<sw-tabs-item :title="$tc('sw-cms.elements.general.config.tab.settings')" name="settings" :active-tab="active">
+							{{ $tc('sw-cms.elements.general.config.tab.settings') }}
+						</sw-tabs-item>
+					{% endblock %}
+				</template>
+
+				<template #content="{ active }">
+					{% block sw_cms_element_product_slider_config_settings %}
+						<sw-container v-if="active === 'settings'" class="sw-cms-el-config-best-seller-slider__tab-settings">
+
+							{% block sw_cms_element_product_slider_config_settings_align %}
+								<sw-select-field v-model:value="element.config.horizontalAlign.value" :label="$tc('sw-cms.elements.general.config.label.horizontalAlign')" :placeholder="$tc('sw-cms.elements.general.config.label.horizontalAlign')">
+									<option value="flex-start">
+										{{ $tc('sw-cms.elements.general.config.label.horizontalAlignLeft') }}
+									</option>
+									<option value="center">
+										{{ $tc('sw-cms.elements.general.config.label.horizontalAlignCenter') }}
+									</option>
+									<option value="flex-end">
+										{{ $tc('sw-cms.elements.general.config.label.horizontalAlignRight') }}
+									</option>
+								</sw-select-field>
+							{% endblock %}
+
+						</sw-container>
+					{% endblock %}
+
+				</template>
+			</sw-tabs>
+		{% endblock %}
+	</div>
+{% endblock %}

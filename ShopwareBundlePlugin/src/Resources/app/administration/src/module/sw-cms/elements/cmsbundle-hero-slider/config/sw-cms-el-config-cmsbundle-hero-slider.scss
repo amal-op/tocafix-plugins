@@ -1,0 +1,41 @@
+.sw-cms-el-config-cmsbundle-hero-slider {
+    .sw-media-upload-v2 {
+        margin-bottom: 22px;
+
+        .sw-media-upload-v2__header {
+            display: none;
+        }
+    }
+
+    .sw-cms-el-config-cmsbundle-hero-slider__mapping-preview {
+        display: grid;
+        width: 100%;
+        height: 200px;
+        justify-items: center;
+        align-items: start;
+
+        img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            overflow: hidden;
+        }
+
+        .sw-cms-el-config-cmsbundle-hero-slider__preview-info {
+            width: 100%;
+        }
+    }
+
+    .pr-10px {
+        padding-right: 10px;
+    }
+
+    .sw-field-row {
+        display: flex;
+
+        .sw-field-item {
+            flex-grow: 1;
+            flex-basis: 0;
+        }
+    }
+}

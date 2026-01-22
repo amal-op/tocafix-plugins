@@ -1,0 +1,11 @@
+.accordion {
+    --bs-accordion-border-width: 0px;
+    .accordion-item{
+        margin-bottom: 20px;
+        .accordion-button{
+            background-color: var(--bs-accordion-active-bg);
+            color: #000;
+            box-shadow: none;
+        }
+    }
+}

@@ -1,0 +1,203 @@
+{
+    "tocafix": {
+        "block": {
+            "category-thumbnail": {
+                "label": "Category Thumbnail"
+            },
+            "product-thumbnail": {
+                "label": "Product Thumbnail"
+            },
+            "hero-slider": {
+                "label": "Hero Slider"
+            },
+            "cta-block": {
+                "label": "CTA Block"
+            },
+            "blog-teaser": {
+                "label": "Blog Teaser"
+            },
+            "tocafix-title": {
+                "label": "Title Settings"
+            },
+            "tocafix-faq": {
+                "label": "Faq"
+            },
+            "product-slider": {
+                "label": "Custom Product Slider"
+            },
+            "twoColumn": {
+                "label": "Two Column" 
+            },
+            "threeColumn": {
+                "label": "Three Column" 
+            },
+            "fourColumn": {
+                "label": "Four Column" 
+            },
+            "sixColumn": {
+                "label": "Six Column" 
+            },
+            "oneByTwoColumn": {
+                "label": "1/2 Column" 
+            },
+            "twoByOneColumn": {
+                "label": "2/1 Column" 
+            },
+            "oneByThreeColumn": {
+                "label": "1/3 Column" 
+            },
+            "inquiry-form": {
+                "label": "Anfrageformular"
+            },
+            "teams": {
+                "label": "Teams"
+            },
+            "job-teaser": {
+                "label": "Job Teaser"
+            }
+        },
+        "element": {
+            "category-thumbnail": {
+                "label": "Category Thumbnail",
+                "config": {
+                    "labels": {
+                        "categorySelect": "Kategorie wählen"
+                    }
+                }
+            },
+            "product-thumbnail": {
+                "label": "Product Thumbnail",
+                "config": {
+                    "labels": {
+                        "productSelect": "Ausgewähltes Produkt"
+                    }
+                }
+            },
+            "hero-slider": {
+                "label": "Slide Content",
+                "config": {
+                    "desktopImage": "Desktop Image",
+                    "tabletImage": "Tablet Image",
+                    "mobileImage": "Mobile Image",
+                    "buttonText": "Button Text",
+                    "slideActive": "Activate Slide Item (If it belongs to slider)",
+                    "content": "Content"
+                  }
+            },
+            "cta-block": {
+                "label": "CTA Block",
+                "config": {
+                    "desktopImage": "Desktop Image",
+                    "tabletImage": "Tablet Image",
+                    "mobileImage": "Mobile Image",
+                    "buttonText": "Button Text",
+                    "backgroundImage":"Image as Background",
+                    "content": "Content"
+                  }
+            },
+            "content": {
+                "label": "Block Content",
+                "config": {
+                    "title": "Title",
+                    "subTitle": "Sub Title",
+                    "buttonText": "Button Text",
+                    "content": "Description",
+                    "textAlign": "Textausrichtung",
+                    "textAlignMobile": "Textausrichtung mobil",
+                    "horizontalAlignLeft": "Links",
+                    "horizontalAlignCenter": "Center",
+                    "horizontalAlignLeftMobile": "Links",
+                    "horizontalAlignCenterMobile": "Center",
+                    "class": "Custom Classes"
+                },
+                "tabs": {
+                    "content": "Content",
+                    "button": "Button",
+                    "settings": "Settings"
+                }
+            },
+            "faq": {
+                "label": "FAQ",
+                "config": {
+                    "title": "Title",
+                    "content": "Content",
+                    "parentId": "Parent Id",
+                    "class": "Custom Classes"
+                },
+                "tabs": {
+                    "content": "Content",
+                    "settings": "Settings"
+                }
+            },
+            "picture": {
+                "label": "Picture block",
+                "config": {
+                    "desktopImage": "Desktop Image",
+                    "tabletImage": "Tablet Image",
+                    "mobileImage": "Mobile Image",
+                    "buttonText": "Button Text"
+                  }
+            },
+            "blog-teaser": {
+                "label": "Blog Teaser",
+                "config": {
+                    "labels": {
+                        "blogSelect": "Wählen Sie Blog aus",
+                        "showDate":"Datum anzeigen",
+                        "showTeaser":"Teasertext anzeigen",
+                        "showButtom":"Schaltfläche anzeigen"
+                    }
+                }
+            },
+            "tocafix-title": {
+                "label": "Title Settings",
+                "config": {
+                    "title": "Titel",
+                    "subTitle": "Untertitel",
+                    "buttonText": "Schaltflächentext",
+                    "reverseOnMobile":"Spaltenreihenfolge auf Mobilgeräten umkehren",
+                    "class": "Benutzerdefinierte Klassen",
+                    "textAlign": "Textausrichtung",
+                    "textAlignMobile": "Textausrichtung mobil",
+                    "buttonPlacement": "Tastenplatzierung",
+                    "horizontalAlignLeft": "Links",
+                    "horizontalAlignCenter": "Center",
+                    "horizontalAlignLeftMobile": "Links",
+                    "horizontalAlignCenterMobile": "Center",
+                    "horizontalAlignRight": "Rechts",
+                    "headingStyle": "Heading Style",
+                    "headingStyle1": "Style 1",
+                    "headingStyle2": "Style 2"
+                },
+                "tabs": {
+                    "content": "Inhalt",
+                    "button": "Taste",
+                    "settings": "Einstellungen"
+                }
+            },
+            "inquiry-form": {
+                "label": "Anfrageformular",
+                "company": {
+                    "label": "Unternehmen",
+                    "placeholder": "Unternehmen"
+                }
+            },
+            "teams": {
+                "label": "Teams",
+                "config": {
+                    "category": "Kategorie",
+                    "numberofposts": {
+                        "title": "Anzahl der Teile",
+                        "help": "Gesamtzahl der im Block anzuzeigenden Elemente"
+                    }
+                }
+            },
+            "job-teaser": {
+                "label": "Job Teaser",
+                "config": {
+                    "jobSelect": "Wählen Sie Job aus"
+                }
+            }
+        }
+    }
+}

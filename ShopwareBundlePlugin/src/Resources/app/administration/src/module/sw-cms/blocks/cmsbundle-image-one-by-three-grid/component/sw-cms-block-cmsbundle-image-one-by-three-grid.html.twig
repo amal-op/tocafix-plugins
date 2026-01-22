@@ -1,0 +1,18 @@
+{% block sw_cms_block_image_three_column_grid %}
+<div class="sw-cms-block-cmsbundle-image-three-column-grid">
+    <div class="sw-cms-block-cmsbundle-image-three-column-grid__left">
+        <slot name="left"></slot>
+    </div>
+    <div class="sw-cms-block-cmsbundle-image-three-column-grid__right">
+        <div class="sw-cms-block-cmsbundle-image-three-column-grid__image-top">
+            <slot name="right-top"></slot>
+        </div>
+        <div class="sw-cms-block-cmsbundle-image-three-column-grid__image-middle">
+            <slot name="right-middle"></slot>
+        </div>
+        <div class="sw-cms-block-cmsbundle-image-three-column-grid__image-bottom">
+            <slot name="right-bottom"></slot>
+        </div>
+    </div>
+</div>
+{% endblock %}

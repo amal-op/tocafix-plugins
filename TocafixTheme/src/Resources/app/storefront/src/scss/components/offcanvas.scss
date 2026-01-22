@@ -1,0 +1,13 @@
+.offcanvas{
+    &-cart-actions{
+        .begin-checkout-btn + .btn-link{
+            margin: rem(15) 0;
+        }
+    }
+}
+
+@media (min-width: 576px) {
+    .account-menu .offcanvas-close {
+        display: none;
+    }
+}

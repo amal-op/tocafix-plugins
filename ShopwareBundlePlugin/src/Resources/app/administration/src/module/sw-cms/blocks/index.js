@@ -1,0 +1,32 @@
+import "./cmsbundle-one-column-banner";
+import "./cmsbundle-two-column-banner";
+import "./cmsbundle-three-column-banner";
+import "./cmsbundle-four-column-banner";
+import "./cmsbundle-five-column-banner";
+import "./cmsbundle-six-column-banner";
+import "./cmsbundle-one-by-two-column-banner";
+import "./cmsbundle-two-by-one-column-banner";
+import "./cmsbundle-section";
+import "./cmsbundle-hero-slider";
+import "./cmsbundle-content-block";
+import "./cmsbundle-cta";
+// TODO: The below line should be removed
+// import "./cmsbundle-product-cta";
+import "./cmsbundle-product-slider";
+import "./cmsbundle-product-list";
+import "./cmsbundle-category-slider";
+import "./cmsbundle-category-list";
+import "./cmsbundle-cta-slider";
+import "./cmsbundle-best-seller-list";
+import "./cmsbundle-best-seller-slider";
+import "./cmsbundle-recently-viewed-product-list";
+import "./cmsbundle-recently-viewed-product-slider";
+import "./cmsbundle-manufacturer-detail";
+import "./cmsbundle-accordion";
+import "./cmsbundle-nav-tabs";
+import "./cmsbundle-breadcrumbs"
+import "./cmsbundle-image-three-column-grid"
+import "./cmsbundle-image-one-by-three-grid"
+import "./cmsbundle-image-three-by-one-grid"
+import "./cmsbundle-subcategory-list"
+import "./cmsbundle-subcategory-slider"

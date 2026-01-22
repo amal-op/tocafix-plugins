@@ -1,0 +1,19 @@
+{% block element_cmsbundle_nav_tabs %}
+	{% set config = element.config %}
+	<div class="sw-cms-element-cmsbundle-nav-tabs">
+		<div class="nav-tabs" id="cmsbundle-nav-tabs">
+			<ul class="nav nav-tabs" id="myTab" role="tablist">
+				{% for index,item in config.data.value %}
+					<li class="nav-item" role="presentation">
+						<button class="nav-link {% if index == 0 %}active{% endif %}" id="{{index}}-tab" data-bs-toggle="tab" data-bs-target="#tab{{index}}" type="button" role="tab" aria-controls="tab{{index}}" aria-selected="true">{{item.name}}</button>
+					</li>
+				{% endfor %}
+			</ul>
+			<div class="tab-content" id="myTabContent">
+				{% for index,item in config.data.value %}
+					<div class="tab-pane fade show {% if index == 0 %}active{% endif %}" id="tab{{index}}" role="tabpanel" aria-labelledby="{{index}}-tab">{{item.content|raw}}</div>
+				{% endfor %}
+			</div>
+		</div>
+	</div>
+{% endblock %}

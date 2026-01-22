@@ -1,0 +1,7 @@
+{% block block_tocafix_teams %}
+	{% set element = block.slots.getSlot('content') %}
+
+	{% block block_tocafix_teams_inner %}
+		{% sw_include "@Storefront/storefront/element/cms-element-" ~ element.type ~ ".html.twig" ignore missing %}
+	{% endblock %}
+{% endblock %}

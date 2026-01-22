@@ -1,0 +1,88 @@
+{% block element_manufacturer_detail %}
+
+	{% set searchResult = element.data.products %}
+	{% set listingColumns = 'col-sm-6 col-lg-4 col-xl-3' %}
+
+	{% if section and section.type == 'sidebar' %}
+		{% set listingColumns = 'col-sm-6 col-lg-6 col-xl-4' %}
+	{% endif %}
+
+	{% set slot = cmsPage.getFirstElementOfType('cmsbundle-manufacturer-detail') %}
+  
+	{% set currentRoute = app.request.attributes.get('_route') %}
+	{% set navigationId = app.request.attributes.get('navigationId') %}
+	{% if navigationId %}
+		{% set filterUrl = url('frontend.cms.navigation.filter',{ navigationId: navigationId }) %}
+		{% set dataUrl = url('frontend.cms.navigation.page',{ navigationId: navigationId }) %}
+	{% else %}
+		{% set filterUrl = '' %}
+		{% set dataUrl = '' %}
+	{% endif %}
+
+	{% if searchResult.currentFilters.navigationId %}
+		{% set filterUrl = url('frontend.cms.navigation.filter', { navigationId: searchResult.currentFilters.navigationId }) %}
+		{% set dataUrl = url('frontend.cms.navigation.page', { navigationId: searchResult.currentFilters.navigationId }) %}
+	{% endif %}
+
+	{% set sidebar = sectionType == 'sidebar' %}
+	{% set params = { slots: slot.id, 'no-aggregations': 1 } %}
+
+	{% set manufacturer = element.data.manufacturer %}
+
+	{% block element_manufacturer_detail_manufacturer_detail_wrapper %}
+		<div class="manufacturer-detail mb-5">
+			<h2>{{manufacturer.name}}</h2>
+			<div class="manufacturer-description">{{manufacturer.description}}</div>
+			{% if manufacturer.media %}
+				<div class="logo">
+					{% sw_thumbnails 'my-thumbnails' with {
+                        media: manufacturer.media,
+                        sizes: {
+                            'xs': '501px',
+                            'sm': '315px',
+                            'md': '427px',
+                            'lg': '333px',
+                            'xl': '284px',
+                        }
+                    } %}
+				</div>
+			{% endif %}
+		</div>
+	{% endblock %}
+
+	{% block element_manufacturer_detail_product_listing_filter %}
+		<div class="cms-element-sidebar-filter">
+			{% block element_product_listing_filter_button %}
+				<button class="btn btn-outline-primary filter-panel-wrapper-toggle" type="button" {% if feature('v6.6.0.0') %} data-off-canvas-filter="true" {% else %} data-offcanvas-filter="true" {% endif %} aria-haspopup="true" aria-expanded="false" aria-label="{{ "general.menuLink"|trans }}">
+					{% block element_product_listing_filter_button_icon %}
+						{% sw_icon 'sliders-horizontal' %}
+					{% endblock %}
+					{{ "listing.filterTitleText"|trans }}
+				</button>
+			{% endblock %}
+
+			{% block element_sidebar_filter_panel %}
+				<div id="filter-panel-wrapper" class="filter-panel-wrapper" {% if feature('v6.6.0.0') %} data-off-canvas-filter-content="true" {% else %} data-offcanvas-filter-content="true" {% endif %}>
+					{% sw_include '@Storefront/storefront/component/listing/filter-panel.html.twig' with {
+                        listing: searchResult,
+                        sidebar: false
+                    } %}
+				</div>
+			{% endblock %}
+		</div>
+	{% endblock %}
+
+	{% block element_manufacturer_detail_product_listing_wrapper %}
+		{% sw_include '@Storefront/storefront/component/cmsbundle-product/listing.html.twig' with {
+            searchResult: searchResult,
+            sidebar: sidebar,
+            params: params,
+            filterUrl: filterUrl,
+            dataUrl: dataUrl,
+            boxLayout: element.translated.config.boxLayout.value,
+            displayMode: element.translated.config.displayMode.value,
+            listingColumns: listingColumns,
+            sorting:true
+        } %}
+	{% endblock %}
+{% endblock %}

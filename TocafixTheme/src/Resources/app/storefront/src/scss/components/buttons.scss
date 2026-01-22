@@ -1,0 +1,93 @@
+.btn{
+    &.btn-primary{
+        border-color: $primary-color;
+        background-color: $primary-color;
+        color: $white-color;
+        border-radius: rem(4);
+        height: rem(50);
+        font-size: rem(18);
+        padding: rem(6) rem(18);
+        &:hover{
+            background-color: $primary-btn-hover;
+            border-color: $primary-btn-hover;
+        }
+        @include mobile-lg() {
+            font-size: rem(16);
+            // height: rem(40);
+        }
+    }
+    &.btn-outline-primary{
+        border-color: $primary-color;
+        background-color: $white-color;
+        color: $black-color;
+        border-radius: rem(4);
+        height: rem(50);
+        font-size: rem(18);
+        padding: rem(6) rem(18);
+        &:hover{
+            background-color: $primary-btn-hover;
+            border-color: $primary-btn-hover;
+            color: $white-color;
+        }
+        @include mobile-lg() {
+            font-size: rem(16);
+            // height: rem(40);
+        }
+    }
+    &.btn-link{
+        text-decoration: none;
+        display: inline-flex;
+        align-items: center;
+        font-size: rem(16);
+        line-height: rem(16);
+        font-weight: 400;
+        padding-left: 0;
+        padding-right: 0;
+
+        @include mobile-lg() {
+            font-size: rem(16);
+        }
+        
+        .tf-icon{
+            font-size: rem(12);
+            margin-left: rem(12);
+            margin-top: rem(2);
+        }
+    }
+    &.btn-block{
+        display: block;
+    }
+}
+
+.btn-wrap{
+    margin-bottom: rem(80);
+
+    @include mobile-lg() {
+        margin-bottom: rem(40);
+    }
+    
+    .btn{
+        &.btn-primary{
+            display: inline-flex;
+            text-transform: uppercase;
+
+            .tf-icon{
+                font-size: rem(14);
+                margin-left: rem(12);
+                margin-top: rem(2);
+            }
+        }
+
+        &.btn-link{
+            .tf-icon{
+                font-size: rem(12);
+                margin-left: rem(12);
+                margin-top: rem(2);
+            }
+        }
+    }
+}
+
+.cart-shipping-costs-btn{
+    margin-bottom: rem(15);
+}

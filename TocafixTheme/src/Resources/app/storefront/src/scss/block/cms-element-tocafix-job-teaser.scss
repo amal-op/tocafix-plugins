@@ -1,0 +1,161 @@
+.job-teaser-section {
+    .cms-section-sidebar-main-content{
+        padding-top: 0;
+        
+    }
+    .cms-element-text {
+        text-align: center;
+        margin-left: auto;
+        margin-right: auto;
+
+        h2 {
+            margin: 0 0 rem(20);
+        }
+
+        h4 {
+            text-transform: uppercase;
+            color: $primary-color;
+            margin-bottom: rem(20);
+        }
+
+        p {
+            font-size: rem(20);
+            line-height: rem(30);
+            color: $medium-grey-color;
+            margin-top: rem(35);
+            margin-bottom: 0;
+            max-width: 80%;
+            margin-left: auto;
+            margin-right: auto;
+
+            @include mobile-lg() {
+                max-width: 100%;
+                font-size: rem(16);
+                line-height: rem(24);
+                margin-top: rem(20);
+            }
+        }
+    }
+
+    .cms-block-tocafix-job-teaser {
+        margin-top: rem(100);
+        margin-left: auto;
+        margin-right: auto;
+        max-width: 88.75rem;
+        
+        @include desktop-sm() {
+            margin-top: rem(60);
+        }
+        .listing-page-heading{
+            display: none;
+        }
+        .col-12{
+            @include mobile-lg() {
+                padding: 0;
+            }
+        }
+        .job-list{
+            &__item{
+                margin-bottom: rem(80);
+                @include mobile-lg() {
+                    margin-bottom: rem(50);
+                }
+                &:last-child{
+                    margin-bottom: 0;
+                }
+                &:nth-child(even){
+                    .col-xl-5{
+                        order: 2;
+                        @include mobile-lg() {
+                            order: 1;
+                        }
+                    }
+                    .col-xl-7{
+                        order: 1;
+                        @include mobile-lg() {
+                            order: 2;
+                        }
+                    }
+                }
+            }
+            &__image{
+                height: rem(300);
+                @include tablet-md() {
+                    height: rem(250);
+                }
+                @include mobile-lg() {
+                    height: auto;
+                }
+            }
+            &__content{
+                // padding-right: rem(150);
+                // @include desktop-md() {
+                //     padding-right: 0;
+                // }
+                @include mobile-lg() {
+                    padding-top: rem(20);
+                }
+                .btn-plane{
+                    display: inline-flex;
+                    align-items: center;
+                    padding: 0;
+                    width: 100%;
+                    position: absolute;
+                    bottom: 0;
+                    box-shadow: none;
+                    font-size: rem(16);
+                    @include mobile-lg() {
+                        position: static;
+                    }
+                    .tf-icon{
+                        font-size: rem(11);
+                        color: $primary-color;
+                    }
+                    .link-text{
+                        padding-left: rem(5);
+                        transition: all .2s;
+                    }
+                    &:hover{
+                        .link-text{
+                            transform: translateX(5px);
+                        }
+                    }
+                }
+            }
+            &__title{
+                font-size: rem(25);
+                margin-top: rem(20);
+                margin-bottom: rem(20);
+                padding-bottom: rem(2);
+                @include max-lines(2);
+                @include tablet-lg() {
+                    font-size: rem(20);
+                }
+            }
+            &__description{
+                @include max-lines(3);
+            }
+        }
+    }
+}
+
+
+.tocafix-category-layout{
+    .cms-block-tocafix-job-teaser  {
+        // margin-top: rem(100);
+        padding-top: 1.875rem;
+        margin-top: 0;
+        @include mobile-lg() {
+            padding-top: 0;
+            margin-top: 0;
+        }
+        .listing-page-heading{
+            
+            @include tablet-md() {
+                padding-left: 0;
+                display: block;
+            }
+        }
+    }
+    
+}

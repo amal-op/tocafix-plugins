@@ -1,0 +1,126 @@
+.hero-slider{
+    &-container{
+        width: 100%;
+    }
+    &__controls_prev{
+        left: rem(80);
+    }
+    &__controls_next{
+        right: rem(80);
+    }
+
+    &.base-slider.has-nav{
+        padding-bottom: 0;
+        .tns-nav{
+            bottom: rem(80);
+        }
+    }
+    .tns-inner{
+        padding-bottom: 0;
+    }
+
+    &-wrapper{
+        .scroll-down{
+            position: absolute;
+            z-index: 1;
+            top: 50%;
+            transform: rotate(90deg);
+            margin-top: rem(-80);
+            right: rem(30);
+            font-weight: rem(18);
+            color: $white-color;
+            text-transform: uppercase;
+            background-color: transparent;
+            border: 0;
+
+            @include mobile-lg() {
+                right: 0;
+                top: auto;
+                left: auto;
+                margin-left: rem(-40);
+                bottom: rem(80);
+            }
+        }
+    }
+}
+
+.hero-slide{
+    position: relative;
+
+    .hero-slide__content{
+        background: radial-gradient(50% 50% at 50% 50%, rgba(0, 0, 0, 0.45) 0%, rgba(0, 0, 0, 0) 80%);
+        padding: 22% 15%;
+        position: absolute;
+        z-index: 6;
+        top: 0;
+        height: 100%;
+        width: 100%;
+        left: 0;
+
+        @include tablet-lg() {
+            padding: 30% 8%;
+            bottom: 0;
+        }
+
+        @include mobile-lg() {
+            padding: rem(200) rem(30) 0 rem(20);
+        }
+
+        h1{
+            font-size: rem(117);
+            line-height: rem(117);
+            text-transform: uppercase;
+
+            @include desktop-md() {
+                font-size: rem(97);
+                line-height: rem(97);
+            }
+
+            @include tablet-lg() {
+                font-size: rem(87);
+                line-height: rem(87);
+            }
+
+            @include mobile-lg() {
+                font-size: rem(57);
+                line-height: rem(57);
+            }
+        }
+
+        h2{
+            text-transform: uppercase;
+
+            @include desktop-sm() {
+                // padding: rem(140) rem(140);
+            }
+
+            @include tablet-lg() {
+                font-size: rem(80);
+            }
+            @include mobile-lg() {
+                font-size: rem(50);
+                line-height: rem(50);
+            }
+        }
+    }
+    .hero-slide__background{
+        position: relative;
+        z-index: 0;
+
+        picture, img{
+            display: block;
+            width: 100%;
+            height: auto;
+            min-height: 100vh;
+            object-fit: cover;
+
+            @include tablet-md() {
+                min-height: 80vh;
+            }
+
+            @include mobile-lg() {
+                min-height: 65vh;
+            }
+        }
+    }
+}

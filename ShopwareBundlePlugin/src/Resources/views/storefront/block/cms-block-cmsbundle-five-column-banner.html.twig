@@ -1,0 +1,40 @@
+{% block block_cmsbundle_five_column %}
+<div class="cms-block-cmsbundle-five-column">
+	<div class="row">
+		<div class="container">
+			<div class="row row-cols-xl-5">
+				{% block block_cmsbundle_five_column_left_left %}
+					{% set element = block.slots.getSlot('left-left') %}
+					<div class=" pb-4 pb-md-0">
+						{% sw_include "@Storefront/storefront/element/cms-element-" ~ element.type ~ ".html.twig" ignore missing  %}
+					</div>
+				{% endblock %}
+				{% block block_cmsbundle_five_column_left_right %}
+					{% set element = block.slots.getSlot('left-right') %}
+					<div class=" pb-4 pb-md-0">
+						{% sw_include "@Storefront/storefront/element/cms-element-" ~ element.type ~ ".html.twig" ignore missing  %}
+					</div>
+				{% endblock %}
+				{% block block_cmsbundle_five_column_center %}
+					{% set element = block.slots.getSlot('center') %}
+					<div class=" pb-4 pb-md-0">
+						{% sw_include "@Storefront/storefront/element/cms-element-" ~ element.type ~ ".html.twig" ignore missing  %}
+					</div>
+				{% endblock %}
+				{% block block_cmsbundle_five_column_right_left %}
+					{% set element = block.slots.getSlot('right-left') %}
+					<div class=" pb-4 pb-md-0">
+						{% sw_include "@Storefront/storefront/element/cms-element-" ~ element.type ~ ".html.twig" ignore missing  %}
+					</div>
+				{% endblock %}
+				{% block block_cmsbundle_five_column_right_right %}
+					{% set element = block.slots.getSlot('right-right') %}
+					<div class="">
+						{% sw_include "@Storefront/storefront/element/cms-element-" ~ element.type ~ ".html.twig" ignore missing  %}
+					</div>
+				{% endblock %}
+			</div>
+		</div>
+	</div>
+</div>
+{% endblock %}

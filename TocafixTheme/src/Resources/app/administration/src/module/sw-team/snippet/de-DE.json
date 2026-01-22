@@ -1,0 +1,33 @@
+{
+  "tocafix-team": {
+    "general": {
+      "mainMenuItemGeneral": "Teams",
+      "descriptionTextModule": "Team hier verwalten"
+    },
+    "list": {
+      "addButtonText": "Mitarbeiter hinzufügen",
+      "columnName": "Name",
+      "columnCategory": "Kategorie",
+      "columnPhoneNumber": "Telefonnummer",
+      "columnPosition": "Position",
+      "columnEmail": "Email",
+      "columnSortOrder": "Sortierreihenfolge",
+      "textTeamOverview": "Teams",
+      "emptyStateTitle": "Noch keine Teammitglieder",
+      "emptyStateSubline": "Beginnen Sie mit dem Aufbau Ihres Teams, indem Sie das erste Teammitglied hinzufügen"
+    },
+    "detail": {
+      "nameLabel": "Name",
+      "categoryLabel": "Kategorie",
+      "mediaLabel": "Bild hochladen",
+      "phoneNumberLabel": "Telefonnummer",
+      "positionLabel": "Position",
+      "emailLabel": "Email",
+      "sortOrderLabel": "Sortierreihenfolge",
+      "cancelButtonText": "Abbrechen",
+      "saveButtonText": "Speichern",
+      "errorTitle": "Fehler beim Speichern des Mitarbeiters",
+      "manageTeamCategoryText": "Teamkategorie verwalten"
+    }
+  }
+}

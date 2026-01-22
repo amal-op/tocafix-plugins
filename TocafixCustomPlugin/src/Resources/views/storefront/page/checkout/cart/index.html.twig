@@ -1,0 +1,12 @@
+{% sw_extends '@Storefront/storefront/page/checkout/cart/index.html.twig' %}
+
+{% block page_checkout_cart_add_promotion %}
+    {{ parent() }}
+
+    {% sw_include 'storefront/component/delivery_date.html.twig' %}
+{% endblock %}
+
+{% block page_checkout_cart_add_product_and_shipping %}
+    {{ parent() }}
+    {% sw_include '@Storefront/storefront/component/commission.html.twig' %}
+{% endblock %}

@@ -1,0 +1,30 @@
+{% block block_cmsbundle_recently_viewed_product_slider %}
+	<div class="recently-viewed-product-slider-wrapper padding-top padding-bottom">
+		{% block block_recently_viewed_product_slider_foreground %}
+			<div class="recently-viewed-product-slider__foreground text-white">
+				<div class="container">
+					{% block block_cmsbundle_recently_viewed_product_slider_title %}
+						{% set element = block.slots.getSlot('title') %}
+						{% sw_include "@Storefront/storefront/element/cms-element-" ~ element.type ~ ".html.twig" ignore missing  %}
+					{% endblock %}
+
+					{% block block_recently_viewed_product_slider_products %}
+						{% set element = block.slots.getSlot('product') %}
+						{% sw_include "@Storefront/storefront/element/cms-element-" ~ element.type ~ ".html.twig" ignore missing  %}
+					{% endblock %}
+
+					{% block block_cmsbundle_recently_viewed_product_slider_button %}
+						{% set element = block.slots.getSlot('button') %}
+						{% sw_include "@Storefront/storefront/element/cms-element-" ~ element.type ~ ".html.twig" ignore missing  %}
+					{% endblock %}
+				</div>
+			</div>
+		{% endblock %}
+		{% block block_product_slider_background %}
+			<div class="recently-viewed-product-slider__background">
+				{% set element = block.slots.getSlot('background') %}
+				{% sw_include "@Storefront/storefront/element/cms-element-" ~ element.type ~ ".html.twig" ignore missing %}
+			</div>
+		{% endblock %}
+	</div>
+{% endblock %}

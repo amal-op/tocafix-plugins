@@ -1,0 +1,25 @@
+{
+  "name": "cmsbundle/shopware-bundle-plugin",
+  "description": "Shopware Bundle Plugin",
+  "type": "shopware-platform-plugin",
+  "license": "MIT",
+  "version": "2.0.0",
+  "require": {
+    "shopware/core": ">=6.6",
+    "shopware/administration": ">=6.6",
+    "shopware/storefront": ">=6.6"
+},
+  "autoload": {
+    "psr-4": {
+      "ShopwareBundlePlugin\\": "src/"
+    }
+  },
+  "extra": {
+    "shopware-plugin-class": "ShopwareBundlePlugin\\ShopwareBundlePlugin",
+    "plugin-icon": "src/Resources/config/plugin.png",
+    "label": {
+      "de-DE": "Shopware Bundle Plugin",
+      "en-GB": "Shopware Bundle Plugin"
+    }
+  }
+}

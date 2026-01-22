@@ -1,0 +1,57 @@
+{% sw_extends '@Storefront/storefront/layout/navigation/navigation.html.twig' %}
+{% block layout_main_navigation_navbar %}
+	{% block layout_main_navigation_menu %}
+		<ul class="nav main-navigation-menu" itemscope="itemscope" itemtype="http://schema.org/SiteNavigationElement">
+			{% set homeLabel = context.salesChannel.translated.homeName|default("general.homeLink"|trans) %}
+
+			{% block layout_main_navigation_menu_home %}{% endblock %}
+
+			{% block layout_main_navigation_menu_items %}
+				{% if page.product is defined %}
+					{% set activePath = page.product.categoryTree %}
+				{% else %}
+					{% set activePath = page.header.navigation.active.path %}
+				{% endif %}
+
+				{% for treeItem in page.header.navigation.tree %}
+					{% set category = treeItem.category %}
+					{% set name = category.translated.name %}
+					{% set hideCategory = category.customFields.nfx_hide_category %}
+					{% set hideChildrenMenu = category.customFields.nfx_hide_children_menu %}
+
+					{# @deprecated tag:v6.5.0 - Use "category.id" directly instead. #}
+					{% set categorId = category.id %}
+
+					{% block layout_main_navigation_menu_item %}
+						{% if hideCategory is empty %}
+							{% if category.type == 'folder' %}
+								<div class="nav-link main-navigation-menu-item" title="{{ name|raw }}">
+									<div class="main-navigation-menu-link">
+										<span itemprop="name">{{ name|raw }}</span>
+									</div>
+								</div>
+							{% else %}
+								<li class="nav-link main-navigation-menu-item">
+									<a aria-label="category" class="nav-link main-navigation-menu-link{% if category.id == page.header.navigation.active.id or category.id in activePath %} active{% endif %}" href="{{ category_url(category) }}" itemprop="url" {% if category_linknewtab(category) %} target="_blank" {% endif %} title="{{ name|raw }}">
+										<span itemprop="name">{{ name|raw }}</span>
+									</a>
+
+									{% if treeItem.children|length > 0 and hideChildrenMenu is empty %}
+										{% sw_include '@Storefront/storefront/layout/navigation/category-menu.html.twig' with {
+											navigationTree: treeItem.children,
+											navigationMedia: category.media,
+											categoryItem: category,
+											page: page
+										} only %}
+									{% endif %}
+								</li>
+
+							{% endif %}
+						{% endif %}
+					{% endblock %}
+				{% endfor %}
+			{% endblock %}
+
+		</ul>
+	{% endblock %}
+{% endblock %}

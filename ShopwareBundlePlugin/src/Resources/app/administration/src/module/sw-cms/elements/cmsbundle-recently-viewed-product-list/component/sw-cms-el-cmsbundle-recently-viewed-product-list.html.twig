@@ -1,0 +1,17 @@
+{% block sw_cms_element_recently_viewed_product_list %}
+
+	<div class="sw-cms-el-recently-viewed-product-list" :class="classes" :style="verticalAlignStyle">
+		{% block sw_cms_element_recently_viewed_product_list_content %}
+			<div class="sw-cms-el-recently-viewed-product-list__content">
+				{% block sw_cms_element_recently_viewed_product_list_product_holder %}
+					<div class="sw-cms-el-recently-viewed-product-list__product-holder">
+						{% block sw_cms_element_recently_viewed_product_list_demo_data %}
+							<sw-cms-el-product-box v-for="index in Array.from({ length: sliderBoxLimit })" :key="index" :element="demoProductElement"/>
+						{% endblock %}
+					</div>
+				{% endblock %}
+
+			</div>
+		{% endblock %}
+	</div>
+{% endblock %}

@@ -1,0 +1,17 @@
+.sw-cms-block-cmsbundle-manufacturer-detail {
+    position: relative;
+    .manufacturer-bg {
+        position: relative;
+    }
+    .manufacturer-slots {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 100%;
+        padding: 15px;
+    }
+    .sw-cms-el-cmsbundle-background-image{
+        min-height: 745px;
+    }
+}

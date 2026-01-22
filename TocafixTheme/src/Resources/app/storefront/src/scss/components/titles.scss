@@ -1,0 +1,57 @@
+.title{
+    max-width: rem(1093);
+
+    @include mobile-lg() {
+        max-width: 100%;
+    }
+
+    & + p, & + ul, & + ol{
+        font-size: rem(18);
+        line-height: rem(30);
+    }
+    h4{
+        text-transform: uppercase;
+        color: $primary-color;
+    }
+    &.text-center{
+        text-align: center;
+        margin-left: auto;
+        margin-right: auto;
+
+        p{
+            margin-left: auto;
+            margin-right: auto;
+        }
+    }
+    &.center{
+        text-align: center;
+        margin-left: auto;
+        margin-right: auto;
+
+        p{
+            margin-left: auto;
+            margin-right: auto;
+        }
+    }
+    p{
+        font-size: rem(20);
+        line-height: rem(30);
+        color: $medium-grey-color;
+        margin-top: rem(35);
+        margin-bottom: rem(30);
+        max-width: 80%;
+
+        @include mobile-lg() {
+            max-width: 100%;
+            font-size: rem(16);
+            line-height: rem(24);
+            margin-top: rem(20);
+        }
+    }
+}
+
+.text-white{
+    p{
+        color: $white-color;
+    }
+}

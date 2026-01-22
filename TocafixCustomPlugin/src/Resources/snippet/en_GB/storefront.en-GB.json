@@ -1,0 +1,23 @@
+{
+    "tocafix-custom": {
+        "detailInformation": {
+            "commissionNo": "Commission number",
+            "commissionName": "Commission name",
+            "saveButton": "Save",
+            "preferred-delivery-date": "Delivery date",
+            "customerReferenceHeader": "Your sign",
+            "customerReferenceLabel": "Please tell us your name.",
+            "customerReferencePlaceHolder": "Your name ..."
+        },
+        "commission": {
+            "error": "Commission name or commission number is too long",
+            "success": "Saved successfully"
+        }
+    },
+    "checkout": {
+        "custom-commission-blocked": "Commission name or commission number is too long"
+    },
+    "error": {
+        "custom-commission-blocked": "Commission name or commission number is too long"
+    }
+}  

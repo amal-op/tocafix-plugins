@@ -1,0 +1,21 @@
+{% sw_extends '@Storefront/storefront/page/checkout/summary/summary-shipping.html.twig' %}
+
+{% block page_checkout_summary_shipping_value %}
+    <dd class="col-5 checkout-aside-summary-value">
+        {% if page.cart && summary.getExtension("tocafixShippingCriteria") %}
+            {% if summary.getExtension("tocafixShippingCriteria").shippingType === "costShipping" %}
+                {{ "shipping.costShipping"|trans|sw_sanitize }}
+            {% elseif summary.getExtension("tocafixShippingCriteria").shippingType === "freeShipping" %}
+                {{ "shipping.freeShipping"|trans|sw_sanitize }}
+            {% endif %}
+        {% elseif page.order && summary.customFields.shippingType %}
+            {% if  summary.customFields.shippingType === "costShipping" %}
+                {{ "shipping.costShipping"|trans|sw_sanitize }}
+            {% elseif summary.customFields.shippingType === "freeShipping" %}
+                {{ "shipping.freeShipping"|trans|sw_sanitize }}
+            {% endif %}
+        {% else %}
+            {{ delivery.shippingCosts.totalPrice|currency }}{{ "general.star"|trans|sw_sanitize }}
+        {% endif %}
+    </dd>
+{% endblock %}

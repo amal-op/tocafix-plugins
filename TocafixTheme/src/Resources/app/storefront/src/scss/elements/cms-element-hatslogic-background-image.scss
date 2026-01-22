@@ -1,0 +1,19 @@
+.background-wrap{
+    z-index: 1;
+    position: relative;
+    display: block;
+
+    &.bg-overlay{
+        height: 100%;
+        width: 100%;
+        &:after{
+            content: "";
+            display: block;
+            position: absolute;
+            top: 0;
+            height: 100%;
+            width: 100%;
+            background: linear-gradient(90.36deg, rgba(0, 0, 0, 0.4) 0.29%, rgba(0, 0, 0, 0.308) 53.84%, rgba(0, 0, 0, 0.170772) 57.25%, rgba(0, 0, 0, 0) 99.69%), rgba(0, 0, 0, 0.3);
+        }
+    }
+}

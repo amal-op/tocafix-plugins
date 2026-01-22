@@ -1,0 +1,169 @@
+<?xml version="1.0" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <services>
+        <service id="tocafix.plugin.logger" class="Monolog\Logger">
+            <factory service="Shopware\Core\Framework\Log\LoggerFactory" method="createRotating"/>
+            <argument type="string">tocafix-import</argument>
+        </service>
+
+        <service id="TocafixImportPlugin\Command\ImportProductsCommand">
+            <tag name="console.command"/>
+            <argument type="service" id="TocafixImportPlugin\Service\ImportProductsService"/>
+        </service>
+
+        <service id="TocafixImportPlugin\Service\ImageImportService">
+            <argument type="service" id="media.repository"/>
+            <argument type="service" id="Shopware\Core\Content\Media\MediaService" />
+            <argument type="service" id="Shopware\Core\Content\Media\File\FileSaver" />
+        </service>
+
+        <service id="TocafixImportPlugin\Service\ImportProductsService">
+            <argument type="service" id="product.repository"/>
+            <argument type="service" id="product_property.repository"/>
+            <argument type="service" id="tax.repository"/>
+            <argument type="service" id="unit.repository"/>
+            <argument type="service" id="sales_channel.repository"/>
+            <argument type="service" id="property_group.repository"/>
+            <argument type="service" id="product_configurator_setting.repository"/>
+            <argument type="service" id="currency.repository"/>
+            <argument type="service" id="TocafixImportPlugin\Service\ImageImportService"/>
+            <argument type="service" id="TocafixImportPlugin\Service\ImportHelper"/>
+            <argument type="service" id="Doctrine\DBAL\Connection"/>
+            <argument type="service" id="tocafix.plugin.logger"/>
+            <argument type="string" id="shopware.project.files.import.dir">%kernel.project_dir%/files/</argument>
+        </service>
+
+        <service id="TocafixImportPlugin\Service\ImportHelper">
+            <argument type="service" id="product.repository"/>
+            <argument type="service" id="product_visibility.repository"/>
+            <argument type="service" id="product_configurator_setting.repository"/>
+            <argument type="service" id="property_group.repository"/>
+            <argument type="service" id="property_group_option.repository"/>
+        </service>
+
+        <service id="TocafixImportPlugin\Command\UpdateProductPriceCommand">
+            <tag name="console.command"/>
+            <argument type="service" id="TocafixImportPlugin\Service\UpdateProductPriceService"/>
+        </service>
+
+        <service id="TocafixImportPlugin\Service\UpdateProductPriceService">
+            <argument type="service" id="product.repository"/>
+            <argument type="service" id="sales_channel.repository"/>
+            <argument type="service" id="product_price.repository"/>
+            <argument type="service" id="tocafix.plugin.logger"/>
+        </service>
+
+        <service id="TocafixImportPlugin\Core\System\Currency\TocafixCurrencyFormatter">
+            <argument type="service" id="Shopware\Core\System\Locale\LanguageLocaleCodeProvider"/>
+        </service>
+
+        <service id="Shopware\Core\Framework\Adapter\Twig\Filter\CurrencyFilter">
+            <argument type="service" id="TocafixImportPlugin\Core\System\Currency\TocafixCurrencyFormatter"/>
+            <tag name="twig.extension"/>
+        </service>
+
+        <service id="TocafixImportPlugin\Command\UpdateVarientConfigCommand">
+            <tag name="console.command"/>
+            <argument type="service" id="TocafixImportPlugin\Service\UpdateVarientConfigService"/>
+        </service>
+
+        <service id="TocafixImportPlugin\Service\UpdateVarientConfigService">
+            <argument type="service" id="product.repository"/>
+        </service>
+
+        <service id="TocafixImportPlugin\Command\DeleteParentPropertiesCommand">
+            <tag name="console.command"/>
+            <argument type="service" id="TocafixImportPlugin\Service\DeleteParentPropertiesService"/>
+        </service>
+
+        <service id="TocafixImportPlugin\Service\DeleteParentPropertiesService">
+            <argument type="service" id="product_configurator_setting.repository"/>
+        </service>
+
+        <service id="TocafixImportPlugin\Command\GetDimensionTextOptionIdsCommand">
+            <tag name="console.command"/>
+            <argument type="service" id="TocafixImportPlugin\Service\GetDimensionTextOptionIdsService"/>
+        </service>
+
+        <service id="TocafixImportPlugin\Service\GetDimensionTextOptionIdsService">
+            <argument type="service" id="property_group_option.repository"/>
+            <argument type="service" id="product_configurator_setting.repository"/>
+            <argument type="service" id="product_option.repository"/>
+            <argument type="service" id="tocafix.plugin.logger"/>
+        </service>
+
+        <service id="TocafixImportPlugin\Command\ImportCustomersCommand">
+            <tag name="console.command"/>
+            <argument type="service" id="TocafixImportPlugin\Service\ImportCustomersService"/>
+        </service>
+
+        <service id="TocafixImportPlugin\Service\ImportCustomersService">
+            <argument type="service" id="customer.repository"/>
+            <argument type="service" id="country.repository"/>
+            <argument type="service" id="customer_group.repository"/>
+            <argument type="service" id="salutation.repository"/>
+            <argument type="service" id="sales_channel.repository"/>
+            <argument type="service" id="payment_method.repository"/>
+            <argument type="service" id="tag.repository"/>
+            <argument type="service" id="Shopware\Core\System\NumberRange\ValueGenerator\NumberRangeValueGeneratorInterface"/>
+            <argument type="service" id="tocafix.plugin.logger"/>
+            <argument type="string" id="shopware.project.files.import.dir">%kernel.project_dir%/files/</argument>
+            <argument type="service" id="Doctrine\DBAL\Connection"/>
+        </service>
+
+        <service id="TocafixImportPlugin\Command\UpdateCustomerProductPriceCommand">
+            <tag name="console.command"/>
+            <argument type="service" id="TocafixImportPlugin\Service\UpdateCustomerProductPriceService"/>
+        </service>
+
+        <service id="TocafixImportPlugin\Service\UpdateCustomerProductPriceService">
+            <argument type="service" id="vio_customer_price.repository"/>
+            <argument type="service" id="tocafix.plugin.logger"/>
+        </service>
+
+        <service id="TocafixImportPlugin\Command\RecoveryPasswordEmailCommand">
+            <tag name="console.command"/>
+            <argument type="service" id="TocafixImportPlugin\Service\CustomerMailService"/>
+        </service>
+
+        <service id="TocafixImportPlugin\Service\CustomerMailService">
+            <argument type="service" id="customer.repository"/>
+            <argument type="service" id="customer_recovery.repository"/>
+            <argument type="service" id="event_dispatcher"/>
+            <argument type="service" id="Shopware\Core\System\SystemConfig\SystemConfigService"/>
+            <argument type="service" id="Shopware\Core\System\SalesChannel\Context\SalesChannelContextFactory"/>
+            <argument type="service" id="tocafix.plugin.logger"/>
+        </service>
+
+        <service id="TocafixImportPlugin\Command\DeactivateVarientWithoutPriceCommand">
+            <tag name="console.command"/>
+            <argument type="service" id="TocafixImportPlugin\Service\DeactivateVarientWithoutPriceService"/>
+        </service>
+
+        <service id="TocafixImportPlugin\Service\DeactivateVarientWithoutPriceService">
+            <argument type="service" id="product.repository"/>
+        </service>
+
+        <service id="TocafixImportPlugin\Service\ScheduledTask\UpdateCustomerProductPriceTask">
+            <tag name="shopware.scheduled.task" />
+        </service>
+        <service id="TocafixImportPlugin\Service\ScheduledTask\UpdateCustomerProductPriceTaskHandler">
+            <argument type="service" id="scheduled_task.repository" />
+            <argument type="service" id="TocafixImportPlugin\Service\UpdateCustomerProductPriceService"/>
+            <tag name="messenger.message_handler" />
+        </service>
+
+        <service id="TocafixImportPlugin\Service\ScheduledTask\UpdateProductPriceTask">
+            <tag name="shopware.scheduled.task" />
+        </service>
+        <service id="TocafixImportPlugin\Service\ScheduledTask\UpdateProductPriceTaskHandler">
+            <argument type="service" id="scheduled_task.repository" />
+            <argument type="service" id="TocafixImportPlugin\Service\UpdateProductPriceService"/>
+            <tag name="messenger.message_handler" />
+        </service>
+    </services>
+</container>

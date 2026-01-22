@@ -1,0 +1,165 @@
+{% block element_cmsbundle_cta_slider %}
+    {% set sliderConfig = element.config %}
+    {% set ctaSliderSettings = {
+        slider:{
+            gutter: 20,
+            autoplayButtonOutput: false,
+            nav: sliderConfig.dots.value,
+            slideBy: 1,
+            mouseDrag: true,
+            items: sliderConfig.countMobile.value,
+            controls: sliderConfig.controls.value,
+            autoplay: sliderConfig.autoPlay.value ? true : false,
+            speed: sliderConfig.speed.value,
+            loop: sliderConfig.loop.value,
+            prevButton: '.custom-cta-slider__controls_prev',
+            nextButton: '.custom-cta-slider__controls_next',
+            responsive: {
+                md: {
+                    items: 2
+                },
+                xs: {
+                    items: 1
+                }
+            }
+        }
+    } %}
+
+    {% block element_cta_slider_slider %}
+        <div class="base-slider cta-slider{% if sliderConfig.border.value %} has-border{% endif %}{% if sliderConfig.navigation.value %} has-nav{% endif %}" 
+            data-base-slider="true" 
+            data-base-slider-options="{{ ctaSliderSettings|json_encode }}{% if sliderConfig.overlay.value %} bg-overlay{% endif %}">
+            {% block element_cta_slider_inner %}
+                <div class="cta-slider-container" data-base-slider-container="true">
+                    {% for item in element.config.sliderItems.value %}
+                        {% set content = item.content.value %}
+                        {% set title = item.title.value %}
+                        {% set titleHeading = item.titleHeading.value ?? 'h6' %}
+                        {% set subTitle = item.subTitle.value %}
+                        {% set subTitleHeading = item.subTitleHeading.value ?? 'h2' %}
+                        {% set shortDescription = item.shortDescription.value %}
+                        {% set titlePosition = item.titlePosition.value ?? 'center' %}
+                        {% set alignment = item.alignment.value ?? "center" %}
+                        {% set customClass = item.customClass.value ?? "" %}
+                        {% set active = item.active.value %}
+
+                        {% set backgroundColor = item.backgroundColor.value %}
+                        {% set desktopMedia = item.backgroundDesktop.value %}
+                        {% set tabletMedia = item.backgroundTablet.value %}
+                        {% set mobileMedia = item.backgroundMobile.value %}
+                        {% set hasBgImage = desktopMedia or tabletMedia or mobileMedia %}
+
+                        {% block element_cta_slider_inner_item %}
+                            <div class="cms-element-{{ element.type }} h-100">
+                                <div class="h-100 cta-element-wrapper{% if hasBgImage %} has-bg-image{% endif %} {% if customClass %}{{ customClass }}{% endif %}" 
+                                    {% if backgroundColor %} style="background-color: {{ backgroundColor }}" {% endif %}>
+                                    
+                                    {% block element_cmsbundle_cta_background %}
+                                        {% if hasBgImage %}
+                                            <div class="cta-element__for position-absolute w-100 h-100">
+                                                <picture>
+                                                    {% if desktopMedia %}
+                                                        <source media="(min-width: {{ theme_config('breakpoint.lg') }}px)" srcset="{{ desktopMedia.url | sw_encode_url }}" type="{{ desktopMedia.mimeType }}"/>
+                                                    {% endif %}
+                                                    {% if tabletMedia %}
+                                                        <source media="(min-width: {{ theme_config('breakpoint.md') }}px)" srcset="{{ tabletMedia.url | sw_encode_url }}" type="{{ tabletMedia.mimeType }}"/>
+                                                    {% endif %}
+                                                    {% if not tabletMedia %}
+                                                        <source media="(min-width: {{ theme_config('breakpoint.md') }}px)" srcset="{{ desktopMedia.url | sw_encode_url }}" type="{{ desktopMedia.mimeType }}"/>
+                                                    {% endif %}
+                                                    {% if mobileMedia %}
+                                                        <source media="(min-width: {{ theme_config('breakpoint.sm') }}px)" srcset="{{ mobileMedia.url | sw_encode_url }}" type="{{ mobileMedia.mimeType }}"/>
+                                                        {% for thumbnailMobile in mobileMedia.thumbnails %}
+                                                            {% if thumbnailMobile.width == '400' %}
+                                                                <source media="(max-width: {{ theme_config('breakpoint.sm') - 1 }}px)" srcset="{{ thumbnailMobile.url | sw_encode_url }}" type="{{ mobileMedia.mimeType }}"/>
+                                                            {% endif %}
+                                                        {% endfor %}
+                                                    {% endif %}
+                                                    {% if not mobileMedia %}
+                                                        <source media="(min-width: {{ theme_config('breakpoint.sm') }}px)" srcset="{{ desktopMedia.url | sw_encode_url }}" type="{{ desktopMedia.mimeType }}"/>
+                                                        {% for thumbnailDesktop in desktopMedia.thumbnails %}
+                                                            {% if thumbnailDesktop.width == '400' %}
+                                                                <source media="(max-width: {{ theme_config('breakpoint.sm') - 1 }}px)" srcset="{{ thumbnailDesktop.url | sw_encode_url }}" type="{{ desktopMedia.mimeType }}"/>
+                                                            {% endif %}
+                                                        {% endfor %}
+                                                    {% endif %}
+                                                    <img src="{{ desktopMedia.url | sw_encode_url }}" class="w-100 h-100 object-fit-cover"/>
+                                                </picture>
+                                            </div>
+                                        {% endif %}
+                                    {% endblock %}
+                                    
+                                    {% block element_cmsbundle_cta_foreground %}
+                                        <div class="cta-element__foreground d-flex align-items-{{ alignment }} justify-content-{{ titlePosition }} position-relative h-100">
+                                            <div class="cta-wrapper__inner text-{{ titlePosition }} {% if hasBgImage %} p-4 {% endif %} {% if backgroundColor %} p-4 {% endif %}">
+                                                {% block element_cmsbundle_cta_media %}
+                                                    {% if item.desktop.value %}
+                                                        <div class="cta-image-wrap">
+                                                            <img src="{{ item.desktop.value.url | sw_encode_url }}" class="w-100 h-100 object-fit-cover"/>
+                                                        </div>
+                                                    {% endif %}
+                                                    {% if item.tablet.value %}
+                                                        <div class="cta-image-wrap">
+                                                            <img src="{{ item.tablet.value.url | sw_encode_url }}" class="w-100 h-100 object-fit-cover"/>
+                                                        </div>
+                                                    {% endif %}
+                                                    {% if item.mobile.value %}
+                                                        <div class="cta-image-wrap">
+                                                            <img src="{{ item.mobile.value.url | sw_encode_url }}" class="w-100 h-100 object-fit-cover"/>
+                                                        </div>
+                                                    {% endif %}
+                                                {% endblock %}
+                                                
+                                                {% if title is not empty %}
+                                                    <{{ titleHeading }}>{{ title|raw }}</{{ titleHeading }}>
+                                                {% endif %}
+                                                {% if subTitle is not empty %}
+                                                    <{{ subTitleHeading }}>{{ subTitle }}</{{ subTitleHeading }}>
+                                                {% endif %}
+                                                {% if shortDescription is not empty %}
+                                                    <p>{{ shortDescription }}</p>
+                                                {% endif %}
+                                                {% if content is not empty %}
+                                                    {{ content|raw }}
+                                                {% endif %}
+                                          
+                                                <div class="btn-wrap">
+                                                    {% for i in item.buttons %}
+                                                     {% set buttonText = i.buttonText.value %}
+                                                        {% if buttonText %}
+                                                            <a href="{{ i.url.value }}" class="btn btn-{{ i.buttonType.value }}" {% if i.newTab.value %} target="_blank" {% endif %}>{{ buttonText }}</a>
+                                                        {% endif %}
+                                                    {% endfor %}
+                                                </div>
+                                            </div>
+                                        </div>
+                                    {% endblock %}
+                                </div>
+                            </div>
+                        {% endblock %}
+                    {% endfor %}
+                </div> 
+                {% block element_custom_cta_slider_controls %}
+                        {% if sliderConfig.controls.value %}
+                            <div class="cta-slider-element-container">
+                                <div class="base-slider-controls" data-base-slider-controls="true">
+                                    {% block element_custom_cta_slider_controls_items %}
+                                        <button class="base-slider-controls-prev custom-cta-slider__controls_prev{% if sliderConfig.border.value %} has-border{% endif %} start-0">
+                                            {% block element_custom_cta_slider_controls_items_prev_icon %}
+                                                {% sw_icon 'arrow-head-left' %}
+                                            {% endblock %}
+                                        </button>
+                                        <button class="base-slider-controls-next custom-cta-slider__controls_next{% if sliderConfig.border.value %} has-border{% endif %} end-0">
+                                            {% block element_custom_cta_slider_controls_items_next_icon %}
+                                                {% sw_icon 'arrow-head-right' %}
+                                            {% endblock %}
+                                        </button>
+                                    {% endblock %}
+                                </div>
+                            </div>
+                        {% endif %}
+                    {% endblock %}
+            {% endblock %}
+        </div>
+    {% endblock %}
+{% endblock %}

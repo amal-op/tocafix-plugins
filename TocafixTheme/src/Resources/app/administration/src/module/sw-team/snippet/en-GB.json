@@ -1,0 +1,33 @@
+{
+  "tocafix-team": {
+    "general": {
+      "mainMenuItemGeneral": "Teams",
+      "descriptionTextModule": "Manage team here"
+    },
+    "list": {
+      "addButtonText": "Add employee",
+      "columnName": "Name",
+      "columnCategory": "Category",
+      "columnPhoneNumber": "PhoneNumber",
+      "columnPosition": "Position",
+      "columnEmail": "Email",
+      "columnSortOrder": "Sort Order",
+      "textTeamOverview": "Teams",
+      "emptyStateTitle": "No team members yet",
+      "emptyStateSubline": "Start building your team by adding the first team member"
+    },
+    "detail": {
+      "nameLabel": "Name",
+      "categoryLabel": "Category",
+      "mediaLabel": "Picture Upload",
+      "phoneNumberLabel": "PhoneNumber",
+      "positionLabel": "Position",
+      "emailLabel": "Email",
+      "sortOrderLabel": "Sort Order",
+      "cancelButtonText": "Cancel",
+      "saveButtonText": "Save",
+      "errorTitle": "Error saving the employee",
+      "manageTeamCategoryText": "Manage Team Category"
+    }
+  }
+}

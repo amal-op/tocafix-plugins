@@ -1,0 +1,42 @@
+{% block sw_cms_element_category_slider %}
+	<div class="sw-cms-el-category-slider" :class="classes" :style="verticalAlignStyle">
+
+
+		{% block sw_cms_element_category_slider_content %}
+			<div class="sw-cms-el-category-slider__content">
+
+				{% block sw_cms_element_category_slider_arrow_left %}
+					<div v-if="hasNavigation" class="sw-cms-el-category-slider__navigation">
+						<sw-icon class="sw-cms-el-category-slider__navigation-button" name="regular-chevron-left" size="24"/>
+					</div>
+				{% endblock %}
+
+				{% block sw_cms_element_category_slider_category_holder %}
+					<div ref="categoryHolder" class="sw-cms-el-category-slider__product-holder">
+
+						{% block sw_cms_element_category_slider_demo_data %}
+							<div v-for="index in getDummyBoxes(sliderBoxLimit)" :key="index" :element="demoCategoryElement" style="flex-grow: 1;">
+								<div class="sw-cms-el-category-box box-standard">
+									<div class="sw-cms-el-category-box__content">
+										<div class="sw-cms-el-category-box__media">
+											<a href="#" title="Variant product" class="sw-cms-el-category-box__image-link"><img :src="mediaUrl()" class="sw-cms-el-category-box__image"></a>
+										</div>
+										<div>
+											{{ $tc('cmsbundle.element.general.config.category') }}
+										</div>
+									</div>
+								</div>
+							</div>
+						{% endblock %}
+					</div>
+				{% endblock %}
+
+				{% block sw_cms_element_product_slider_arrow_right %}
+					<div v-if="hasNavigation" class="sw-cms-el-category-slider__navigation">
+						<sw-icon class="sw-cms-el-category-slider__navigation-button" name="regular-chevron-right" size="24"/>
+					</div>
+				{% endblock %}
+			</div>
+		{% endblock %}
+	</div>
+{% endblock %}

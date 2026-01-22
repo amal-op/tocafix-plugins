@@ -1,0 +1,21 @@
+{% block element_cmsbundle_accordion %}
+	{% set config = element.config %}
+	<div class="sw-cms-element-cmsbundle-accordion">
+		<div class="accordion" id="cmsbundle-accordion">
+			{% for index,item in config.data.value %}
+				<div class="accordion-item">
+					<h2 class="accordion-header" id="heading{{ index }}">
+						<button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapse{{ index }}" aria-expanded="true" aria-controls="collapse{{ index }}">
+							{{ item.name }}
+						</button>
+					</h2>
+					<div id="collapse{{ index }}" class="accordion-collapse collapse" aria-labelledby="heading{{ index }}" data-bs-parent="#cmsbundle-accordion">
+						<div class="accordion-body">
+							{{ item.content|raw }}
+						</div>
+					</div>
+				</div>
+			{% endfor %}
+		</div>
+	</div>
+{% endblock %}

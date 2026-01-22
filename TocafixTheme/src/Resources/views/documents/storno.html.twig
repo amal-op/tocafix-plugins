@@ -1,0 +1,29 @@
+{% sw_extends '@Framework/documents/storno.html.twig' %}
+
+{% block document_line_item_table_unit_price %}
+    {% if order.customFields.shippingType %}
+        {% if order.customFields.shippingType === "costShipping" %}
+            <td class="align-right">{{ "shipping.costShipping"|trans|sw_sanitize }}</td>
+        {% elseif order.customFields.shippingType === "freeShipping" %}
+            <td class="align-right">{{ "shipping.freeShipping"|trans|sw_sanitize }}</td>
+        {% else %}
+            <td class="align-right">{{ order.shippingTotal|currency(currencyIsoCode, languageId) }}</td>
+        {% endif %}
+    {% else %}
+        <td class="align-right">{{ order.shippingTotal|currency(currencyIsoCode, languageId) }}</td>
+    {% endif %}
+{% endblock %}
+
+{% block document_line_item_table_total_price %}
+    {% if order.customFields.shippingType %}
+        {% if order.customFields.shippingType === "costShipping" %}
+            <td class="align-right">{{ "shipping.costShipping"|trans|sw_sanitize }}</td>
+        {% elseif order.customFields.shippingType === "freeShipping" %}
+            <td class="align-right">{{ "shipping.freeShipping"|trans|sw_sanitize }}</td>
+        {% else %}
+            <td class="align-right">{{ order.shippingTotal|currency(currencyIsoCode, languageId) }}</td>
+        {% endif %}
+    {% else %}
+        <td class="align-right">{{ order.shippingTotal|currency(currencyIsoCode, languageId) }}</td>
+    {% endif %}
+{% endblock %}

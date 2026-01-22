@@ -1,0 +1,40 @@
+{% block block_cmsbundle_subcategory_list %}
+	<div class="cms-block-cmsbundle-subcategory-list position-relative">
+		{% block block_cmsbundle_list_title %}
+			{% set element = block.slots.getSlot('title') %}
+			<div class="container py-2">
+				<div class="row">
+					<div class="col-md-12">
+						{% sw_include "@Storefront/storefront/element/cms-element-" ~ element.type ~ ".html.twig" ignore missing  %}
+					</div>
+				</div>
+			</div>
+		{% endblock %}
+		{% block block_cmsbundle_subcategory_list_categories %}
+			{% set element = block.slots.getSlot('subcategory') %}
+			<div class="container py-2">
+				<div class="row">
+					<div class="col-md-12">
+						{% sw_include "@Storefront/storefront/element/cms-element-" ~ element.type ~ ".html.twig" ignore missing  %}
+					</div>
+				</div>
+			</div>
+		{% endblock %}
+		{% block block_cmsbundle_subcategory_list_button %}
+			{% set element = block.slots.getSlot('button') %}
+			<div class="container py-2">
+				<div class="row">
+					<div class="col-md-12">
+						{% sw_include "@Storefront/storefront/element/cms-element-" ~ element.type ~ ".html.twig" ignore missing  %}
+					</div>
+				</div>
+			</div>
+		{% endblock %}
+			{% block block_subcategory_list_background %}
+			<div class="subcategory-list__background {% if isBgImage %} position-absolute top-0 bottom-0 start-0 w-100 {% else %}position-absolute {% endif %}  top-0 start-0 w-100 h-100" style="z-index: -2">
+				{% set element = block.slots.getSlot('background') %}
+				{% sw_include "@Storefront/storefront/element/cms-element-" ~ element.type ~ ".html.twig" ignore missing %}
+			</div>
+		{% endblock %}
+	</div>
+{% endblock %}
