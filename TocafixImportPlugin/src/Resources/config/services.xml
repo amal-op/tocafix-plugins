@@ -33,6 +33,7 @@
             <argument type="service" id="property_group.repository" />
             <argument type="service" id="product_configurator_setting.repository" />
             <argument type="service" id="currency.repository" />
+            <argument type="service" id="language.repository" />
             <argument type="service" id="TocafixImportPlugin\Service\ImageImportService" />
             <argument type="service" id="TocafixImportPlugin\Service\ImportHelper" />
             <argument type="service" id="Doctrine\DBAL\Connection" />
@@ -117,6 +118,7 @@
             <argument type="service" id="tag.repository" />
             <argument type="service"
                 id="Shopware\Core\System\NumberRange\ValueGenerator\NumberRangeValueGeneratorInterface" />
+            <argument type="service" id="request_stack" />
             <argument type="service" id="tocafix.plugin.logger" />
             <argument type="string" id="shopware.project.files.import.dir">
                 %kernel.project_dir%/files/</argument>

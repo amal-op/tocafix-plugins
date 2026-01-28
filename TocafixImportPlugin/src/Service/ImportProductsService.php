@@ -87,6 +87,11 @@ class ImportProductsService
     private $currencyRepository;
 
     /**
+     * @var EntityRepository
+     */
+    private $languageRepository;
+
+    /**
      * @var ImageImportService
      */
     protected $imageImportService;
@@ -136,6 +141,11 @@ class ImportProductsService
      */
     protected $currencyEURId;
 
+    /**
+     * @var string
+     */
+    private $systemLanguageCode;
+
     public function __construct(
         EntityRepository $productRepository,
         EntityRepository $productPropertyRepository,
@@ -145,6 +155,7 @@ class ImportProductsService
         EntityRepository $propertyGroupRepository,
         EntityRepository $productConfiguratorSettingRepository,
         EntityRepository $currencyRepository,
+        EntityRepository $languageRepository,
         ImageImportService $imageImportService,
         ImportHelper $importHelper,
         \Doctrine\DBAL\Connection $connection,
@@ -159,6 +170,7 @@ class ImportProductsService
         $this->propertyGroupRepository = $propertyGroupRepository;
         $this->productConfiguratorSettingRepository = $productConfiguratorSettingRepository;
         $this->currencyRepository = $currencyRepository;
+        $this->languageRepository = $languageRepository;
         $this->imageImportService = $imageImportService;
         $this->importHelper = $importHelper;
         $this->connection = $connection;
@@ -258,6 +270,7 @@ class ImportProductsService
         }
         try {
             $this->cleanProductProperties($products, $this->context);
+            $this->productRepository->upsert(array_values($products), $this->context);
         } catch (WriteException $exception) {
             $this->logger->info(' ');
             $this->logger->info('<error>Products could not be imported. Message: ' . $exception->getMessage() . '</error>');
@@ -315,6 +328,7 @@ class ImportProductsService
             'wert7'
         ]);
         $productProperties = null;
+        $systemLanguageCode = $this->getSystemLanguageCode();
         if ($this->isChildProduct($product['agrzusid'])) {
             $productProperties = array_combine(array_values($productPropertiesKeys), array_values($productPropertyValues));
             $productProperties = array_merge($productProperties, [
@@ -334,15 +348,15 @@ class ImportProductsService
         if (!$this->isChildProduct($product['agrzusid'])) {
             $productDescriptions['de-DE'] = $product['beschr_de'];
             $productDescriptions['fr-CH'] = $product['beschr_fr'];
-            $productDescriptions['en-GB'] = $product['beschr_de'];
+            $productDescriptions[$systemLanguageCode] = $product['beschr_de'];
 
             $productNames['de-DE'] = $product['prdname_de'];
             $productNames['fr-CH'] = $product['prdname_fr'];
-            $productNames['en-GB'] = $product['prdname_de'];
+            $productNames[$systemLanguageCode] = $product['prdname_de'];
         } else {
             $productNames['de-DE'] = $product['prdname_de'] . " " . $product['typ_de'];
             $productNames['fr-CH'] = $product['prdname_fr'] . " " . $product['typ_fr'];
-            $productNames['en-GB'] = $product['prdname_de'] . " " . $product['typ_de'];
+            $productNames[$systemLanguageCode] = $product['prdname_de'] . " " . $product['typ_de'];
         }
 
         $priceChfNet = !empty($product['preis']) ? $product['preis'] : 0;
@@ -408,6 +422,29 @@ class ImportProductsService
             $productData['properties'] = $productProperties;
         }
         return $productData;
+    }
+    /**
+     * Get system language code from database
+     *
+     * @return string
+     */
+    private function getSystemLanguageCode(): string
+    {
+        if (!$this->systemLanguageCode) {
+            $criteria = new Criteria();
+            $criteria->addAssociation('locale');
+            $criteria->addFilter(new EqualsFilter('id', \Shopware\Core\Defaults::LANGUAGE_SYSTEM));
+
+            $language = $this->languageRepository->search($criteria, $this->context)->first();
+
+            if ($language && $language->getLocale()) {
+                $this->systemLanguageCode = $language->getLocale()->getCode();
+            } else {
+                $this->systemLanguageCode = 'en-GB';
+            }
+        }
+
+        return $this->systemLanguageCode;
     }
 
     /**
@@ -620,7 +657,7 @@ class ImportProductsService
                             'groupId' => $propertyGroupId,
                             'name' => in_array($propertyName, ["Dimension text", "Designation 1"]) ? [
                                 'de-DE' => $propertyValue['de'],
-                                'en-GB' => $propertyValue['de'],
+                                $this->systemLanguageCode => $propertyValue['de'],
                                 'fr-CH' => $propertyValue['fr']
                             ] : (string) $propertyValue,
                         ]
@@ -749,15 +786,15 @@ class ImportProductsService
 
         if (!$this->isChildProduct($product['agrzusid'])) {
             $coverImageName = $product['image1'];
-
             if ($coverImageName) {
-                if (file_exists($imagePath . "/" . $coverImageName)) {
+                $fullPath = trim($imagePath."/".$coverImageName);
+                if (file_exists($fullPath)) {
                     $imageId = $this->imageImportService->addImageToMediaFromFile($coverImageName, $imagePath, $this->context);
 
                     if ($coverImageExist != $imageId) {
                         $coverId = $imageId;
                     }
-                }
+                } 
             }
         }
 
@@ -774,7 +811,8 @@ class ImportProductsService
             for ($i = 2; $i <= 8; $i++) {
                 if (isset($product["image" . $i])) {
                     $imageName = $product["image" . $i];
-                    if ($imageName && file_exists($imagePath . "/" . $imageName)) {
+                    $fullPath = trim($imagePath . "/" . $imageName);
+                    if ($imageName && file_exists($fullPath)) {
                         $mediaId = $this->imageImportService->addImageToMediaFromFile($imageName, $imagePath, $this->context);
                         if ($mediaId) {
                             $mediaIds[] = $mediaId;

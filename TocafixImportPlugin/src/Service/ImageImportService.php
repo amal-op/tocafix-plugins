@@ -1,4 +1,6 @@
-<?php declare(strict_types=1);
+<?php
+
+declare(strict_types=1);
 
 namespace TocafixImportPlugin\Service;
 
@@ -6,7 +8,7 @@ use Shopware\Core\Content\Media\File\FileSaver;
 use Shopware\Core\Content\Media\File\MediaFile;
 use Shopware\Core\Content\Media\MediaService;
 use Shopware\Core\Framework\Context;
-use Shopware\Core\Content\Media\Exception\DuplicatedMediaFileNameException;
+use Shopware\Core\Content\Media\MediaException;
 use Shopware\Core\Framework\DataAbstractionLayer\EntityRepository;
 use Shopware\Core\Framework\DataAbstractionLayer\Indexing\EntityIndexerRegistry;
 use Shopware\Core\Framework\DataAbstractionLayer\Search\Criteria;
@@ -14,9 +16,9 @@ use Shopware\Core\Framework\DataAbstractionLayer\Search\Filter\EqualsFilter;
 
 class ImageImportService
 {
-    const TEMP_NAME = 'image-import-from-url';      //prefix for temporary files, downloaded from URL
-    const MEDIA_DIR = '/public/media/';             //relative path to Shopware's media directory
-    const MEDIA_FOLDER = 'product';                 //name of the folder in Shopware's media data structure
+    const TEMP_NAME = 'image-import-from-url';
+    const MEDIA_DIR = '/public/media/';
+    const MEDIA_FOLDER = 'product';
 
     private $mediaRepository;
     private $mediaService;
@@ -29,12 +31,11 @@ class ImageImportService
      * @param MediaService $mediaService
      * @param FileSaver $fileSaver
      */
-    public function __construct (
+    public function __construct(
         EntityRepository $mediaRepository,
         MediaService $mediaService,
         FileSaver $fileSaver
-    )
-    {
+    ) {
         $this->mediaRepository = $mediaRepository;
         $this->mediaService = $mediaService;
         $this->fileSaver = $fileSaver;
@@ -47,14 +48,14 @@ class ImageImportService
      * @param Context $context
      * @return string|null
      */
-    public function addImageToMediaFromPath (string $imageName, string $basePath, Context $context)
+    public function addImageToMediaFromPath(string $imageName, string $basePath, Context $context)
     {
         $mediaId = null;
 
         //process with the cache disabled
         $context->addState(EntityIndexerRegistry::USE_INDEXING_QUEUE);
 
-        $imagePaths = $this->rglob($basePath . '/'.$imageName);
+        $imagePaths = $this->rglob($basePath . '/' . $imageName);
         if (!empty($imagePaths)) {
             $imagePath = $imagePaths[0];
             $fileNameParts = explode('.', $imageName);
@@ -68,8 +69,7 @@ class ImageImportService
                 // check if the file already exists in the media folder and get id if so
                 $mediaId = $this->getMediaIdByFileName($fileName, $context);
 
-                if($mediaId)
-                {
+                if ($mediaId) {
                     return $mediaId;
                 }
 
@@ -93,16 +93,21 @@ class ImageImportService
      * @param Context $context
      * @return string|null
      */
-    public function addImageToMediaFromFile (string $fileName, string $directoryName, Context $context)
+    public function addImageToMediaFromFile(string $fileName, string $directoryName, Context $context)
     {
         //compose the path to file
-        $filePath = $directoryName . '/' . $fileName;
+        $filePath = trim($directoryName . '/' . $fileName);
+
+        // Check if file exists before proceeding
+        if (!file_exists($filePath)) {
+            return null;
+        }
 
         //get the file extension
         $fileNameParts = explode('.', $fileName);
         $fileName = "";
-        for ($i = 0; $i < (count($fileNameParts) - 1); $i ++) {
-            $fileName = $fileName.$fileNameParts[$i];
+        for ($i = 0; $i < (count($fileNameParts) - 1); $i++) {
+            $fileName = $fileName . $fileNameParts[$i];
         }
         $fileExtension = isset($fileNameParts[count($fileNameParts) - 1]) ? $fileNameParts[count($fileNameParts) - 1] : 'jpg';
 
@@ -123,7 +128,7 @@ class ImageImportService
      * @param Context $context
      * @return string|null
      */
-    public function getMediaIdByFileName (string $fileName, Context $context)
+    public function getMediaIdByFileName(string $fileName, Context $context)
     {
         //get the media ID by the file name
         $mediaId = $this->mediaRepository->searchIds(
@@ -144,7 +149,7 @@ class ImageImportService
      * @param Context $context
      * @return string|null
      */
-    private function createMediaFromFile (string $filePath, string $fileName,string $fileExtension, Context $context)
+    private function createMediaFromFile(string $filePath, string $fileName, string $fileExtension, Context $context)
     {
         $mediaId = null;
 
@@ -162,12 +167,14 @@ class ImageImportService
                 $mediaId,
                 $context
             );
-        }
-        catch (DuplicatedMediaFileNameException $e) {
-            echo($e->getMessage());
-        }
-        catch (\Exception $e) {
-            echo($e->getMessage());
+        } catch (MediaException $e) {
+            if ($e->getErrorCode() === MediaException::MEDIA_DUPLICATED_FILE_NAME) {
+                echo $e->getMessage();
+            } else {
+                echo $e->getMessage();
+            }
+        } catch (\Exception $e) {
+            echo ($e->getMessage());
         }
 
         return $mediaId;
@@ -180,15 +187,16 @@ class ImageImportService
      * @param Context $context
      * @return null
      */
-    private function mediaCleanup (string $mediaId, Context $context)
+    private function mediaCleanup(string $mediaId, Context $context)
     {
         $this->mediaRepository->delete([['id' => $mediaId]], $context);
         return null;
     }
 
-    private function rglob($pattern, $flags = 0) {
-        $files = glob($pattern, $flags); 
-        foreach (glob(dirname($pattern).'/*', GLOB_ONLYDIR|GLOB_NOSORT) as $dir) {
+    private function rglob($pattern, $flags = 0)
+    {
+        $files = glob($pattern, $flags);
+        foreach (glob(dirname($pattern) . '/*', GLOB_ONLYDIR | GLOB_NOSORT) as $dir) {
             $files = array_merge(
                 [],
                 ...[$files, $this->rglob($dir . "/" . basename($pattern), $flags)]
@@ -197,6 +205,4 @@ class ImageImportService
 
         return $files;
     }
-
-
 }
