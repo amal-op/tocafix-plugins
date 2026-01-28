@@ -15,12 +15,6 @@ Shopware.Component.register('tocafix-team-category-list', {
         };
     },
 
-    metaInfo() {
-        return {
-            title: this.$createTitle()
-        };
-    },
-
     computed: {
         columns() {
             return [{
@@ -43,14 +37,14 @@ Shopware.Component.register('tocafix-team-category-list', {
         this.repository = this.teamCategoryRepository;
         this.loadList();
     },
-    
+
     methods: {
         loadList() {
             this.isLoading = true;
             const teamCategoryCriteria = new Shopware.Data.Criteria();
 
             this.repository
-                .search(teamCategoryCriteria, Shopware.Context.api)
+                .search(teamCategoryCriteria)
                 .then((result) => {
                     this.teamCategories = result;
                 })
@@ -63,9 +57,9 @@ Shopware.Component.register('tocafix-team-category-list', {
         },
 
         onChangeLanguage(languageId) {
-            Shopware.State.commit('context/setApiLanguageId', languageId);
+            Shopware.Context.api.languageId = languageId;
             this.loadList();
         }
-            
+
     }
 });

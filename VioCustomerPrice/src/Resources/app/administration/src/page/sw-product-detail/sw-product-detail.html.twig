@@ -1,0 +1,10 @@
+{% block sw_product_detail_content_tabs_advanced_variants %}
+    {% parent() %}
+
+    <sw-tabs-item
+        :route="{ name: 'vio.customer.price.product', params: { id: $route.params.id } }"
+        :title="$tc('vio-customer-price.general.mainMenuItemGeneral')"
+    >
+        {{ $tc('vio-customer-price.general.mainMenuItemGeneral') }}
+    </sw-tabs-item>
+{% endblock %}

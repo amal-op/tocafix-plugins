@@ -1,0 +1,3 @@
+validation:
+  ignore:
+    - message: 'tag:v6.8.0'

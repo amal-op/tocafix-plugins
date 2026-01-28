@@ -1,0 +1,59 @@
+{
+    "name": "vio/customer-prices",
+    "version": "1.18.1",
+    "description": "Shopware 6 plugin, to maintain and consider customer specific prices.",
+    "type": "shopware-platform-plugin",
+    "license": "proprietary",
+    "minimum-stability": "RC",
+    "keywords": [
+        "shopware",
+        "customer",
+        "price"
+    ],
+    "autoload": {
+        "psr-4": {
+            "VioCustomerPrice\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "VIOSYS AG"
+        }
+    ],
+    "require": {
+        "shopware/core": "~6.7.0",
+        "shopware/administration": "~6.7.0",
+        "shopware/storefront": "~6.7.0"
+    },
+    "extra": {
+        "shopware-plugin-class": "VioCustomerPrice\\VioCustomerPrice",
+        "copyright": "(c) by VIOSYS AG",
+        "plugin-icon": "plugin.png",
+        "label": {
+            "de-DE": "VIO.kundenspezifische Preise",
+            "en-GB": "VIO.customer specific prices"
+        },
+        "description": {
+            "de-DE": "Plugin zum pflegen und beachten von kundenspezifischen Preisen.",
+            "en-GB": "Plugin to maintain and consider customer specific prices."
+        },
+        "manufacturerLink": {
+            "de-DE": "https://www.viosys.de/",
+            "en-GB": "https://www.viosys.de/"
+        },
+        "supportLink": {
+            "de-DE": "https://www.viosys.de/kontakt",
+            "en-GB": "https://www.viosys.de/kontakt"
+        }
+    },
+    "require-dev": {
+        "rector/rector": "*",
+        "frosh/shopware-rector": "*",
+        "phpstan/phpstan": "*"
+    },
+    "config": {
+        "allow-plugins": {
+            "symfony/runtime": true
+        }
+    }
+}

@@ -1,0 +1,11 @@
+{
+  "main.js": {
+    "file": "assets/tocafix-theme-3Ju5JDw8.js",
+    "name": "tocafix-theme",
+    "src": "main.js",
+    "isEntry": true,
+    "css": [
+      "assets/tocafix-theme-D655LYB0.css"
+    ]
+  }
+}

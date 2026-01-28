@@ -1,0 +1,95 @@
+{% block vio_customer_price_collective_entry %}
+    <sw-modal
+        :title="$tc('vio-customer-price.list.collectiveEntry')"
+        @modal-close="$emit('modal-close')"
+    >
+        <sw-container v-if="!isLoading">
+            <mt-banner
+                variant="critical"
+                :showIcon="true"
+                :closable="false"
+                v-if="showAlert"
+            >
+                {{ $tc('vio-customer-price.collectiveEntry.entryError') }}
+            </mt-banner>
+            <mt-number-field
+                :label="$t('vio-customer-price.detail.quantityStartLabel')"
+                v-model="quantityStart"
+            ></mt-number-field>
+            <mt-number-field
+                :label="$t('vio-customer-price.detail.priceLabel')"
+                v-model="price"
+                min="0"
+            ></mt-number-field>
+            <mt-number-field
+                :label="$t('vio-customer-price.detail.discountLabel')"
+                v-model="discount"
+            ></mt-number-field>
+            <sw-entity-multi-select
+                :label="$t('vio-customer-price.detail.assignProductLabel')"
+                :entity-collection="productCollection"
+                @update:entity-collection="onChangeProducts"
+                v-if="productId == null"
+            >
+                <template #selection-label-property="{ item }">
+                    {{ item.translated.name }}
+                    (
+                    {{ item.productNumber }}
+                    )
+                </template>
+
+                <template #result-label-property="{ item }">
+                    {{ item.translated.name }}
+                    (
+                    {{ item.productNumber }}
+                    )
+                </template>
+            </sw-entity-multi-select>
+            <sw-entity-multi-select
+                :label="$t('vio-customer-price.detail.assignCustomerLabel')"
+                :entityCollection="customerCollection"
+                @update:entity-collection="onChangeCustomers"
+                v-if="customerId == null"
+            >
+                <template #selection-label-property="{ item }">
+                    {{ item.company }}
+                    {{ item.firstName }}
+                    {{ item.lastName }}
+                    (
+                    {{ item.customerNumber }}
+                    )
+                </template>
+
+                <template #result-label-property="{ item }">
+                    {{ item.company }}
+                    {{ item.firstName }}
+                    {{ item.lastName }}
+                    (
+                    {{ item.customerNumber }}
+                    )
+                </template>
+            </sw-entity-multi-select>
+            <mt-button
+                @click="onSave()"
+                variant="primary"
+                :disabled="!acl.can('vio_customer_price.creator')"
+                v-tooltip="{
+                                message: $tc('sw-privileges.tooltip.warning'),
+                                disabled: acl.can('vio_customer_price.creator'),
+                                showOnDisabledElements: true
+                    }"
+            >
+                {{ $tc('global.default.save') }}
+            </mt-button>
+        </sw-container>
+        <sw-container v-if="isLoading">
+            <mt-progress-bar
+                :value="actualProgress"
+                :maxValue="maxProgress"
+            />
+            <sw-label>
+            {{ actualProgress }} / {{ maxProgress }}
+        </sw-label>
+        </sw-container>
+    </sw-modal>
+{% endblock %}

@@ -37,10 +37,9 @@
                     </sw-text-field>
 
                     <sw-datepicker
-                        v-model:value="job.jobDate"
-                        date-type="date"
+                        dateType="date"
                         :label="$tc('tocafix-job.detail.jobDateLabel')"
-                        required
+                        v-model:value="job.jobDate"
                         :error="jobJobDateError">
                     </sw-datepicker>
 

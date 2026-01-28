@@ -196,10 +196,8 @@ class ImportProductsService
         // set currencies
         $this->currencyCHFId = $this->getCurrencyId("CHF");
         $this->currencyEURId = $this->getCurrencyId("EUR");
-
         // read products from import csv file
         $importProducts = $this->loadProducts();
-
         //Read and insert parent and simple products
         $mainProducts = array_filter($importProducts, function ($product) {
             return !$this->isChildProduct($product['agrzusid']);
@@ -260,10 +258,9 @@ class ImportProductsService
         }
         try {
             $this->cleanProductProperties($products, $this->context);
-            $this->productRepository->upsert(array_values($products), $this->context);
         } catch (WriteException $exception) {
             $this->logger->info(' ');
-            $this->logger->info('<error>Products could not be imported. Message: '. $exception->getMessage() .'</error>');
+            $this->logger->info('<error>Products could not be imported. Message: ' . $exception->getMessage() . '</error>');
         }
         unset($products);
 
@@ -282,7 +279,7 @@ class ImportProductsService
         }
 
         $productNumber = (string)$product['artnr'];
-       
+
         $productId = Uuid::randomHex();
 
         $existingProduct = $this->importHelper->getProductByProductNumber($productNumber, $this->context);
@@ -298,7 +295,6 @@ class ImportProductsService
         }
 
         $productSalesChannels = $this->getProductSalesChannels($productId);
-
         $productPropertiesKeys = $this->filterProperties($product, [
             'dim1',
             'dim2',
@@ -327,12 +323,12 @@ class ImportProductsService
             ]);
             $productProperties = $this->setProductProperties($productProperties);
         }
-        
-        $imagePath = $this->shopwareProjectFilesImportDir."product_images";
+
+        $imagePath = $this->shopwareProjectFilesImportDir . "product_images";
         $coverId = $this->getCoverId($coverImageExist, $imagePath, $product);
         $mediaIds = $this->getMediaIds($existingMedia, $imagePath, $product);
         unset($existingMedia, $coverImageExist, $imagePath, $existingProduct);
-        
+
         $productNames = [];
         $productDescriptions = [];
         if (!$this->isChildProduct($product['agrzusid'])) {
@@ -344,9 +340,9 @@ class ImportProductsService
             $productNames['fr-CH'] = $product['prdname_fr'];
             $productNames['en-GB'] = $product['prdname_de'];
         } else {
-            $productNames['de-DE'] = $product['prdname_de']." ".$product['typ_de'];
-            $productNames['fr-CH'] = $product['prdname_fr']." ".$product['typ_fr'];
-            $productNames['en-GB'] = $product['prdname_de']." ".$product['typ_de'];
+            $productNames['de-DE'] = $product['prdname_de'] . " " . $product['typ_de'];
+            $productNames['fr-CH'] = $product['prdname_fr'] . " " . $product['typ_fr'];
+            $productNames['en-GB'] = $product['prdname_de'] . " " . $product['typ_de'];
         }
 
         $priceChfNet = !empty($product['preis']) ? $product['preis'] : 0;
@@ -411,7 +407,6 @@ class ImportProductsService
         if ($productProperties) {
             $productData['properties'] = $productProperties;
         }
-
         return $productData;
     }
 
@@ -627,7 +622,7 @@ class ImportProductsService
                                 'de-DE' => $propertyValue['de'],
                                 'en-GB' => $propertyValue['de'],
                                 'fr-CH' => $propertyValue['fr']
-                            ]: (string) $propertyValue,
+                            ] : (string) $propertyValue,
                         ]
                     ]
                 ];
@@ -696,6 +691,7 @@ class ImportProductsService
     public function readCSV(string $filePath): array
     {
         $orderArray = [];
+        $filePath = trim($filePath);
 
         if (($handle = fopen($filePath, "r")) !== false) {
             $keys = fgetcsv($handle, 2000, ',');
@@ -753,9 +749,9 @@ class ImportProductsService
 
         if (!$this->isChildProduct($product['agrzusid'])) {
             $coverImageName = $product['image1'];
-            
+
             if ($coverImageName) {
-                if (file_exists($imagePath."/".$coverImageName)) {
+                if (file_exists($imagePath . "/" . $coverImageName)) {
                     $imageId = $this->imageImportService->addImageToMediaFromFile($coverImageName, $imagePath, $this->context);
 
                     if ($coverImageExist != $imageId) {
@@ -776,12 +772,12 @@ class ImportProductsService
 
         if (!$this->isChildProduct($product['agrzusid'])) {
             for ($i = 2; $i <= 8; $i++) {
-                if (isset ($product["image".$i])) {
-                    $imageName = $product["image".$i];
-                    if ($imageName && file_exists($imagePath."/".$imageName)) {
+                if (isset($product["image" . $i])) {
+                    $imageName = $product["image" . $i];
+                    if ($imageName && file_exists($imagePath . "/" . $imageName)) {
                         $mediaId = $this->imageImportService->addImageToMediaFromFile($imageName, $imagePath, $this->context);
                         if ($mediaId) {
-                            $mediaIds[]= $mediaId;
+                            $mediaIds[] = $mediaId;
                         }
                     }
                 }
@@ -797,7 +793,7 @@ class ImportProductsService
         unset($existingMedia, $product, $imagePath);
 
         return array_map(function ($mediaId) {
-            return  ["mediaId" => $mediaId ];
+            return  ["mediaId" => $mediaId];
         }, $mediaIds);
     }
 }

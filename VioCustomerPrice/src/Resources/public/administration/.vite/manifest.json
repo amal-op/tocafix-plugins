@@ -1,0 +1,11 @@
+{
+  "main.js": {
+    "file": "assets/vio-customer-price-CCptkA7c.js",
+    "name": "vio-customer-price",
+    "src": "main.js",
+    "isEntry": true,
+    "css": [
+      "assets/vio-customer-price-DOQ6wnn6.css"
+    ]
+  }
+}

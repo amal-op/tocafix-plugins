@@ -81,7 +81,7 @@ class ImportCustomersService
      * @var Connection
      */
     private $connection;
-    
+
 
     public function __construct(
         EntityRepository $customerRepository,
@@ -97,7 +97,7 @@ class ImportCustomersService
         Connection $connection
     ) {
         $this->customerRepository = $customerRepository;
-        $this->countryRepository = $countryRepository; 
+        $this->countryRepository = $countryRepository;
         $this->customerGroupRepository = $customerGroupRepository;
         $this->salutationRepository = $salutationRepository;
         $this->salesChannelRepository = $salesChannelRepository;
@@ -127,10 +127,10 @@ class ImportCustomersService
 
         $customersBatch = array_chunk($importCustomers, self::BATCH);
 
-        foreach($customersBatch as $key => $customersData) {
+        foreach ($customersBatch as $key => $customersData) {
             $this->saveCustomers($customersData, $progressBar, $output);
 
-            sleep (1);
+            sleep(1);
         }
         $output->writeln('Completed Saving Customers!');
 
@@ -151,10 +151,10 @@ class ImportCustomersService
 
         $customersBatch = array_chunk($importCustomers, self::BATCH);
 
-        foreach($customersBatch as $key => $customersData) {
+        foreach ($customersBatch as $key => $customersData) {
             $this->saveCustomers($customersData, false);
 
-            sleep (1);
+            sleep(1);
         }
 
         // Exit code 0 for success
@@ -174,7 +174,7 @@ class ImportCustomersService
         $customers = [];
 
         foreach ($customersData as $data) {
-            if($progressBar) {
+            if ($progressBar) {
                 $progressBar->advance();
             }
             $customerNumber = $this->numberRangeValueGenerator->getValue(
@@ -220,7 +220,7 @@ class ImportCustomersService
             try {
                 $this->customerRepository->create([$customer], $context);
             } catch (Exception $e) {
-                $this->logger->info('<error>Customer with email: '.$data['E-Mail'].' could not be imported. Message: '. $e->getMessage() .'</error>');
+                $this->logger->info('<error>Customer with email: ' . $data['E-Mail'] . ' could not be imported. Message: ' . $e->getMessage() . '</error>');
             }
         }
     }
@@ -243,6 +243,8 @@ class ImportCustomersService
     public function readCSV(string $filePath): array
     {
         $orderArray = [];
+        $filePath = trim($filePath);
+        clearstatcache(true, $filePath);
 
         if (($handle = fopen($filePath, "r")) !== false) {
             $keys = fgetcsv($handle, 2000, ',');
@@ -291,9 +293,12 @@ class ImportCustomersService
     public function fetchSalutationId(?SalutationCollection $salutations, string $id)
     {
         switch ($id) {
-            case 'Male': return $salutations->filterByProperty('salutationKey', 'mr')->first()->id;
-            case 'Female': return $salutations->filterByProperty('salutationKey', 'mrs')->first()->id;
-            default: return $salutations->filterByProperty('salutationKey', 'undefined')->first()->id;
+            case 'Male':
+                return $salutations->filterByProperty('salutationKey', 'mr')->first()->id;
+            case 'Female':
+                return $salutations->filterByProperty('salutationKey', 'mrs')->first()->id;
+            default:
+                return $salutations->filterByProperty('salutationKey', 'undefined')->first()->id;
         }
     }
 
@@ -303,7 +308,7 @@ class ImportCustomersService
      * @return mixed
      */
     public function fetchCountryId(?CountryCollection $countries, string $name)
-    {   
+    {
         $country = $countries->filterByProperty('name', $name)->first();
         return $country->id ?? '';
     }
@@ -325,9 +330,9 @@ class ImportCustomersService
     {
         $tags = [];
         for ($i = 1; $i <= 4; $i++) {
-            if (isset ($data["Tag".$i])) {
-                if ($data["Tag".$i]) {
-                    $tags[] = $this->getTag($criteria, $context, $data["Tag".$i]);
+            if (isset($data["Tag" . $i])) {
+                if ($data["Tag" . $i]) {
+                    $tags[] = $this->getTag($criteria, $context, $data["Tag" . $i]);
                 }
             }
         }
@@ -353,5 +358,4 @@ class ImportCustomersService
 
         return ['id' => $tagId, 'name' => $name];
     }
-
 }

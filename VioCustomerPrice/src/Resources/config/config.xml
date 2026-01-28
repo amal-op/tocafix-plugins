@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="https://raw.githubusercontent.com/shopware/platform/master/src/Core/System/SystemConfig/Schema/config.xsd">
+
+    <card>
+        <title>Configuration</title>
+        <title lang="de-DE">Konfiguration</title>
+        <input-field type="bool">
+            <name>originalAsListPrice</name>
+            <label>show original price as list price</label>
+            <label lang="de-DE">Verwende den Originalpreis als Streichpreis</label>
+            <defaultValue>false</defaultValue>
+        </input-field>
+        <input-field type="bool">
+            <name>applyDiscountOnCustomerPriceItSelf</name>
+            <label>apply discount on customer price itself</label>
+            <label lang="de-DE">Rabatt auf den Kundenpreis selbst anwenden</label>
+            <defaultValue>false</defaultValue>
+        </input-field>
+        <input-field type="bool">
+            <name>ifDiscountIsSetUseCustomerPriceAsListPrice</name>
+            <label>If discount is set, use customer price as list price.</label>
+            <label lang="de-DE">Wenn Rabatt eingestellt ist, wird der Kundenpreis als Streichpreis verwendet.</label>
+            <defaultValue>false</defaultValue>
+        </input-field>
+        <input-field type="bool">
+            <name>ignoreCalculatedPrices</name>
+            <label>Ignore the calculated prices and use product default price as calculation base</label>
+            <label lang="de-DE">Ignorieren der berechneten Preise und verwenden des Standardpreises des Produkts als Berechnungsgrundlage.</label>
+            <defaultValue>false</defaultValue>
+        </input-field>
+        <input-field type="bool">
+            <name>currencyConversion</name>
+            <label>Currency conversion</label>
+            <label lang="de-DE">Währungsumrechnung</label>
+            <helpText>Converts the customer-specific prices from the shop's standard currency into the currency currently selected by the customer, based on the stored factor.</helpText>
+            <helpText lang="de-DE">Rechnet die kundenspezifischen Preise von der Standardwährung des Shops in die aktuell vom Kunden gewählte Währung um, auf Basis des hinterlegten Faktors.</helpText>
+            <defaultValue>false</defaultValue>
+        </input-field>
+        <input-field type="bool">
+            <name>deactivateSpecialCaseForOnlyOnePriceWithDiscount</name>
+            <label>deactivate "If only one customer price is set with a deduction discount, extended prices are held and discounted."</label>
+            <label lang="de-DE">Deaktiviere "Wenn nur ein Kundenpreis mit Abzugsrabatt festgelegt ist, werden erweiterte Preise beibehalten und mit einem Rabatt versehen."</label>
+            <helpText>Converts the customer-specific prices from the shop's standard currency into the currency currently selected by the customer, based on the stored factor.</helpText>
+            <helpText lang="de-DE">Rechnet die kundenspezifischen Preise von der Standardwährung des Shops in die aktuell vom Kunden gewählte Währung um, auf Basis des hinterlegten Faktors.</helpText>
+            <defaultValue>false</defaultValue>
+        </input-field>
+        <input-field type="bool">
+            <name>customerPricesAreNet</name>
+            <label>Activate gross price calculation</label>
+            <label lang="de-DE">Bruttopreisberechnung aktivieren</label>
+            <helpText>The corresponding gross prices will be calculated automatically.</helpText>
+            <helpText lang="de-DE">Die entsprechenden Bruttopreise werden automatisch berechnet.</helpText>
+            <defaultValue>false</defaultValue>
+        </input-field>
+
+    </card>
+</config>

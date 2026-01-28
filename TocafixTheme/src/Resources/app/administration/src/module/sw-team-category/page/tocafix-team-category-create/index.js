@@ -10,20 +10,23 @@ Component.extend(
         const currentLanguageId = Shopware.Context.api.languageId;
 
         if (currentLanguageId !== systemLanguageId) {
-          Shopware.State.commit("context/setApiLanguageId", systemLanguageId);
+          Shopware.Context.api.languageId = systemLanguageId;
+          this.$nextTick(() => {
+            this.$forceUpdate();
+          });
         }
 
         this.$super("createdComponent");
       },
       getTeamCategory() {
-        this.teamCategory = this.teamCategoryRepository.create();
+        this.teamCategory = this.teamCategoryRepository.create(Shopware.Context.api);
       },
 
       onClickSave() {
         this.isLoading = true;
 
         this.teamCategoryRepository
-          .save(this.teamCategory, Shopware.Context.api)
+          .save(this.teamCategory)
           .then(() => {
             this.isLoading = false;
             this.$router.push({

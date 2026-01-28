@@ -96,66 +96,91 @@ class CustomerMailService
 
         $output->writeln('<info>Starting to Send password recovery mail from interface...</info>');
 
-        $criteria = new Criteria();
-        $criteria->setLimit(500);
-        $criteria->addAssociation('salutation');
-        $criteria->addAssociation('salesChannel');
-        $criteria->addFilter(new EqualsFilter('active', 1));
-        $criteria->addSorting(new FieldSorting('id'));  
+        try {
+            $criteria = new Criteria();
+            $criteria->setLimit(500);
+            $criteria->addAssociation('salutation');
+            $criteria->addAssociation('salesChannel');
+            $criteria->addFilter(new EqualsFilter('active', 1));
+            $criteria->addSorting(new FieldSorting('id'));
 
-        $iterator = new RepositoryIterator($this->customerRepository, $this->context, $criteria);
+            $iterator = new RepositoryIterator($this->customerRepository, $this->context, $criteria);
 
-        $progressBar = new ProgressBar($output, $iterator->getTotal());
-        $progressBar->start();
+            $progressBar = new ProgressBar($output, $iterator->getTotal());
+            $progressBar->start();
 
-        while (($result = $iterator->fetch()) !== null) {
-            /** @var CustomerCollection */
-            $customers = $result->getEntities();
+            $errorCount = 0;
+            $successCount = 0;
 
-            foreach ($customers as $customer) {
-                $progressBar->advance();
-                $customerId = $customer->getId();
+            while (($result = $iterator->fetch()) !== null) {
+                /** @var CustomerCollection */
+                $customers = $result->getEntities();
 
-                $customerIdCriteria = new Criteria();
-                $customerIdCriteria->addFilter(new EqualsFilter('customerId', $customerId));
-                $customerIdCriteria->addAssociation('customer.salutation');
+                foreach ($customers as $customer) {
+                    $progressBar->advance();
 
-                $existingRecovery = $this->customerRecoveryRepository->search($customerIdCriteria, $this->context)->first();
-                if ($existingRecovery instanceof CustomerRecoveryEntity) {
-                    $this->deleteRecoveryForCustomer($existingRecovery, $this->context);
+                    try {
+                        $customerId = $customer->getId();
+
+                        $customerIdCriteria = new Criteria();
+                        $customerIdCriteria->addFilter(new EqualsFilter('customerId', $customerId));
+                        $customerIdCriteria->addAssociation('customer.salutation');
+
+                        $existingRecovery = $this->customerRecoveryRepository->search($customerIdCriteria, $this->context)->first();
+                        if ($existingRecovery instanceof CustomerRecoveryEntity) {
+                            $this->deleteRecoveryForCustomer($existingRecovery, $this->context);
+                        }
+
+                        $recoveryData = [
+                            'customerId' => $customerId,
+                            'hash' => Random::getAlphanumericString(32),
+                        ];
+
+                        $this->customerRecoveryRepository->create([$recoveryData], $this->context);
+
+                        $customerRecovery = $this->customerRecoveryRepository->search($customerIdCriteria, $this->context)->first();
+                        \assert($customerRecovery instanceof CustomerRecoveryEntity);
+
+                        $hash = $customerRecovery->getHash();
+                        $contextId = Uuid::randomHex();
+                        $salesChannelContext = $this->salesChannelContextFactory->create(
+                            $contextId,
+                            $customer->getSalesChannelId(),
+                        );
+
+                        $recoverUrl = $this->getRecoverUrl($salesChannelContext, $hash, "https://tocafix.ch", $customerRecovery);
+                        $event = new CustomerAccountRecoverRequestEvent($salesChannelContext, $customerRecovery, $recoverUrl);
+                        $this->eventDispatcher->dispatch($event, CustomerAccountRecoverRequestEvent::EVENT_NAME);
+
+                        $successCount++;
+                    } catch (\Exception $e) {
+                        $errorCount++;
+                        $output->writeln('');
+                        $output->writeln(sprintf(
+                            '<error>Error processing customer %s: %s</error>',
+                            $customer->getId() ?? 'unknown',
+                            $e->getMessage()
+                        ));
+                        // Continue processing other customers
+                        continue;
+                    }
                 }
-        
-                $recoveryData = [
-                    'customerId' => $customerId,
-                    'hash' => Random::getAlphanumericString(32),
-                ];
-        
-                $this->customerRecoveryRepository->create([$recoveryData], $this->context);
-        
-                $customerRecovery = $this->customerRecoveryRepository->search($customerIdCriteria, $this->context)->first();
-                \assert($customerRecovery instanceof CustomerRecoveryEntity);
-        
-                $hash = $customerRecovery->getHash();
-                $contextId = Uuid::randomHex();
-                $salesChannelContext = $this->salesChannelContextFactory->create(
-                    $contextId,
-                    $customer->getSalesChannelId(),
-                );
-        
-                $recoverUrl = $this->getRecoverUrl($salesChannelContext, $hash, "https://tocafix.ch", $customerRecovery);
-        
-                $event = new CustomerAccountRecoverRequestEvent($salesChannelContext, $customerRecovery, $recoverUrl);
-                $this->eventDispatcher->dispatch($event, CustomerAccountRecoverRequestEvent::EVENT_NAME);
             }
+
+            $progressBar->finish();
+
+            $output->writeln(' ');
+            $output->writeln(sprintf('<info>Send password recovery mail completed - Success: %d, Errors: %d</info>', $successCount, $errorCount));
+
+            return $errorCount > 0 ? 1 : 0;
+        } catch (\Exception $e) {
+            $output->writeln(' ');
+            $output->writeln(sprintf('<error>Fatal error: %s</error>', $e->getMessage()));
+            $output->writeln(sprintf('<error>Stack trace: %s</error>', $e->getTraceAsString()));
+
+            return 1;
         }
-        $progressBar->finish();
-
-        $output->writeln(' ');
-        $output->writeln('<info>Send password recovery mail successful</info>');
-
-        return 0;
     }
-
     private function deleteRecoveryForCustomer(CustomerRecoveryEntity $existingRecovery, Context $context): void
     {
         $recoveryData = [

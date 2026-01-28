@@ -14,7 +14,7 @@ class Migration1706160561TocafixTeam extends MigrationStep
 
     public function update(Connection $connection): void
     {
-        $connection->executeUpdate('
+        $connection->executeStatement('
 CREATE TABLE IF NOT EXISTS `tocafix_team` (
     `id`                            BINARY(16)                              NOT NULL,
     `email`                         VARCHAR(255) COLLATE utf8mb4_unicode_ci NOT NULL,

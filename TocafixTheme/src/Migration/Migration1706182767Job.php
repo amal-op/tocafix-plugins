@@ -14,7 +14,7 @@ class Migration1706182767Job extends MigrationStep
 
     public function update(Connection $connection): void
     {
-        $connection->executeUpdate('
+        $connection->executeStatement('
 CREATE TABLE IF NOT EXISTS `tocafix_job` (
     `id`                            BINARY(16)                              NOT NULL,
     `job_date`                      DATE                                    NOT NULL,

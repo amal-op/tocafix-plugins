@@ -1,0 +1,115 @@
+{% block vio_customer_price_card %}
+    <mt-card
+        class="vio-customer-price-card"
+        :large="true"
+    >
+        {% block vio_customer_price_card_title %}
+        <template #title>
+            <div class="sw-card__title">
+                {% block vio_customer_price_card_title_text %}
+                {{ $tc('vio-customer-price.general.mainMenuItemGeneral') }}
+                {% endblock %}
+                    {% block vio_customer_price_card_title_amount %}
+                <span v-if="!isLoading">
+                        ({{ total }})
+                    </span>
+                {% endblock %}
+            </div>
+        </template>
+        {% endblock %}
+        {% block vio_customer_price_card_smart_bar_actions %}
+        <template #toolbar>
+            <sw-button-group>
+                <mt-button
+                    variant="primary"
+                    @click="this.$router.push({ name: 'vio.customer.price.create' })"
+                    :disabled="!acl.can('vio_customer_price.creator')"
+                    v-tooltip="{
+                                message: $tc('sw-privileges.tooltip.warning'),
+                                disabled: acl.can('vio_customer_price.creator'),
+                                showOnDisabledElements: true
+                            }"
+                >
+                    {{ $tc('global.default.add') }}
+                </mt-button>
+                <mt-button
+                    @click="openModal('collectiveEntry')"
+                    :disabled="!acl.can('vio_customer_price.creator')"
+                    v-tooltip="{
+                                message: $tc('sw-privileges.tooltip.warning'),
+                                disabled: acl.can('vio_customer_price.creator'),
+                                showOnDisabledElements: true
+                    }"
+                >
+                    {{ $tc('vio-customer-price.list.collectiveEntry') }}
+                </mt-button>
+                <mt-button
+                    @click="openModal('importUpload')"
+                    :disabled="!acl.can('vio_customer_price.creator')"
+                    v-tooltip="{
+                                    message: $tc('sw-privileges.tooltip.warning'),
+                                    disabled: acl.can('vio_customer_price.creator'),
+                                    showOnDisabledElements: true
+                        }"
+                >
+                    {{ $tc('vio-customer-price.list.importUpload') }}
+                </mt-button>
+            </sw-button-group>
+        </template>
+        {% endblock %}
+    {% block vio_customer_price_card_content %}
+        <sw-entity-listing
+            v-if="customerPrices"
+            :items="customerPrices"
+            :repository="repository"
+            :showSelection="true"
+            :fullPage="false"
+            :columns="columns"
+            :allowView="acl.can('vio_customer_price.viewer')"
+            :allowEdit="acl.can('vio_customer_price.editor')"
+            :allowInlineEdit="acl.can('vio_customer_price.editor')"
+            :allowDelete="acl.can('vio_customer_price.deleter')"
+            detailRoute="vio.customer.price.detail"
+            @selection-change="updateSelection"
+            @update-records="updateTotal"
+        >
+            <template #column-quantityEnd="{ item }">
+                {{ item.quantityEnd }}
+            </template>
+
+            <template
+                #column-product="{ item }"
+                v-if="productId === null"
+            >
+                {{ item.product.name }}
+                (
+                {{ item.product.productNumber }}
+                )
+            </template>
+
+            <template
+                #column-customer="{ item }"
+                v-if="customerId === null"
+            >
+                {{ item.customer.company }}
+                {{ item.customer.firstName }}
+                {{ item.customer.lastName }}
+                (
+                {{ item.customer.customerNumber }}
+                )
+            </template>
+        </sw-entity-listing>
+        <vio-customer-price-collective-entry
+            v-if="activeModal === 'collectiveEntry'"
+            :productId="productId"
+            :customerId="customerId"
+            @modal-close="onCloseModal"
+        >
+        </vio-customer-price-collective-entry>
+        <vio-customer-price-upload-modal
+            v-if="activeModal === 'importUpload'"
+            @modal-close="onCloseModal"
+        ></vio-customer-price-upload-modal>
+        {% endblock %}
+    </mt-card>
+{% endblock %}

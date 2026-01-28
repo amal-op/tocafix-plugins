@@ -1,37 +1,39 @@
-<?xml version="1.0" ?>
+<?xml version="1.0"?>
 
 <container xmlns="http://symfony.com/schema/dic/services"
-           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-           xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://symfony.com/schema/dic/services http://symfony.com/schema/dic/services/services-1.0.xsd">
 
     <services>
         <service id="TocafixTheme\Core\Content\Team\TeamDefinition">
-            <tag name="shopware.entity.definition" entity="tocafix_team"/>
+            <tag name="shopware.entity.definition" entity="tocafix_team" />
         </service>
         <service id="TocafixTheme\Core\Content\Aggregate\TeamTranslation\TeamTranslationDefinition">
-            <tag name="shopware.entity.definition" entity="tocafix_team_translation"/>
+            <tag name="shopware.entity.definition" entity="tocafix_team_translation" />
         </service>
         <service id="TocafixTheme\Core\Content\TeamCategory\TeamCategoryDefinition">
-            <tag name="shopware.entity.definition" entity="tocafix_team_category"/>
+            <tag name="shopware.entity.definition" entity="tocafix_team_category" />
         </service>
-        <service id="TocafixTheme\Core\Content\Aggregate\TeamCategoryTranslation\TeamCategoryTranslationDefinition">
-            <tag name="shopware.entity.definition" entity="tocafix_team_category_translation"/>
+        <service
+            id="TocafixTheme\Core\Content\Aggregate\TeamCategoryTranslation\TeamCategoryTranslationDefinition">
+            <tag name="shopware.entity.definition" entity="tocafix_team_category_translation" />
         </service>
-        <service id="TocafixTheme\Core\Content\Aggregate\TeamCategoryRelation\TeamCategoryRelationDefinition">
-            <tag name="shopware.entity.definition" entity="tocafix_team_category_relation"/>
+        <service
+            id="TocafixTheme\Core\Content\Aggregate\TeamCategoryRelation\TeamCategoryRelationDefinition">
+            <tag name="shopware.entity.definition" entity="tocafix_team_category_relation" />
         </service>
         <service id="TocafixTheme\DataResolver\TeamsElementResolver">
-            <argument type="service" id="tocafix_team.repository"/>
+            <argument type="service" id="tocafix_team.repository" />
             <tag name="shopware.cms.data_resolver" />
         </service>
         <service id="TocafixTheme\Core\Content\Job\JobDefinition">
-            <tag name="shopware.entity.definition" entity="tocafix_job"/>
+            <tag name="shopware.entity.definition" entity="tocafix_job" />
         </service>
         <service id="TocafixTheme\Core\Content\Aggregate\JobTranslation\JobTranslationDefinition">
-            <tag name="shopware.entity.definition" entity="tocafix_job_translation"/>
+            <tag name="shopware.entity.definition" entity="tocafix_job_translation" />
         </service>
         <service id="TocafixTheme\DataResolver\JobTeaserElementResolver">
-            <argument type="service" id="tocafix_job.repository"/>
+            <argument type="service" id="tocafix_job.repository" />
             <tag name="shopware.cms.data_resolver" />
         </service>
         <service id="TocafixTheme\Checkout\Cart\OverwritePriceProcessor">
@@ -39,42 +41,46 @@
             <tag name="shopware.cart.processor" priority="4500" />
         </service>
         <service id="TocafixTheme\Subscriber\OrderPlacedSubscriber">
-            <tag name="kernel.event_subscriber"/>
+            <tag name="kernel.event_subscriber" />
         </service>
         <service id="TocafixTheme\Storefront\Controller\JobController" public="true">
-            <argument type="service" id="TocafixTheme\Storefront\Page\Job\JobPageLoader"/>
+            <argument type="service" id="TocafixTheme\Storefront\Page\Job\JobPageLoader" />
             <call method="setContainer">
-                <argument type="service" id="service_container"/>
+                <argument type="service" id="service_container" />
             </call>
         </service>
         <service id="TocafixTheme\Storefront\Page\Job\JobPageLoader">
-            <argument type="service" id="Shopware\Storefront\Page\GenericPageLoader"/>
-            <argument type="service" id="event_dispatcher"/>
-            <argument type="service" id="tocafix_job.repository"/>
+            <argument type="service" id="Shopware\Storefront\Page\GenericPageLoader" />
+            <argument type="service" id="event_dispatcher" />
+            <argument type="service" id="tocafix_job.repository" />
         </service>
         <service id="TocafixTheme\Storefront\Controller\JobApplicationSendController" public="true">
-            <argument type="service" id="TocafixTheme\Storefront\Route\JobApplicationFormRoute"/>
+            <argument type="service" id="TocafixTheme\Storefront\Route\JobApplicationFormRoute" />
             <call method="setContainer">
-                <argument type="service" id="service_container"/>
-            </call> 
+                <argument type="service" id="service_container" />
+            </call>
         </service>
         <service id="TocafixTheme\Storefront\Route\JobApplicationFormRoute" public="true">
-            <argument type="service" id="TocafixTheme\Core\Content\Validation\ApplicationFormValidationFactory"/>
-            <argument type="service" id="Shopware\Core\Framework\Validation\DataValidator"/>
-            <argument type="service" id="event_dispatcher"/>
-            <argument type="service" id="Shopware\Core\System\SystemConfig\SystemConfigService"/>
+            <argument type="service"
+                id="TocafixTheme\Core\Content\Validation\ApplicationFormValidationFactory" />
+            <argument type="service" id="Shopware\Core\Framework\Validation\DataValidator" />
+            <argument type="service" id="event_dispatcher" />
+            <argument type="service" id="Shopware\Core\System\SystemConfig\SystemConfigService" />
             <argument type="service" id="cms_slot.repository" />
             <argument type="service" id="category.repository" />
             <argument type="service" id="landing_page.repository" />
             <argument type="service" id="product.repository" />
             <argument type="service" id="Symfony\Component\HttpFoundation\RequestStack" />
             <argument type="service" id="shopware.rate_limiter" />
-            <argument type="service" id="mail_template_type.repository"/>
-            <argument type="service" id="Shopware\Core\Content\Mail\Service\MailService"/>
+            <argument type="service" id="mail_template_type.repository" />
+            <argument type="service" id="mail_template.repository" />
+            <argument type="service" id="Shopware\Core\Content\Mail\Service\MailService" />
+            <argument type="service" id="sales_channel.repository" />
+
         </service>
         <service id="TocafixTheme\Core\Content\Validation\ApplicationFormValidationFactory">
-            <argument type="service" id="event_dispatcher"/>
-            <argument type="service" id="Shopware\Core\System\SystemConfig\SystemConfigService"/>
+            <argument type="service" id="event_dispatcher" />
+            <argument type="service" id="Shopware\Core\System\SystemConfig\SystemConfigService" />
         </service>
     </services>
 </container>

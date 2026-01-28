@@ -1,27 +1,27 @@
 <div class="container" data-cms-element-id="{{ job.id }}">
-    <div class="cms-element-form">
-        <h2 class="bewerben-title">{{ 'job.detail.applicationForm.title'|trans|sw_sanitize }}</h2>
-        <div class="row">
-            <div class="col-12">
-                <form id="tocafix-job-application-form" action="{{ path('frontend.tocafix-job-form.send') }}" method="post" class="bewerben__form" enctype="multipart/form-data" data-form-csrf-handler="true" data-form-validation="true" data-form-ajax-submit="true">
-                    <div class="form-content">
-                        {% block tocafix_application_form_element_form_address_inputs_gender %}
-                            <div class="abonnieren__form-row">
-                                <div class="bewerben__form-checkbox">
-                                    <input type="radio" name="gender" value='{{ "job.detail.applicationForm.salutationMale"|trans }}'  checked="checked" id="herr" />
-                                    <label for="herr">{{ 'job.detail.applicationForm.salutationMale'|trans }}</label>
-                                </div>
+	<div class="cms-element-form">
+		<h2 class="bewerben-title">{{ 'job.detail.applicationForm.title'|trans|sw_sanitize }}</h2>
+		<div class="row">
+			<div class="col-12">
+				<form id="tocafix-job-application-forms" action="{{ path('frontend.tocafix-job-form.send') }}" method="post" class="bewerben__form" enctype="multipart/form-data" data-form-csrf-handler="true" data-form-validation="true">
+					<div class="form-content">
+						{% block tocafix_application_form_element_form_address_inputs_gender %}
+							<div class="abonnieren__form-row">
+								<div class="bewerben__form-checkbox">
+									<input type="radio" name="gender" value='{{ "job.detail.applicationForm.salutationMale"|trans }}' checked="checked" id="herr"/>
+									<label for="herr">{{ 'job.detail.applicationForm.salutationMale'|trans }}</label>
+								</div>
 
-                                <div class="bewerben__form-checkbox">
-                                    <input type="radio" name="gender" value='{{ "job.detail.applicationForm.salutationFemale"|trans }}' id="frau" />
-                                    <label for="frau">{{ 'job.detail.applicationForm.salutationFemale'|trans }}</label>
-                                </div>
-                            </div>
-                        {% endblock %}
+								<div class="bewerben__form-checkbox">
+									<input type="radio" name="gender" value='{{ "job.detail.applicationForm.salutationFemale"|trans }}' id="frau"/>
+									<label for="frau">{{ 'job.detail.applicationForm.salutationFemale'|trans }}</label>
+								</div>
+							</div>
+						{% endblock %}
 
-                        {% block tocafix_application_form_element_form_address_inputs_name %}
-                            <div class="abonnieren__form-row">
-                                {% sw_include '@Storefront/storefront/element/cms-element-form/form-components/cms-element-form-input.html.twig'
+						{% block tocafix_application_form_element_form_address_inputs_name %}
+							<div class="abonnieren__form-row">
+								{% sw_include '@Storefront/storefront/element/cms-element-form/form-components/cms-element-form-input.html.twig'
                                     with {
                                         fieldName: 'firstName',
                                         required: true,
@@ -31,7 +31,7 @@
                                     }
                                 %}
 
-                                {% sw_include '@Storefront/storefront/element/cms-element-form/form-components/cms-element-form-input.html.twig'
+								{% sw_include '@Storefront/storefront/element/cms-element-form/form-components/cms-element-form-input.html.twig'
                                     with {
                                         fieldName: 'lastName',
                                         required: true,
@@ -40,12 +40,12 @@
                                         placeholder: 'account.personalLastNamePlaceholder'
                                     }
                                 %}
-                            </div>
-                        {% endblock %}
+							</div>
+						{% endblock %}
 
-                        {% block tocafix_application_form_element_form_address_inputs_address_line_1 %}
-                            <div class="abonnieren__form-row">
-                                {% sw_include '@Storefront/storefront/element/cms-element-form/form-components/cms-element-form-input.html.twig'
+						{% block tocafix_application_form_element_form_address_inputs_address_line_1 %}
+							<div class="abonnieren__form-row">
+								{% sw_include '@Storefront/storefront/element/cms-element-form/form-components/cms-element-form-input.html.twig'
                                 with {
                                     fieldName: 'street',
                                     type: 'text',
@@ -56,7 +56,7 @@
                                 }
                                 %}
 
-                                {% sw_include '@Storefront/storefront/element/cms-element-form/form-components/cms-element-form-input.html.twig'
+								{% sw_include '@Storefront/storefront/element/cms-element-form/form-components/cms-element-form-input.html.twig'
                                 with {
                                     fieldName: 'plz_ort',
                                     type: 'text',
@@ -66,13 +66,13 @@
                                     placeholder: 'job.detail.applicationForm.postCodePlaceHolder'
                                 }
                                 %}
-                            </div>
-                        {% endblock %}
+							</div>
+						{% endblock %}
 
-                        {% block tocafix_application_form_element_form_address_inputs_contact %}
-                            <div class="abonnieren__form-row">
-                                {% set phoneNumberFieldRequired = config('core.basicInformation.phoneNumberFieldRequired') == true %}
-                                {% sw_include '@Storefront/storefront/element/cms-element-form/form-components/cms-element-form-input.html.twig'
+						{% block tocafix_application_form_element_form_address_inputs_contact %}
+							<div class="abonnieren__form-row">
+								{% set phoneNumberFieldRequired = config('core.basicInformation.phoneNumberFieldRequired') == true %}
+								{% sw_include '@Storefront/storefront/element/cms-element-form/form-components/cms-element-form-input.html.twig'
                                     with {
                                     fieldName: 'phone',
                                     required: phoneNumberFieldRequired,
@@ -82,7 +82,7 @@
                                 }
                                 %}
 
-                                {% sw_include '@Storefront/storefront/element/cms-element-form/form-components/cms-element-form-input.html.twig'
+								{% sw_include '@Storefront/storefront/element/cms-element-form/form-components/cms-element-form-input.html.twig'
                                     with {
                                     fieldName: 'email',
                                     type: 'email',
@@ -92,12 +92,12 @@
                                     placeholder: 'job.detail.applicationForm.emailPlaceHolder'
                                 }
                                 %}
-                            </div>
-                        {% endblock %}
+							</div>
+						{% endblock %}
 
-                        <div class="pt-5 mb-0 bewerben__form-row bewerben__form-textarea">
-                            {% block tocafix_application_form_element_form_address_inputs_email_comment %}
-                                {% sw_include '@Storefront/storefront/element/cms-element-form/form-components/cms-element-form-textarea.html.twig'
+						<div class="pt-5 mb-0 bewerben__form-row bewerben__form-textarea">
+							{% block tocafix_application_form_element_form_address_inputs_email_comment %}
+								{% sw_include '@Storefront/storefront/element/cms-element-form/form-components/cms-element-form-textarea.html.twig'
                                     with {
                                     rows: 5,
                                     required: false,
@@ -107,87 +107,88 @@
                                     placeholder: 'job.detail.applicationForm.messagePlaceHolder'
                                 }
                                 %}
-                            {% endblock %}
-                        </div>
+							{% endblock %}
+						</div>
 
-                        {% block tocafix_application_form_element_form_file_inputs %}
-                            <div class="abonnieren__form-row">
-                                <div class="bewerben__form-rowInput">
-                                    <div class="bewerben__form-upload">
-                                        <label for="anschreiben">{{ 'job.detail.applicationForm.coverLetter'|trans }}</label> 
-                                        <input id="anschreiben" placeholder="{{ 'job.detail.applicationForm.files.placeHolder'|trans }}" /> 
-                                        <input name="cover_letter" accept=".pdf,.doc,.docx" class="bewerben__form-fileInput" type="file" id="anschreiben_file" />
-                                        <span class="bewerben__form-icon">{% sw_icon 'arrow-up' style { 'size': 'md', 'color': 'primary' } %}</span>
-                                    </div>
-                                </div>
+						{% block tocafix_application_form_element_form_file_inputs %}
+							<div class="abonnieren__form-row">
+								<div class="bewerben__form-rowInput">
+									<div class="bewerben__form-upload">
+										<label for="anschreiben">{{ 'job.detail.applicationForm.coverLetter'|trans }}</label>
+										<input id="anschreiben" placeholder="{{ 'job.detail.applicationForm.files.placeHolder'|trans }}"/>
+										<input name="cover_letter" accept=".pdf,.doc,.docx" class="bewerben__form-fileInput" type="file" id="anschreiben_file"/>
+										<span class="bewerben__form-icon">{% sw_icon 'arrow-up' style { 'size': 'md', 'color': 'primary' } %}</span>
+									</div>
+								</div>
 
-                                <div class="bewerben__form-rowInput">
-                                    <div class="bewerben__form-upload">
-                                        <label for="lebenslauf">{{ 'job.detail.applicationForm.resume'|trans }}</label> 
-                                        <input id="lebenslauf" placeholder="{{ 'job.detail.applicationForm.files.placeHolder'|trans }}" /> 
-                                        <input name="cv" accept=".pdf,.doc,.docx" class="bewerben__form-fileInput" type="file" id="lebenslauf_file"/>
-                                        <span class="bewerben__form-icon">{% sw_icon 'arrow-up' style { 'size': 'md', 'color': 'primary' } %}</span>
-                                    </div>
-                                </div>
-                            </div>
+								<div class="bewerben__form-rowInput">
+									<div class="bewerben__form-upload">
+										<label for="lebenslauf">{{ 'job.detail.applicationForm.resume'|trans }}</label>
+										<input id="lebenslauf" placeholder="{{ 'job.detail.applicationForm.files.placeHolder'|trans }}"/>
+										<input name="cv" accept=".pdf,.doc,.docx" class="bewerben__form-fileInput" type="file" id="lebenslauf_file"/>
+										<span class="bewerben__form-icon">{% sw_icon 'arrow-up' style { 'size': 'md', 'color': 'primary' } %}</span>
+									</div>
+								</div>
+							</div>
 
-                            <div class="abonnieren__form-row">
-                                <div class="bewerben__form-rowInput">
-                                    <div class="bewerben__form-upload">
-                                        <label for="zertifikate">{{ 'job.detail.applicationForm.certificate'|trans }}</label> 
-                                        <input id="zertifikate" placeholder="{{ 'job.detail.applicationForm.files.placeHolder'|trans }}" /> 
-                                        <input name="certificates" accept=".pdf,.doc,.docx" class="bewerben__form-fileInput" type="file" id="zertifikate_file"/>
-                                        <span class="bewerben__form-icon">{% sw_icon 'arrow-up' style { 'size': 'md', 'color': 'primary' } %}</span>
-                                    </div>
-                                </div>
+							<div class="abonnieren__form-row">
+								<div class="bewerben__form-rowInput">
+									<div class="bewerben__form-upload">
+										<label for="zertifikate">{{ 'job.detail.applicationForm.certificate'|trans }}</label>
+										<input id="zertifikate" placeholder="{{ 'job.detail.applicationForm.files.placeHolder'|trans }}"/>
+										<input name="certificates" accept=".pdf,.doc,.docx" class="bewerben__form-fileInput" type="file" id="zertifikate_file"/>
+										<span class="bewerben__form-icon">{% sw_icon 'arrow-up' style { 'size': 'md', 'color': 'primary' } %}</span>
+									</div>
+								</div>
 
-                                <div class="bewerben__form-rowInput">
-                                    <div class="bewerben__form-upload">
-                                        <label for="arbeitszeugnisse">{{ 'job.detail.applicationForm.jobReferences'|trans }}</label> 
-                                        <input id="arbeitszeugnisse" placeholder="{{ 'job.detail.applicationForm.files.placeHolder'|trans }}" /> 
-                                        <input name="reference" accept=".pdf,.doc,.docx" class="bewerben__form-fileInput" type="file" id="arbeitszeugnisse_file"/>
-                                        <span class="bewerben__form-icon">{% sw_icon 'arrow-up' style { 'size': 'md', 'color': 'primary' } %}</span>
-                                    </div>
-                                </div>
-                            </div>
-                        {% endblock %}
+								<div class="bewerben__form-rowInput">
+									<div class="bewerben__form-upload">
+										<label for="arbeitszeugnisse">{{ 'job.detail.applicationForm.jobReferences'|trans }}</label>
+										<input id="arbeitszeugnisse" placeholder="{{ 'job.detail.applicationForm.files.placeHolder'|trans }}"/>
+										<input name="reference" accept=".pdf,.doc,.docx" class="bewerben__form-fileInput" type="file" id="arbeitszeugnisse_file"/>
+										<span class="bewerben__form-icon">{% sw_icon 'arrow-up' style { 'size': 'md', 'color': 'primary' } %}</span>
+									</div>
+								</div>
+							</div>
+						{% endblock %}
 
-                        <div class="bewerben__form-row bewerben__form-rowTerms">
-                            <p>{{ 'job.detail.applicationForm.requiredMessage'|trans }}</p>
-                            <p>{{ 'job.detail.applicationForm.privacyTitle'|trans }} *</p>
-                            <div class="bewerben__form-checkbox">
-                                <input type="checkbox" id="ich" required/>
-                                <label for="ich">
-                                   {{ "general.privacyNotice"|trans({
+						<div class="bewerben__form-row bewerben__form-rowTerms">
+							<p>{{ 'job.detail.applicationForm.requiredMessage'|trans }}</p>
+							<p>{{ 'job.detail.applicationForm.privacyTitle'|trans }}
+								*</p>
+							<div class="bewerben__form-checkbox">
+								<input type="checkbox" id="ich" required/>
+								<label for="ich">
+									{{ "general.privacyNotice"|trans({
                                         '%url%': path('frontend.cms.page', { id: config('core.basicInformation.privacyPage') }),
                                         '%privacyUrl%': path('frontend.cms.page', { id: config('core.basicInformation.privacyPage') }),
                                         '%tosUrl%': path('frontend.cms.page', { id: config('core.basicInformation.tosPage')} )
                                     })|raw }}
-                                </label>
-                            </div>
-                        </div>
-                        
-                        <input type="hidden" name="jobTitle" value="{{ job.name }}"/>
+								</label>
+							</div>
+						</div>
 
-                        {% sw_include '@Storefront/storefront/element/cms-element-form/form-components/cms-element-form-submit.html.twig'
+						<input type="hidden" name="jobTitle" value="{{ job.name }}"/>
+
+						{% sw_include '@Storefront/storefront/element/cms-element-form/form-components/cms-element-form-submit.html.twig'
                             with {
                                 submitText: 'job.detail.applicationForm.submitButton'
                             }
                         %}
 
-                        {% if page.navigationId and page.entityName %}
-                        <input type="hidden" name="navigationId" value="{{ page.navigationId }}"/>
-                        <input type="hidden" name="entityName" value="{{ page.entityName }}"/>
-                        {% else %}
-                            <input type="hidden" name="navigationId" value="{{ page.header.navigation.active.id }}"/>
-                        {% endif %}
+						{% if page.navigationId and page.entityName %}
+							<input type="hidden" name="navigationId" value="{{ page.navigationId }}"/>
+							<input type="hidden" name="entityName" value="{{ page.entityName }}"/>
+						{% else %}
+							<input type="hidden" name="navigationId" value="{{ page.header.navigation.active.id }}"/>
+						{% endif %}
 
-                        <input type="hidden" name="slotId" value="{{ job.id }}"/>
+						<input type="hidden" name="slotId" value="{{ job.id }}"/>
 
-                        <input type="submit" class="submit--hidden d-none" />
-                    </div>
-                </form>
-            </div>
-        </div>
-    </div>
+						<input type="submit" class="submit--hidden d-none"/>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
 </div>

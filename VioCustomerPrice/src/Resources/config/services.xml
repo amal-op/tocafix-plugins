@@ -1,0 +1,81 @@
+<?xml version="1.0" ?>
+
+<container xmlns="http://symfony.com/schema/dic/services"
+           xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:schemaLocation="http://symfony.com/schema/dic/services https://symfony.com/schema/dic/services/services-1.0.xsd">
+
+    <services>
+        <service id="VioCustomerPrice\Core\Content\Product\ProductExtension">
+            <tag name="shopware.entity.extension"/>
+        </service>
+
+        <service id="VioCustomerPrice\Core\Checkout\Customer\CustomerExtension">
+            <tag name="shopware.entity.extension"/>
+        </service>
+
+        <service id="VioCustomerPrice\Entity\CustomerPriceDefinition">
+            <tag name="shopware.entity.definition" entity="vio_customer_price"/>
+        </service>
+
+        <service id="VioCustomerPrice\Subscriber\ProductSubscriber">
+            <argument id="request_stack" type="service"/>
+            <argument id="vio_customer_price.repository" type="service"/>
+            <tag name="kernel.event_subscriber"/>
+        </service>
+
+        <service id="VioCustomerPrice\Subscriber\EntityWrittenContainerSubscriber">
+            <tag name="kernel.event_subscriber"/>
+            <argument type="service" id="vio_customer_price.repository"/>
+        </service>
+
+        <service id="VioCustomerPrice\Subscriber\CacheSubscriber">
+            <argument id="vio_customer_price.repository" type="service"/>
+            <argument id="product.repository" type="service"/>
+            <argument id="event_dispatcher" type="service"/>
+            <tag name="kernel.event_subscriber"/>
+        </service>
+
+        <service id="VioCustomerPrice\Subscriber\ProductCriteriaEventSubscriber">
+            <tag name="kernel.event_subscriber"/>
+        </service>
+
+        <service id="VioCustomerPrice\Subscriber\SalesChannelProductSubscriber">
+            <argument type="service" id="Shopware\Core\System\SystemConfig\SystemConfigService"/>
+            <tag name="kernel.event_subscriber"/>
+        </service>
+
+        <service id="VioCustomerPrice\Core\Content\Product\SalesChannel\Price\ProductPriceCalculator"
+                 decorates="Shopware\Core\Content\Product\SalesChannel\Price\ProductPriceCalculator">
+            <argument type="service" id="VioCustomerPrice\Core\Content\Product\SalesChannel\Price\ProductPriceCalculator.inner"/>
+            <argument type="service" id="Shopware\Core\System\SystemConfig\SystemConfigService"/>
+            <argument type="service" id="Shopware\Core\Checkout\Cart\Price\QuantityPriceCalculator" />
+            <argument type="service" id="event_dispatcher" />
+            <argument type="service" id="Shopware\Core\Checkout\Cart\Tax\TaxCalculator" />
+        </service>
+
+        <service id="VioCustomerPrice\Services\ImportService">
+            <argument id="vio_customer_price.repository" type="service"/>
+            <argument id="product.repository" type="service"/>
+            <argument id="customer.repository" type="service"/>
+        </service>
+
+        <!-- controllers -->
+        <service id="VioCustomerPrice\Administration\Controllers\VioCustomerPriceImportController" public="true">
+            <argument id="VioCustomerPrice\Services\ImportService" type="service"/>
+            <call method="setContainer">
+                <argument id="service_container" type="service"/>
+            </call>
+            <tag name="controller.service_arguments"/>
+            <argument type="service" id="vio_customer_price.repository"/>
+        </service>
+
+        <!-- commands -->
+        <service id="VioCustomerPrice\Commands\VioCustomerPriceImportCommand">
+            <call method="setImportService">
+                <argument id="VioCustomerPrice\Services\ImportService" type="service"/>
+            </call>
+            <tag name="console.command"/>
+        </service>
+
+    </services>
+</container>

@@ -13,13 +13,10 @@ Component.register('tocafix-team-list', {
     data() {
         return {
             isLoading: false,
-            // Initialize as null or empty array
             teams: null
         };
     },
 
-    // Shopware 6.6 still supports metaInfo, but moving toward 
-    // a more standard Vue 3 approach in the future.
     metaInfo() {
         return {
             title: this.$createTitle()
@@ -27,7 +24,6 @@ Component.register('tocafix-team-list', {
     },
 
     computed: {
-        // Use the repository factory to create the repository
         teamRepository() {
             return this.repositoryFactory.create('tocafix_team');
         },

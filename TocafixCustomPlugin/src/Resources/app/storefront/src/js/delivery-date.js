@@ -1,7 +1,9 @@
 import Plugin from 'src/plugin-system/plugin.class';
-import DomAccess from "src/helper/dom-access.helper";
+import DomAccess from 'src/helper/dom-access.helper';
 import HttpClient from 'src/service/http-client.service';
 import FormSerializeUtil from 'src/utility/form/form-serialize.util';
+import flatpickr from 'flatpickr';
+import { German } from 'flatpickr/dist/l10n/de.js';
 
 export default class DeliveryDatePlugin extends Plugin {
     static options = {
@@ -9,21 +11,24 @@ export default class DeliveryDatePlugin extends Plugin {
     };
 
     init() {
+        
         this._picker = DomAccess.querySelector(this.el, this.options.deliverydateCls, false);
-        this._client = new HttpClient(window.accessKey, window.contextToken);
+        this._client = new HttpClient();
         this._form = this.el;
-        let me = this;
-        let minDate = new Date().fp_incr(1);
+        const me = this;
+        let minDate = new Date();
+        minDate.setDate(minDate.getDate() + 1);
+        
         if (minDate.getDay() === 6) {
-            minDate = minDate.fp_incr(2);
+            minDate.setDate(minDate.getDate() + 2);
         }
 
         if (minDate.getDay() === 0) {
-            minDate = minDate.fp_incr(1);
+            minDate.setDate(minDate.getDate() + 1);
         }
-        if (this._picker) {
 
-            this._picker.flatpickr({
+        if (this._picker) {
+            flatpickr(this._picker, {
                 mode: "single",
                 defaultDate: me._picker.value || minDate,
                 inline: false,
@@ -32,16 +37,15 @@ export default class DeliveryDatePlugin extends Plugin {
                 onChange: function (selectedDates, dateStr, instance) {
                     me._submitDate(dateStr);
                 },
-                "disable": [
+                disable: [
                     function(date) {
                         // return true to disable
                         return (date.getDay() === 0 || date.getDay() === 6);
-            
                     }
                 ],
-                locale: "de",
+                locale: German,
                 minDate: minDate
-            })
+            });
         }
     }
 

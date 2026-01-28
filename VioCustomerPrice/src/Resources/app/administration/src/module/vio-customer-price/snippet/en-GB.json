@@ -1,0 +1,45 @@
+{
+    "vio-customer-price": {
+        "general": {
+            "mainMenuItemGeneral": "customer specific prices"
+        },
+        "list": {
+            "columnQuantityStart": "from quantity",
+            "columnQuantityEnd": "to quantity",
+            "columnPrice": "price",
+            "columnDiscount": "Discount",
+            "columnProduct": "product",
+            "columnCustomer": "customer",
+            "collectiveEntry": "collective acquisition",
+            "importUpload": "import upload"
+        },
+        "detail": {
+            "quantityStartLabel": "from quantity",
+            "quantityEndLabel": "to quantity",
+            "priceLabel": "price",
+            "discountLabel": "discount",
+            "assignProductLabel": "product",
+            "assignCustomerLabel": "customer",
+            "errorTitle": "A error occurred during saving the customer specific price!"
+        },
+        "collectiveEntry": {
+            "entryError": "incorrect input"
+        },
+        "importUpload": {
+            "uploadButton": "upload",
+            "hint": "There were no prices imported. | There were imported one price. | There were imported {count} prices."
+        }
+    },
+    "sw-privileges": {
+        "permissions": {
+            "vio_customer_price": {
+                "label": "customer specific prices"
+            }
+        }
+    },
+    "sw-import-export": {
+        "profile": {
+            "customerPrices": "customer specific prices"
+        }
+    }
+}

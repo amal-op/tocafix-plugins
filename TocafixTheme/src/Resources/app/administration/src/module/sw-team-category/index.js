@@ -23,6 +23,7 @@ Shopware.Module.register('tocafix-team-category', {
             component: 'tocafix-team-category-list',
             path: 'list',
             meta: {
+                title: 'tocafix-team-category.general.mainMenuItemGeneral',
                 privilege: 'tocafix_team_category:read'
             }
         },
@@ -30,6 +31,7 @@ Shopware.Module.register('tocafix-team-category', {
             component: 'tocafix-team-category-create',
             path: 'create',
             meta: {
+                title: 'tocafix-team-category.general.mainMenuItemGeneral',
                 parentPath: 'tocafix.team.category.list',
                 privilege: 'tocafix_team_category:create'
             }
@@ -38,6 +40,7 @@ Shopware.Module.register('tocafix-team-category', {
             component: 'tocafix-team-category-detail',
             path: 'detail/:id',
             meta: {
+                title: 'tocafix-team-category.general.mainMenuItemGeneral',
                 parentPath: 'tocafix.team.category.list',
                 privilege: 'tocafix_team_category:read'
             }

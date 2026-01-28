@@ -18,6 +18,7 @@ use Shopware\Core\Framework\Validation\DataBag\RequestDataBag;
 use Shopware\Core\Framework\Validation\Exception\ConstraintViolationException;
 use Shopware\Storefront\Framework\Media\Exception\FileTypeNotAllowedException;
 use Symfony\Component\Validator\Exception\ValidatorException;
+use Shopware\Storefront\Framework\StorefrontFrameworkException;
 
 /**
  * Class JobApplicationSendController
@@ -90,7 +91,7 @@ class JobApplicationSendController extends StorefrontController
                 'type' => 'info',
                 'alert' => $this->trans('error.rateLimitExceeded', ['%seconds%' => $exception->getWaitTime()]),
             ];
-        } catch (FileTypeNotAllowedException $exception) {
+        } catch (StorefrontFrameworkException $exception) {
             $response[] = [
                 'type' => 'danger',
                 'alert' => $this->trans('error.VIOLATION::STRICT_CHECK_FAILED_ERROR', ['%field%' => 'document']),
@@ -104,22 +105,22 @@ class JobApplicationSendController extends StorefrontController
         return new JsonResponse($response);
     }
 
-    public function sendMail(array $recipients, string $senderName, string $subject, string $messageHtml, array $attachments, SalesChannelContext $salesChannelContext)
-    {
-        $data = new DataBag();
-        //basic e-mail data
-        $data->set('recipients', $recipients);
-        //format: ['email address' => 'recipient name']
-        $data->set('senderName', $senderName);
-        $data->set('subject', $subject);
-        $data->set('contentHtml', $messageHtml);
-        $data->set('contentPlain', strip_tags($messageHtml));
-        //set sales channel context
-        $data->set('salesChannelId', $salesChannelContext->getSalesChannel()->getId());
-        if (!empty($attachments)) {
-            $data->set('binAttachments', $attachments);
-        }
-        //send the e-mail
-        $this->mailService->send($data->all(), $salesChannelContext->getContext(), []);
-    }
+    // public function sendMail(array $recipients, string $senderName, string $subject, string $messageHtml, array $attachments, SalesChannelContext $salesChannelContext)
+    // {
+    //     $data = new DataBag();
+    //     //basic e-mail data
+    //     $data->set('recipients', $recipients);
+    //     //format: ['email address' => 'recipient name']
+    //     $data->set('senderName', $senderName);
+    //     $data->set('subject', $subject);
+    //     $data->set('contentHtml', $messageHtml);
+    //     $data->set('contentPlain', strip_tags($messageHtml));
+    //     //set sales channel context
+    //     $data->set('salesChannelId', $salesChannelContext->getSalesChannel()->getId());
+    //     if (!empty($attachments)) {
+    //         $data->set('binAttachments', $attachments);
+    //     }
+    //     //send the e-mail
+    //     $this->mailService->send($data->all(), $salesChannelContext->getContext(), []);
+    // }
 }

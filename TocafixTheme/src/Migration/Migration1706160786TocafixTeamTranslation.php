@@ -14,7 +14,7 @@ class Migration1706160786TocafixTeamTranslation extends MigrationStep
 
     public function update(Connection $connection): void
     {
-        $connection->executeUpdate('
+        $connection->executeStatement('
             CREATE TABLE IF NOT EXISTS `tocafix_team_translation` (
               `tocafix_team_id` BINARY(16) NOT NULL,
               `language_id` BINARY(16) NOT NULL,

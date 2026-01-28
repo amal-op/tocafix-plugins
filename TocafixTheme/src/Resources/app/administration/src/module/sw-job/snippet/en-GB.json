@@ -19,7 +19,10 @@
             "mediaLabel": "Picture Upload",
             "cancelButtonText": "Cancel",
             "saveButtonText": "Save",
-            "errorTitle": "Error saving the Job"
+            "errorTitle": "Error saving the Job",
+            "errorMessage": "Please fix the errors in the form.",
+            "successTitle": "Job saved successfully",
+            "successMessage": "The job has been saved successfully."
         }
     }
 }

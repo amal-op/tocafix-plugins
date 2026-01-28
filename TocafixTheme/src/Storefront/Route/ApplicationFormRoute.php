@@ -251,6 +251,7 @@ class ApplicationFormRoute
         }
         $templateData['applicationFormData'] = ['gender' => $formData->get('gender', ''), 'firstName' => $formData->get('firstName', ''), 'lastName' => $formData->get('lastName', ''), 'email' => $formData->get('email', ''), 'street' => $formData->get('street', ''), 'plz_ort' => $formData->get('plz_ort', ''), 'phone' => $formData->get('phone', ''), 'comment' => $formData->get('comment', '')];
         $this->mailService->send($data->all(), $salesChannelContext->getContext(), $templateData);
+        dd($data->all(), $salesChannelContext->getContext(), $templateData);
     }
     
     /**

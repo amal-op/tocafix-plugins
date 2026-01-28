@@ -12,12 +12,6 @@ Shopware.Component.register("tocafix-team-category-detail", {
     Shopware.Mixin.getByName("placeholder"),
   ],
 
-  metaInfo() {
-    return {
-      title: this.$createTitle(this.identifier),
-    };
-  },
-
   data() {
     return {
       teamCategory: null,
@@ -52,6 +46,7 @@ Shopware.Component.register("tocafix-team-category-detail", {
         appearance: "light",
       };
     },
+    
     isCreateMode() {
       return this.$route.name === "tocafix.team.category.create";
     }
@@ -65,6 +60,7 @@ Shopware.Component.register("tocafix-team-category-detail", {
     createdComponent() {
       this.getTeamCategory();
     },
+    
     getTeamCategory() {
       this.isLoading = true;
 
@@ -89,7 +85,7 @@ Shopware.Component.register("tocafix-team-category-detail", {
       this.isLoading = true;
 
       this.teamCategoryRepository
-        .save(this.teamCategory, Shopware.Context.api)
+        .save(this.teamCategory)
         .then(() => {
           this.getTeamCategory();
           this.isLoading = false;
@@ -118,10 +114,11 @@ Shopware.Component.register("tocafix-team-category-detail", {
       this.processSuccess = false;
     },
 
-    onChangeLanguage() {
+    onChangeLanguage(languageId) {
+      Shopware.State.commit('context/setApiLanguageId', languageId);
       this.getTeamCategory();
     },
-
+    
     saveOnLanguageChange() {
       return this.onClickSave();
     },

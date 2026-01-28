@@ -27,7 +27,10 @@
       "cancelButtonText": "Cancel",
       "saveButtonText": "Save",
       "errorTitle": "Error saving the employee",
-      "manageTeamCategoryText": "Manage Team Category"
+      "manageTeamCategoryText": "Manage Team Category",
+      "successTitle": "Team saved successfully",
+      "errorMessage": "Error saving the team",
+      "successMessage": "The team has been saved."
     }
   }
 }

@@ -1,0 +1,7 @@
+{
+    "global": {
+        "entities": {
+            "customer_price": "Customer-specific prices"
+        }
+    }
+}
