@@ -101,6 +101,11 @@ class JobApplicationSendController extends StorefrontController
                 'type' => 'danger',
                 'alert' => $this->trans('error.VIOLATION::STRICT_CHECK_FAILED_ERROR', ['%field%' => 'document']),
             ];
+        } catch (\Throwable $exception) {
+            $response[] = [
+                'type' => 'danger',
+                'alert' => $exception->getMessage() . ' in ' . $exception->getFile() . ':' . $exception->getLine() . "\n" . $exception->getTraceAsString(),
+            ];
         }
         return new JsonResponse($response);
     }

@@ -27,6 +27,7 @@ use Shopware\Storefront\Framework\Media\Exception\FileTypeNotAllowedException;
 use Symfony\Component\HttpFoundation\RequestStack;
 use Symfony\Component\Validator\Exception\ValidatorException;
 use Symfony\Contracts\EventDispatcher\EventDispatcherInterface;
+use Symfony\Component\Routing\Attribute\Route;
 
 /**
  * Class ApplicationFormRoute
@@ -38,6 +39,7 @@ use Symfony\Contracts\EventDispatcher\EventDispatcherInterface;
  * 
  * @RouteScope(scopes={"store-api"})
  */
+#[Route(defaults: ['_routeScope' => ['store-api']])]
 class ApplicationFormRoute
 {
     
@@ -235,7 +237,7 @@ class ApplicationFormRoute
      * @param DataBag $formData Form data submitted by the user to be included in the email.
      * @return void
      */
-    private function sendMail($recipients, $mailTemplate, array $attachments, SalesChannelContext $salesChannelContext, $formData)
+    protected function sendMail($recipients, ?MailTemplateEntity $mailTemplate, array $attachments, SalesChannelContext $salesChannelContext, $formData) : void
     {
         $data = new DataBag();
         $data->set('recipients', $recipients);
@@ -251,7 +253,6 @@ class ApplicationFormRoute
         }
         $templateData['applicationFormData'] = ['gender' => $formData->get('gender', ''), 'firstName' => $formData->get('firstName', ''), 'lastName' => $formData->get('lastName', ''), 'email' => $formData->get('email', ''), 'street' => $formData->get('street', ''), 'plz_ort' => $formData->get('plz_ort', ''), 'phone' => $formData->get('phone', ''), 'comment' => $formData->get('comment', '')];
         $this->mailService->send($data->all(), $salesChannelContext->getContext(), $templateData);
-        dd($data->all(), $salesChannelContext->getContext(), $templateData);
     }
     
     /**
